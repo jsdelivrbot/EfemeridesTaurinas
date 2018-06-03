@@ -60,8 +60,7 @@
                 <div class="col s12 m6 l4">
                     <div class="card">
                         <div class="card-content min_height_card_character">
-                            <div class="img card_bullfighter">
-                                card_bullfighter" src="<%=listaPersonaje.get(i).getFoto()%>"></div>
+                            <div class="img card_bullfighter"><img onerror="this.src='assets/img/no-photo.png';" class="image_card_bullfighter" src="<%=listaPersonaje.get(i).getFoto()%>"></div>
                             <h5><%=listaPersonaje.get(i).getNombrepersonaje()%> <%=listaPersonaje.get(i).getApellido1()%> <%=listaPersonaje.get(i).getApellido2()%> </h5>
                             <p>"<%=listaPersonaje.get(i).getApodo1()%>"</p>
                         </div>
