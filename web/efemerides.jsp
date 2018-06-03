@@ -42,9 +42,11 @@
             <div class="row">
 
                 <%
-                    List<Efemeride> listaefemerides = (List<Efemeride>) session.getAttribute("listaefemerides");
-                    DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
-                    for (int i = 0; i < listaefemerides.size(); i++) {
+                    try {
+
+                        List<Efemeride> listaefemerides = (List<Efemeride>) session.getAttribute("listaefemerides");
+                        DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+                        for (int i = 0; i < listaefemerides.size(); i++) {
                 %>
                 <div class="col s12 m6 l4" style="margin-bottom: 10px;">
                     <div class="card horizontal" style="height: 200px">
@@ -93,7 +95,11 @@
                     </div>
                 </div>
 
-                <%}%>
+
+                    } catch (Exception e) {
+                        session.setAttribute("errormessage", "Error visualizar las efemerides");
+                        response.sendRedirect("mainview.jsp");
+                    }%>
             </div>
 
 

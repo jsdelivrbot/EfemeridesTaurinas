@@ -20,8 +20,10 @@
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <div class="container margin_top_login ">
             <!-- Start Row title-->
-            <% Efemeride efemeride = (Efemeride) session.getAttribute("efemeride");
-                DateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
+            <% try {
+
+                    Efemeride efemeride = (Efemeride) session.getAttribute("efemeride");
+                    DateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
             %>
             <script type="text/javascript">
                 function poncombo(combo, valor) {
@@ -37,7 +39,7 @@
                 <div class="row">
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
-                        <input type="text" class="validate hidden_display" name="idefemeride" value="<%=efemeride.getIdefemeride() %>">
+                        <input type="text" class="validate hidden_display" name="idefemeride" value="<%=efemeride.getIdefemeride()%>">
                         <label for="town" class="black_taurinas">Población</label>
                         <input required="required" id="town" type="text" class="validate" name="town" value="<%=efemeride.getPoblacion()%>">
                         <label for="date" class="black_taurinas">Fecha</label>
@@ -124,7 +126,7 @@
                     <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
                         <div class="input-field col s12">
                             <select required="required" id="selectcharactersefemerides"  name="idpersonajes">
-                                <option value="<%=efemeride.getIdpersonaje().getIdpersonaje()%>"  selected><%=efemeride.getIdpersonaje().getNombrepersonaje() %> <%=efemeride.getIdpersonaje().getApellido1() %> <%=efemeride.getIdpersonaje().getApellido2() %></option>
+                                <option value="<%=efemeride.getIdpersonaje().getIdpersonaje()%>"  selected><%=efemeride.getIdpersonaje().getNombrepersonaje()%> <%=efemeride.getIdpersonaje().getApellido1()%> <%=efemeride.getIdpersonaje().getApellido2()%></option>
                                 <%
                                     try {
                                         List<Personaje> listaPersonaje = (List<Personaje>) session.getAttribute("listapersonajes");
@@ -152,6 +154,10 @@
             <script language="javascript" type="text/javascript">
                 poncombo(document.formcharacter.selectcharactersefemerides, '<%=session.getAttribute("selectcategoria")%>');
             </script>
+            <% } catch (Exception e) {
+                    session.setAttribute("errormessage", "Error visualizar la edición de la efemeride");
+                    response.sendRedirect("mainview.jsp");
+                }%>
             <!-- Start Modal -->
             <jsp:include page="assets/shared/modals/modalcat.jsp" />
             <!-- End Modal -->

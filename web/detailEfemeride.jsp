@@ -22,9 +22,11 @@
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <div class="container margin_top_login">
 
-            <% Efemeride efemeride = (Efemeride) session.getAttribute("efem");
+            <%
+                try {
+                    Efemeride efemeride = (Efemeride) session.getAttribute("efem");
 
-                Personaje perso = (Personaje) session.getAttribute("perso");%>
+                    Personaje perso = (Personaje) session.getAttribute("perso");%>
             <div class="row">
                 <div class="col s12 m7 l8">
                     <h5 class="titles_red_h5">Efeméride: <span class="black_taurinas"><%=perso.getNombrepersonaje()%> <%=perso.getApellido1()%> <%=perso.getApellido2()%>, "<%=perso.getApodo1()%>"</span></h5>
@@ -110,7 +112,11 @@
             </div>
             <%} else {%>
             <p>No existe cartel</p>
-            <%}%>
+            <%}
+                } catch (Exception e) {
+                    session.setAttribute("errormessage", "Error visualizar los personajes");
+                    response.sendRedirect("mainview.jsp");
+                }%>
 
         </div>
     </div>

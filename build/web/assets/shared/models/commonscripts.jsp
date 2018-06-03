@@ -11,7 +11,7 @@
     function confirmdelete(id) {
         var formName = "formDelete-" + id;
 
-        if (confirm("Si elimina un personaje si eliminarán todos las efemérides asocidas a el ¿Seguro que quiere continuar?")) {
+        if (confirm("Si elimina un personaje se eliminarán todos las efemérides asocidas a el ¿Seguro que quiere continuar?")) {
             console.log("ACEPTADO");
             $('form[name="' + formName + '"]').submit();
         } else {

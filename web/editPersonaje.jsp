@@ -23,8 +23,10 @@
                 <div class="row">
 
                     <%
-                        Personaje personajeEdit = (Personaje) session.getAttribute("personajeEdit");
-                        DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+                        try {
+
+                            Personaje personajeEdit = (Personaje) session.getAttribute("personajeEdit");
+                            DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
                     %>
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
@@ -125,7 +127,7 @@
                 <div class="row">
                     <div class="col s12 m12 l12">
                         <label for="img" class="black_taurinas">Imagen <i id="informationimage " onclick="myFunction()" class="material-icons information_orange_buttons">info</i></label>
-                       
+
 
                         <div class="chip background_color_red white-text" id="dialogInformation" style="height: auto!important; display: none">
                             <i class="material-icons close">close</i>
@@ -160,6 +162,10 @@
                     <a class="waves-effect waves-light btn grey darken-4" href="personajes.jsp"><i class="material-icons left">cancel</i>Cancelar</a>
                 </div>
             </div>
+            <% } catch (Exception e) {
+                    session.setAttribute("errormessage", "Error visualizar la edición del personaje");
+                    response.sendRedirect("mainview.jsp");
+                        }%>
         </form>
         <jsp:include page="assets/shared/body.jsp" />
     </body>

@@ -19,8 +19,10 @@
         <div class="container margin_top_login">
 
             <%
-                Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
-                DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+                try {
+
+                    Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
+                    DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
             %>
             <!-- Start Row title-->
             <div class="row">
@@ -180,11 +182,15 @@
                 </tbody>
             </table>
             <%
-                } else {%>
+            } else {%>
             <p>No existe cartel</p>
             <%}%>
             <!-- End Table efemerides -->
         </div>
+        <%} catch (Exception e) {
+                session.setAttribute("errormessage", "Error visualizar el detalle del personaje");
+                response.sendRedirect("mainview.jsp");
+            }%>
         <jsp:include page="assets/shared/body.jsp" />
     </body>
 </html>
