@@ -95,6 +95,7 @@
                     </div>
                 </div>
 
+                <%}
 
                     } catch (Exception e) {
                         session.setAttribute("errormessage", "Error visualizar las efemerides");
