@@ -18,60 +18,31 @@
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <div class="container margin_top_login ">
             <!-- Start Row title-->
-            <h5 class="titles_red_h5">Añadir Efeméride</h5>
+            <h5 class="titles_red_h5 right-align">Añadir Efeméride</h5>
             <!-- End Row title-->
-            <!-- Start Row image and credentials-->
-            <form class="character-form" action="controllers/controllerEfemeride.jsp?op=savenewefe" method="POST" name="formcharacter">
-                <div class="row">
-                    <!-- Start col 1-->
-                    <div class="col s12 m6 l6">
-                        <label for="town" class="black_taurinas">Población</label>
-                        <input required="required" id="town" type="text" class="validate" name="town">
-                        <label for="date" class="black_taurinas">Fecha</label>
-                        <input required="required" id="date" type="text" class="datepicker" name="date">
-                    </div>
-                    <!-- End col 1-->
-                    <!-- Start col 2-->
-                    <div class="col s12 m6 l6">
-                        <label for="event" class="black_taurinas">Evento</label>
-                        <input required="required" id="event" type="text" class="validate" name="event">
-                        <label for="report" class="black_taurinas">Reportaje</label>
-                        <input required="required" id="report" type="text" class="validate" name="report">
-                    </div>
-                    <!-- End col 2-->
-                </div>
-                <!-- End Row image and credentials-->
-                <div class="row">
-                    <div class="s12">
-                        <label class="black_taurinas" for="notes">Notas</label>
-                        <textarea id="notes" class="materialize-textarea" name="notes"></textarea>
-                    </div>
-                </div>
-                <br/><br/><br/>
-                <h5 class="titles_red_h5">Cartel <i id="informationimage " onclick="myFunction()" class="material-icons information_orange_buttons">info</i></h5> 
+            <h5 class="titles_red_h5">Cartel <i id="informationimage " onclick="myFunction()" class="material-icons information_orange_buttons">info</i></h5> 
 
-                <div class="chip background_color_red white-text" id="dialogInformation" style="height: auto!important; display: none">
-                    <i class="material-icons close">close</i>
-                    Un cartel esta formado por el toro, la ganaderia y el interviniente
-                </div>
+            <div class="chip background_color_red white-text" id="dialogInformation" style="height: auto!important; display: none">
+                <i class="material-icons close">close</i>
+                Un cartel esta formado por el toro, la ganaderia y el interviniente
+            </div>
 
-                <script>
-                    function myFunction() {
-                        var x = document.getElementById("dialogInformation");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("dialogInformation");
+                    if (x.style.display === "none") {
+                        x.style.display = "block";
+                    } else {
+                        x.style.display = "none";
                     }
-                </script>
+                }
+            </script>
 
-
+            <form class="character-form" action="controllers/controllerEfemeride.jsp?op=savenewefe" method="POST" name="formcharacter">
                 <%
                     List<Cartel> listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
                     if (listacartel.size() != 0) {
                 %>
-
                 <div class="row margin_top_login">
                     <table class="striped centered highlight">
                         <thead>
@@ -106,8 +77,35 @@
                     <a class="waves-effect waves-light btn red " href="controllers/controllerEfemeride.jsp?op=deleteallrows">Borrar todos los carteles</a>
                 </div>
 
-                <div class="row margin_top_login">
+                <h5 class="titles_red_h5 margin_top_login">Más datos</h5>
+                <div class="row">
+                    <!-- Start col 1-->
+                    <div class="col s12 m6 l6">
+                        <label for="town" class="black_taurinas">Población</label>
+                        <input required="required" id="town" type="text" class="validate" name="town">
+                        <label for="date" class="black_taurinas">Fecha</label>
+                        <input required="required" id="date" type="text" class="datepicker" name="date">
+                    </div>
+                    <!-- End col 1-->
+                    <!-- Start col 2-->
+                    <div class="col s12 m6 l6">
+                        <label for="event" class="black_taurinas">Evento</label>
+                        <input required="required" id="event" type="text" class="validate" name="event">
+                        <label for="report" class="black_taurinas">Reportaje</label>
+                        <input required="required" id="report" type="text" class="validate" name="report">
+                    </div>
+                    <!-- End col 2-->
+                </div>
+                <!-- End Row image and credentials-->
+                <div class="row">
+                    <div class="s12">
+                        <label class="black_taurinas" for="notes">Notas</label>
+                        <textarea id="notes" class="materialize-textarea" name="notes"></textarea>
+                    </div>
+                </div>
+                <br/><br/><br/>
 
+                <div class="row margin_top_login">
                     <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
                         <div class="input-field col s12">
                             <select required="required" id="selectcharactersefemerides"  name="idpersonajes">

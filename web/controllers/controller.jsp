@@ -188,8 +188,6 @@
                     Date fechaParaGuardar = formatter.parse(fechanacimiento);
                     personaje.setFechanacimiento(fechaParaGuardar);
 
-                    
-
                     if (completo == null) {
                         personaje.setCompleto(false);
                     } else if (completo != null) {
@@ -418,13 +416,12 @@
                     personaje.setProvincianacimiento(provincianacimiento);
                     personaje.setPuebloactual(puebloactual);
                     personaje.setPueblonacimiento(pueblonacimiento);
-                    
+
                     SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
                     Date fechaParaGuardar = formatter.parse(fechanacimiento);
                     personaje.setFechanacimiento(fechaParaGuardar);
 
                     //personaje.setProfesion(profession);
-
                     if (completo == null) {
                         personaje.setCompleto(false);
                     } else if (completo != null) {
@@ -590,6 +587,9 @@
                     response.sendRedirect("../personajes.jsp");
                     session.setAttribute("errormessage", "Error al intentar generar el pdf");
                 }
+            } else if (op.equals("logout")) {
+                session.invalidate();
+                response.sendRedirect("../login.jsp");
             }
 
         %>

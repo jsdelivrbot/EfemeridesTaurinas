@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="row center">
-                        <button class="btn modal-action modal-close waves-effect btn-flat grey darken-4 white-text" type="submit"> Aceptar<i class="material-icons right">add</i></button>
+                        <button class="btn modal-action modal-close waves-effect btn-flat grey darken-4 white-text" id="btnaddelementtable" type="submit"> Aceptar<i class="material-icons right">add</i></button>
                         <button class="btn modal-close waves-effect btn-flat grey darken-4 white-text" type="button"> Cancelar<i class="material-icons right">cancel</i></button>
                     </div>
                 </form>
