@@ -7,9 +7,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+
+
     <jsp:include page="assets/shared/head.jsp" /> 
 
     <body class="body_html_mainview margin_botton" >
+
+        <%
+            String login = (String) session.getAttribute("login");
+
+            if (login == null) {
+                response.sendRedirect("login.jsp");
+            }
+        %>
 
         <!-- Header image -->
         <div class="intro grey darken-4  z-depth-1 header_mainview">

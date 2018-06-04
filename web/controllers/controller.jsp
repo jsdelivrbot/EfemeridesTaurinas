@@ -105,6 +105,7 @@
                     listaUsuario = (List<Usuario>) q.getResultList();
 
                     if (listaUsuario.size() > 0) {
+                        session.setAttribute("login", "ok");
                         response.sendRedirect("../mainview.jsp");
                     } else {
                         session.setAttribute("errormessage", "Usuario o contraseña incorrectos");
@@ -475,7 +476,8 @@
             } else if (op.equals("sendfilterefe")) {
 
                 String valor = (String) request.getParameter("sendfilterefe");
-
+                session.setAttribute("sendfilterefe", valor);
+                
                 switch (Integer.parseInt(valor)) {
                     case 1:
                         try {

@@ -147,7 +147,7 @@ Author     : agustin
                 <!-- End row biograpy and image-->
 
                 <div class="row center-align">
-                    <button class="waves-effect waves-light btn grey darken-4" type="submit"><i class="material-icons left">save</i>Guardar</button>
+                    <button   class="waves-effect waves-light btn grey darken-4" type="submit"><i class="material-icons left">save</i>Guardar</button>
                     <a class="waves-effect waves-light btn grey darken-4" href="personajes.jsp"><i class="material-icons left">cancel</i>Cancelar</a>
                 </div>
             </div>

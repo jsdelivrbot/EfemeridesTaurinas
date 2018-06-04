@@ -11,7 +11,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <jsp:include page="assets/shared/head.jsp" /> 
+    <script language="javascript" type="text/javascript">
+        function poncombo(combo, valor)
+        {
+            for (i = 0; i < combo.options.length; i++)
+                if (combo.options[i].value == valor)
+                    combo.options[i].selected = true;
+        }
+    </script>
     <body class="body_html_mainview margin_botton">
         <jsp:include page="assets/shared/models/headerBack.jsp" />
 
@@ -32,6 +41,9 @@
                             <option value="2">Pueblo</option>
                         </select>
                     </form>
+                    <script language="javascript" type="text/javascript">
+                        poncombo(document.formfilterefe.sendfilterefe, '<%=session.getAttribute("sendfilterefe")%>');
+                    </script>
                 </div>
                 <div class="col s12 m6 l6 offset-m2 offset-l2">
                     <!--<a class=" red_taurinas modal-trigger" data-target="modal2">Añadir Efeméride</a>-->
