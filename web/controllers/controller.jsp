@@ -4,6 +4,7 @@
     Author     : agustin
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="methods.Inform"%>
 <%@page import="com.itextpdf.text.Paragraph"%>
 <%@page import="java.io.FileOutputStream"%>
@@ -66,7 +67,7 @@
             String nombrecartel = null;
             String direccion = null;
             String telefono = null;
-            Date fechanacimiento = null;
+            String fechanacimiento = null;
             String contacto = null;
             String email = null;
             String imagen = null;
@@ -142,7 +143,7 @@
                     nombrecartel = (String) request.getParameter("name_poster");
                     direccion = (String) request.getParameter("direction");
                     telefono = (String) request.getParameter("phone");
-                    //fechanacimiento = (Date) request.getParameter("birth_date");
+                    fechanacimiento = (String) request.getParameter("birth_date");
                     contacto = (String) request.getParameter("contact");
                     email = (String) request.getParameter("email");
                     imagen = (String) request.getParameter("img");
@@ -182,7 +183,12 @@
                     personaje.setProvincianacimiento(provincianacimiento);
                     personaje.setPuebloactual(puebloactual);
                     personaje.setPueblonacimiento(pueblonacimiento);
-                    personaje.setFechanacimiento(new Date());
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
+                    Date fechaParaGuardar = formatter.parse(fechanacimiento);
+                    personaje.setFechanacimiento(fechaParaGuardar);
+
+                    
 
                     if (completo == null) {
                         personaje.setCompleto(false);
@@ -377,7 +383,7 @@
                     nombrecartel = (String) request.getParameter("name_poster");
                     direccion = (String) request.getParameter("direction");
                     telefono = (String) request.getParameter("phone");
-                    //fechanacimiento = (Date) request.getParameter("birth_date");
+                    fechanacimiento = (String) request.getParameter("birth_date");
                     contacto = (String) request.getParameter("contact");
                     email = (String) request.getParameter("email");
                     imagen = (String) request.getParameter("img");
@@ -412,7 +418,11 @@
                     personaje.setProvincianacimiento(provincianacimiento);
                     personaje.setPuebloactual(puebloactual);
                     personaje.setPueblonacimiento(pueblonacimiento);
-                    personaje.setFechanacimiento(new Date());
+                    
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
+                    Date fechaParaGuardar = formatter.parse(fechanacimiento);
+                    personaje.setFechanacimiento(fechaParaGuardar);
+
                     //personaje.setProfesion(profession);
 
                     if (completo == null) {
@@ -446,8 +456,9 @@
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("correctmessage", personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2() + " ha sido editado correctamente");
                 } catch (Exception e) {
-                    session.setAttribute("errormessage", "Error editando el personaje");
-                    response.sendRedirect("../personajes.jsp");
+                    //session.setAttribute("errormessage", "Error editando el personaje");
+                    //response.sendRedirect("../personajes.jsp");
+                    out.print(e);
                 }
             } else if (op.equals("detailcharacter")) {
 
@@ -477,7 +488,7 @@
 
                 String valor = (String) request.getParameter("sendfilterefe");
                 session.setAttribute("sendfilterefe", valor);
-                
+
                 switch (Integer.parseInt(valor)) {
                     case 1:
                         try {
