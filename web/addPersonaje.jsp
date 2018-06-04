@@ -9,6 +9,7 @@ Author     : agustin
 <html>
     <jsp:include page="assets/shared/head.jsp" /> 
     <body class="body_html_mainview margin_botton">
+        <jsp:include page="assets/shared/models/validateSession.jsp" />
 
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <form class="character-form" action="controllers/controller.jsp?op=savenewcharacter" method="POST" name="formcharacter">

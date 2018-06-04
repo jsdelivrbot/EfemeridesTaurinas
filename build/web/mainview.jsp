@@ -14,13 +14,7 @@
 
     <body class="body_html_mainview margin_botton" >
 
-        <%
-            String login = (String) session.getAttribute("login");
-
-            if (login == null) {
-                response.sendRedirect("login.jsp");
-            }
-        %>
+        <jsp:include page="assets/shared/models/validateSession.jsp" />
 
         <!-- Header image -->
         <div class="intro grey darken-4  z-depth-1 header_mainview">

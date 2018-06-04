@@ -16,6 +16,7 @@
 <html>
     <jsp:include page="assets/shared/head.jsp" /> 
     <body class="body_html_mainview margin_botton">
+        <jsp:include page="assets/shared/models/validateSession.jsp" />
 
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <div class="container margin_top_login ">

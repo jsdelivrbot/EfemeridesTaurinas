@@ -12,6 +12,7 @@
     <jsp:include page="assets/shared/head.jsp" /> 
 
     <body class="body_html_mainview margin_botton">
+        <jsp:include page="assets/shared/models/validateSession.jsp" />
         <!-- Start Header with back-->
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <!-- End Header with back-->

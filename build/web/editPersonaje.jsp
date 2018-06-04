@@ -12,7 +12,8 @@
 <html>
     <jsp:include page="assets/shared/head.jsp" /> 
     <body class="body_html_mainview margin_botton">
-
+        <jsp:include page="assets/shared/models/validateSession.jsp" />
+        
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <form class="character-form" action="controllers/controller.jsp?op=saveeditcharacter" method="POST" name="formcharacter">
             <div class="container margin_top_login">
@@ -165,7 +166,7 @@
             <% } catch (Exception e) {
                     session.setAttribute("errormessage", "Error visualizar la edición del personaje");
                     response.sendRedirect("mainview.jsp");
-                        }%>
+                }%>
         </form>
         <jsp:include page="assets/shared/body.jsp" />
     </body>

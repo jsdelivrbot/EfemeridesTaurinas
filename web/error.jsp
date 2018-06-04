@@ -12,6 +12,7 @@
     <body class="background_color_red " >        
         <jsp:include page="assets/shared/models/headerMaterialize.jsp" />
         <jsp:include page="assets/shared/models/errorMessage.jsp" />
+        <jsp:include page="assets/shared/models/validateSession.jsp" />
 
 
         <div id="login-page" class="row" style="margin-top: 15%">
