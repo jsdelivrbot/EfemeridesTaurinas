@@ -7,8 +7,8 @@
 $(document).ready(function () {
     console.log('ready');
     init();
-    
-    
+
+
 
 });
 
@@ -58,5 +58,13 @@ function init() {
     });
     ;
 
+    $(".delete-cartel").click(function () {
+        console.log($(this));
+        console.log(this.id);
+        console.log($("#" + this.id).parent().parent());
+
+        $("#" + this.id).parent().parent().remove();
+        console.log(sessionStorage);
+    });
 
 }

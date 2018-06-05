@@ -7,23 +7,9 @@
 <div id="modalcat" class="modal">
     <div class="container">
         <div class="modal-content">
-            <h5 class="titles_red_h5">Añadir Cartel <i id="info " onclick="myFunction()" class="material-icons information_orange_buttons">info</i></h5> 
 
-                <div class="chip background_color_red white-text" id="infocontainer" style="height: auto!important; display: none">
-                    <i class="material-icons close">close</i>
-                    Debe rellenar todos los campos
-                </div>
+            <h5 class="titles_red_h5">Añadir Cartel <i id="informationimage " data-position="bottom" data-delay="50" data-tooltip="Debe rellenar todos los campos" onclick="myFunction()" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
 
-                <script>
-                    function myFunction() {
-                        var x = document.getElementById("infocontainer");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                </script>
             <div class="row">
                 <form class="filter-form" action="controllers/controller.jsp?op=addelementstable" method="POST" name="addelementstable">
                     <div class="row">

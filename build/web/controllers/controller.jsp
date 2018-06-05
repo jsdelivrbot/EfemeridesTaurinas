@@ -590,6 +590,10 @@
             } else if (op.equals("logout")) {
                 session.invalidate();
                 response.sendRedirect("../login.jsp");
+            } else if (op.equals("deleteselectedcartel")) {
+                String idcartel = (String) request.getParameter("idcartel");
+                out.print(idcartel);
+                out.print(session.getAttribute("listacartel"));
             }
 
         %>

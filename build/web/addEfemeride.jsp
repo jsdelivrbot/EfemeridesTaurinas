@@ -20,29 +20,14 @@
             <!-- Start Row title-->
             <h5 class="titles_red_h5 right-align">Añadir Efeméride</h5>
             <!-- End Row title-->
-            <h5 class="titles_red_h5">Cartel <i id="informationimage " onclick="myFunction()" class="material-icons information_orange_buttons">info</i></h5> 
-
-            <div class="chip background_color_red white-text" id="dialogInformation" style="height: auto!important; display: none">
-                <i class="material-icons close">close</i>
-                Un cartel esta formado por el toro, la ganaderia y el interviniente
-            </div>
-
-            <script>
-                function myFunction() {
-                    var x = document.getElementById("dialogInformation");
-                    if (x.style.display === "none") {
-                        x.style.display = "block";
-                    } else {
-                        x.style.display = "none";
-                    }
-                }
-            </script>
+            <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="right" data-delay="50" data-tooltip="Un cartel esta formado por el toro, la ganaderia y el interviniente" onclick="myFunction()" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
 
             <form class="character-form" action="controllers/controllerEfemeride.jsp?op=savenewefe" method="POST" name="formcharacter">
                 <%
                     List<Cartel> listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
                     if (listacartel.size() != 0) {
                 %>
+                <!-- Start row table -->
                 <div class="row margin_top_login">
                     <table class="striped centered highlight">
                         <thead>
@@ -50,6 +35,7 @@
                                 <th>Toros</th>
                                 <th>Ganaderías</th>
                                 <th>Intervinientes</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,25 +45,36 @@
                                 <td><%=listacartel.get(i).getNombretoro()%></td>
                                 <td><%=listacartel.get(i).getNombreganaderia()%></td>
                                 <td><%=listacartel.get(i).getNombreinterviniente()%></td>
-                                <td><a></a></td>
+                                <td>
+                                    
+                                        <button action="controllers/controller.jsp?op=deleteselectedcartel" method="POST" name="deleteselectedform">X</button>
+                                        <input class="hidden_display" name="idcartel" value="<%=i%>">
+                                    
+                                </td>
                             </tr>
                             <% } %>
                         </tbody>
                     </table>
                 </div>
+                <!-- End row table -->
                 <%
                     session.setAttribute("listacartel", listacartel);
                 } else if (listacartel.size() == 0) {%>
+                <!-- Start no existing data in the table -->
                 <span>No existe cartel</span>
                 <%}%>
+
                 <div class="row margin_top_login">
                     <%if (listacartel.size() < 6) { %>
                     <button class="btn waves-effect waves-light blue modal-trigger right-align" data-target="modalcat">Añadir cartel</button>
                     <%}%>
                     <a class="waves-effect waves-light btn red " href="controllers/controllerEfemeride.jsp?op=deleteallrows">Borrar todos los carteles</a>
                 </div>
+                <!-- End no existing data in the table -->
 
+                <!-- Start row title more data -->
                 <h5 class="titles_red_h5 margin_top_login">Más datos</h5>
+                <!-- End row title more data -->
                 <div class="row">
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
@@ -105,9 +102,11 @@
                 </div>
                 <br/><br/><br/>
 
+                <!-- Start select characters -->
                 <div class="row margin_top_login">
                     <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
                         <div class="input-field col s12">
+                            <!-- Start select-->
                             <select required="required" id="selectcharactersefemerides"  name="idpersonajes">
                                 <option value="" disabled selected>Seleccione un personaje</option>
                                 <%
@@ -123,16 +122,18 @@
                                         response.sendRedirect("../mainview.jsp");
                                     }%>
                             </select>
+                            <!-- End select-->
                             <label>Selecciona un personaje</label>
                         </div>
                     </div>
-
                 </div>
-
+                <!-- End select characters -->
+                <!-- Start row buttons -->
                 <div class="row center-align">
                     <button type="submit" class="waves-effect waves-light btn grey darken-4 "><i class="material-icons left">save</i>Guardar</button>
                     <a class="waves-effect waves-light btn grey darken-4" href="efemerides.jsp"><i class="material-icons left">cancel</i>Cancelar</a>
                 </div>
+                <!-- End row buttons -->
             </form>
             <!-- Start Modal -->
             <jsp:include page="assets/shared/modals/modalcat.jsp" />

@@ -28,8 +28,7 @@
                 <div class="col s12 m4 l4">
                     <form class="filter-form" action="controllers/controller.jsp?op=sendfilter" method="POST" name="formfilter">
                         <select  id="sendfilter" onchange="this.form.submit()"  name="sendfilter">
-                            <!-- controllers/controller.jsp?op=loadallefemerides -->
-                            <option value="" disabled selected>Ordenar por</option>
+                            <option value="" disabled selected> Ordenar por</option>
                             <option value="1">Fecha de nacimiento</option>
                             <option value="2">Pueblo</option>
                             <option value="3">Nombre</option>
@@ -41,7 +40,7 @@
                 <div class="col s12 m4 l4 center-align">
                     <form class="search-form" action="controllers/controller.jsp?op=searchcharacter" method="POST" name="formsearch">
                         <input placeholder="Buscar" id="search" type="text" class="validate input_search" name="search"> 
-                        <button type="submit"  class="waves-effect waves-light btn background_color_red button_search" ><i class="material-icons left">search</i></buttom>
+                        <button type="submit"  class="waves-effect waves-light btn background_color_red button_search tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca por nombre o apodo" ><i class="material-icons left">search</i></buttom>
                     </form>
                 </div>
                 <div class="col s12 m4 l4 margin_top " >

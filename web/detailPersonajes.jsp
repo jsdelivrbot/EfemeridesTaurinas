@@ -21,7 +21,6 @@
 
             <%
                 try {
-
                     Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
                     DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
             %>

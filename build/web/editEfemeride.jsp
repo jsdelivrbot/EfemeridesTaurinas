@@ -64,30 +64,11 @@
                     </div>
                 </div>
                 <br/><br/><br/>
-                <h5 class="titles_red_h5">Cartel <i id="informationimage " onclick="myFunction()" class="material-icons information_orange_buttons">info</i></h5> 
-
-                <div class="chip background_color_red white-text" id="dialogInformation" style="height: auto!important; display: none">
-                    <i class="material-icons close">close</i>
-                    Un cartel esta formado por el toro, la ganaderia y el interviniente
-                </div>
-
-                <script>
-                    function myFunction() {
-                        var x = document.getElementById("dialogInformation");
-                        if (x.style.display === "none") {
-                            x.style.display = "block";
-                        } else {
-                            x.style.display = "none";
-                        }
-                    }
-                </script>
-
-
+                <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="bottom" data-delay="50" data-tooltip="Un cartel esta formado por el toro, la ganaderia y el interviniente" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
                 <%
                     List<Cartel> listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
                     if (listacartel.size() != 0) {
                 %>
-
                 <div class="row margin_top_login">
                     <table class="striped centered highlight">
                         <thead>
