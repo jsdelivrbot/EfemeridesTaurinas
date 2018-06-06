@@ -207,16 +207,16 @@ public class Inform {
             PdfPTable tableCartel = new PdfPTable(3);
             tableCartel.addCell("Toro");
             tableCartel.addCell("Ganadería");
-            tableCartel.addCell("Cartel");
+            tableCartel.addCell("Interviniente");
 
             List<Cartel> listacartel = new ArrayList<Cartel>();
 
-            Cartel cartel1 = new Cartel(e.getToro1(), e.getGanaderia1(), "Interviniente");
-            Cartel cartel2 = new Cartel(e.getToro2(), e.getGanaderia2(), "Interviniente");
-            Cartel cartel3 = new Cartel(e.getToro3(), e.getGanaderia3(), "Interviniente");
-            Cartel cartel4 = new Cartel(e.getToro4(), e.getGanaderia4(), "Interviniente");
-            Cartel cartel5 = new Cartel(e.getToro5(), e.getGanaderia5(), "Interviniente");
-            Cartel cartel6 = new Cartel(e.getToro6(), e.getGanaderia6(), "Interviniente");
+            Cartel cartel1 = new Cartel(e.getToro1(), e.getGanaderia1(), e.getInterviniente1());
+            Cartel cartel2 = new Cartel(e.getToro2(), e.getGanaderia2(), e.getInterviniente2());
+            Cartel cartel3 = new Cartel(e.getToro3(), e.getGanaderia3(), e.getInterviniente3());
+            Cartel cartel4 = new Cartel(e.getToro4(), e.getGanaderia4(), e.getInterviniente4());
+            Cartel cartel5 = new Cartel(e.getToro5(), e.getGanaderia5(), e.getInterviniente5());
+            Cartel cartel6 = new Cartel(e.getToro6(), e.getGanaderia6(), e.getInterviniente6());
 
             listacartel.add(cartel1);
             listacartel.add(cartel2);

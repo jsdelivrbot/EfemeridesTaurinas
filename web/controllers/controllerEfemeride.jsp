@@ -144,83 +144,83 @@
                     efemeride.setReportaje(report);
                     efemeride.setIdpersonaje(personaje);
 
-                    efemeride.setIdefemeride(4);
+                    
 
                     switch (listacartel.size()) {
                         case 1:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             break;
                         case 2:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             break;
                         case 3:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             break;
                         case 4:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             efemeride.setToro4(listacartel.get(3).getNombretoro());
                             efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            //efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
+                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
                             break;
                         case 5:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             efemeride.setToro4(listacartel.get(3).getNombretoro());
                             efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            //efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
+                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
                             efemeride.setToro5(listacartel.get(4).getNombretoro());
                             efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            //efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
+                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
                             break;
                         case 6:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             efemeride.setToro4(listacartel.get(3).getNombretoro());
                             efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            //efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
+                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
                             efemeride.setToro5(listacartel.get(4).getNombretoro());
                             efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            //efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
+                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
                             efemeride.setToro6(listacartel.get(5).getNombretoro());
                             efemeride.setGanaderia6(listacartel.get(5).getNombreganaderia());
-                            //efemeride.setInterviniente6(listacartel.get(5).getNombreinterviniente());
+                            efemeride.setInterviniente6(listacartel.get(5).getNombreinterviniente());
                             break;
                     }
 
@@ -232,7 +232,7 @@
                     session.setAttribute("errormessage", "Guardada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
                 } catch (Exception e) {
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("errormessage", "La id estaba duplicada");
+                    session.setAttribute("errormessage", "La id estaba duplicada" +e);
 
                 }
 
@@ -281,12 +281,12 @@
                     Efemeride efemeride = (Efemeride) q.getSingleResult();
                     session.setAttribute("efemeride", efemeride);
 
-                    Cartel cartel1 = new Cartel(efemeride.getToro1(), efemeride.getGanaderia1(), "Interviniente");
-                    Cartel cartel2 = new Cartel(efemeride.getToro2(), efemeride.getGanaderia2(), "Interviniente");
-                    Cartel cartel3 = new Cartel(efemeride.getToro3(), efemeride.getGanaderia3(), "Interviniente");
-                    Cartel cartel4 = new Cartel(efemeride.getToro4(), efemeride.getGanaderia4(), "Interviniente");
-                    Cartel cartel5 = new Cartel(efemeride.getToro5(), efemeride.getGanaderia5(), "Interviniente");
-                    Cartel cartel6 = new Cartel(efemeride.getToro6(), efemeride.getGanaderia6(), "Interviniente");
+                    Cartel cartel1 = new Cartel(efemeride.getToro1(), efemeride.getGanaderia1(), efemeride.getInterviniente1());
+                    Cartel cartel2 = new Cartel(efemeride.getToro2(), efemeride.getGanaderia2(), efemeride.getInterviniente2());
+                    Cartel cartel3 = new Cartel(efemeride.getToro3(), efemeride.getGanaderia3(), efemeride.getInterviniente3());
+                    Cartel cartel4 = new Cartel(efemeride.getToro4(), efemeride.getGanaderia4(), efemeride.getInterviniente4());
+                    Cartel cartel5 = new Cartel(efemeride.getToro5(), efemeride.getGanaderia5(), efemeride.getInterviniente5());
+                    Cartel cartel6 = new Cartel(efemeride.getToro6(), efemeride.getGanaderia6(), efemeride.getInterviniente6());
                     listacartel.add(cartel1);
                     listacartel.add(cartel2);
                     listacartel.add(cartel3);
@@ -340,80 +340,80 @@
                         case 1:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             break;
                         case 2:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             break;
                         case 3:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             break;
                         case 4:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             efemeride.setToro4(listacartel.get(3).getNombretoro());
                             efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            //efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
+                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
                             break;
                         case 5:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             efemeride.setToro4(listacartel.get(3).getNombretoro());
                             efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            //efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
+                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
                             efemeride.setToro5(listacartel.get(4).getNombretoro());
                             efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            //efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
+                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
                             break;
                         case 6:
                             efemeride.setToro1(listacartel.get(0).getNombretoro());
                             efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            //efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
+                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
                             efemeride.setToro2(listacartel.get(1).getNombretoro());
                             efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            //efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
+                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
                             efemeride.setToro3(listacartel.get(2).getNombretoro());
                             efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            //efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
+                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
                             efemeride.setToro4(listacartel.get(3).getNombretoro());
                             efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            //efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
+                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
                             efemeride.setToro5(listacartel.get(4).getNombretoro());
                             efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            //efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
+                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
                             efemeride.setToro6(listacartel.get(5).getNombretoro());
                             efemeride.setGanaderia6(listacartel.get(5).getNombreganaderia());
-                            //efemeride.setInterviniente6(listacartel.get(5).getNombreinterviniente());
+                            efemeride.setInterviniente6(listacartel.get(5).getNombreinterviniente());
                             break;
                     }
-
+                    
                     em.getTransaction().begin();
                     em.merge(efemeride);
                     em.getTransaction().commit();
@@ -423,11 +423,13 @@
                 } catch (Exception e) {
                     //response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
                     //session.setAttribute("errormessage", "Error al editar la efeméride");
-                    
+
                     out.print(e);
                 }
-                
+
             }
         %>
     </body>
 </html>
+
+

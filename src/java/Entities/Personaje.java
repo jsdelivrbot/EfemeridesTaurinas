@@ -15,6 +15,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -130,6 +133,11 @@ public class Personaje implements Serializable {
     private String puebloactual;
     @Column(name = "clm")
     private Boolean clm;
+    @JoinTable(name = "trabajo", joinColumns = {
+        @JoinColumn(name = "idpersonaje", referencedColumnName = "idpersonaje")}, inverseJoinColumns = {
+        @JoinColumn(name = "idprofesion", referencedColumnName = "idprofesion")})
+    @ManyToMany
+    private List<Profesion> profesionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpersonaje")
     private List<Efemeride> efemerideList;
 
@@ -347,6 +355,15 @@ public class Personaje implements Serializable {
 
     public void setClm(Boolean clm) {
         this.clm = clm;
+    }
+
+    @XmlTransient
+    public List<Profesion> getProfesionList() {
+        return profesionList;
+    }
+
+    public void setProfesionList(List<Profesion> profesionList) {
+        this.profesionList = profesionList;
     }
 
     @XmlTransient

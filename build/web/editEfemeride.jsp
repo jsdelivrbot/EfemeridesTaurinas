@@ -63,8 +63,7 @@
                         <textarea id="notes" class="materialize-textarea" name="notes"><%=efemeride.getNotas()%></textarea>
                     </div>
                 </div>
-                <br/><br/><br/>
-                <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="bottom" data-delay="50" data-tooltip="Un cartel esta formado por el toro, la ganaderia y el interviniente" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
+                <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Si desea editar los carteles es conveniente eliminar la efemeride y rehacerla" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
                 <%
                     List<Cartel> listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
                     if (listacartel.size() != 0) {
@@ -80,14 +79,15 @@
                         </thead>
                         <tbody>
                             <%for (int i = 0; i < listacartel.size(); i++) {
-                            %>
+                            if (listacartel.get(i).getNombretoro() != null && listacartel.get(i).getNombreganaderia() != null && listacartel.get(i).getNombreinterviniente() != null) { 
+                                listacartel.clear(); %>
                             <tr>
                                 <td><%=listacartel.get(i).getNombretoro()%></td>
                                 <td><%=listacartel.get(i).getNombreganaderia()%></td>
                                 <td><%=listacartel.get(i).getNombreinterviniente()%></td>
                                 <td><a></a></td>
                             </tr>
-                            <% } %>
+                            <%} } %>
                         </tbody>
                     </table>
                 </div>
@@ -97,14 +97,6 @@
                 <span>No existe cartel <%=listacartel.size()%></span>
                 <%}%>
                 <div class="row margin_top_login">
-                    <%if (listacartel.size() < 6) { %>
-                    <button class="btn waves-effect waves-light blue modal-trigger right-align" data-target="modalcat">Añadir cartel</button>
-                    <%}%>
-                    <a class="waves-effect waves-light btn red " href="controllers/controllerEfemeride.jsp?op=deleteallrows">Borrar todos los carteles</a>
-                </div>
-
-                <div class="row margin_top_login">
-
                     <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
                         <div class="input-field col s12">
                             <select required="required" id="selectcharactersefemerides"  name="idpersonajes">

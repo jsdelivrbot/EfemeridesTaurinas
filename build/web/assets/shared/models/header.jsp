@@ -10,7 +10,8 @@
             <ul class="right hide-on-med-and-down">
                 <li><a  href="controllers/controllerEfemeride.jsp?op=loadallefems">Efemérides</a></li>
                 <li><a  href="controllers/controller.jsp?op=loadallcharacters">Personajes</a></li>
-                <li><a href="controllers/controller.jsp?op=logout">Logout</a></li>
+                <li><a href="profesiones.jsp">Profesiones</a></li>
+                <li><a href="controllers/controller.jsp?op=logout">Salir</a></li>
             </ul>
             <ul class="side-nav center background_color_grey" id="mobile-demo">
                 <li><div class="input-field col s12 center">
@@ -19,10 +20,12 @@
                     </div>
                 </li>   
                 <li><a class="margin_top" href="controllers/controllerEfemeride.jsp?op=loadallefems">EFEMÉRIDES</a></li>
-                <li><hr width="50px"></li>
+                <li><hr width="70px"></li>
+                <li><a href="profesiones.jsp">PROFESIONES</a></li>
+                <li><hr width="70px"></li>
                 <li><a  href="controllers/controller.jsp?op=loadallcharacters">PERSONAJES</a></li>
-                <li><hr width="50px"></li>
-                <li><a href="controllers/controller.jsp?op=logout">LOGOUT</a></li>               
+                <li><hr width="70px"></li>
+                <li><a href="controllers/controller.jsp?op=logout">SALIR</a></li>               
             </ul>
         </div>
     </div>

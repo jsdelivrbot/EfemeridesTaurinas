@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -46,11 +48,18 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Efemeride.findByNotas", query = "SELECT e FROM Efemeride e WHERE e.notas = :notas")
     , @NamedQuery(name = "Efemeride.findByReportaje", query = "SELECT e FROM Efemeride e WHERE e.reportaje = :reportaje")
     , @NamedQuery(name = "Efemeride.findByEvento", query = "SELECT e FROM Efemeride e WHERE e.evento = :evento")
-    , @NamedQuery(name = "Efemeride.findByFechaefemeride", query = "SELECT e FROM Efemeride e WHERE e.fechaefemeride = :fechaefemeride")})
+    , @NamedQuery(name = "Efemeride.findByFechaefemeride", query = "SELECT e FROM Efemeride e WHERE e.fechaefemeride = :fechaefemeride")
+    , @NamedQuery(name = "Efemeride.findByInterviniente1", query = "SELECT e FROM Efemeride e WHERE e.interviniente1 = :interviniente1")
+    , @NamedQuery(name = "Efemeride.findByInterviniente2", query = "SELECT e FROM Efemeride e WHERE e.interviniente2 = :interviniente2")
+    , @NamedQuery(name = "Efemeride.findByInterviniente3", query = "SELECT e FROM Efemeride e WHERE e.interviniente3 = :interviniente3")
+    , @NamedQuery(name = "Efemeride.findByInterviniente4", query = "SELECT e FROM Efemeride e WHERE e.interviniente4 = :interviniente4")
+    , @NamedQuery(name = "Efemeride.findByInterviniente5", query = "SELECT e FROM Efemeride e WHERE e.interviniente5 = :interviniente5")
+    , @NamedQuery(name = "Efemeride.findByInterviniente6", query = "SELECT e FROM Efemeride e WHERE e.interviniente6 = :interviniente6")})
 public class Efemeride implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idefemeride")
     private Integer idefemeride;
@@ -93,6 +102,18 @@ public class Efemeride implements Serializable {
     @Column(name = "fechaefemeride")
     @Temporal(TemporalType.DATE)
     private Date fechaefemeride;
+    @Column(name = "interviniente1")
+    private String interviniente1;
+    @Column(name = "interviniente2")
+    private String interviniente2;
+    @Column(name = "interviniente3")
+    private String interviniente3;
+    @Column(name = "interviniente4")
+    private String interviniente4;
+    @Column(name = "interviniente5")
+    private String interviniente5;
+    @Column(name = "interviniente6")
+    private String interviniente6;
     @JoinColumn(name = "idpersonaje", referencedColumnName = "idpersonaje")
     @ManyToOne(optional = false)
     private Personaje idpersonaje;
@@ -254,6 +275,54 @@ public class Efemeride implements Serializable {
 
     public void setFechaefemeride(Date fechaefemeride) {
         this.fechaefemeride = fechaefemeride;
+    }
+
+    public String getInterviniente1() {
+        return interviniente1;
+    }
+
+    public void setInterviniente1(String interviniente1) {
+        this.interviniente1 = interviniente1;
+    }
+
+    public String getInterviniente2() {
+        return interviniente2;
+    }
+
+    public void setInterviniente2(String interviniente2) {
+        this.interviniente2 = interviniente2;
+    }
+
+    public String getInterviniente3() {
+        return interviniente3;
+    }
+
+    public void setInterviniente3(String interviniente3) {
+        this.interviniente3 = interviniente3;
+    }
+
+    public String getInterviniente4() {
+        return interviniente4;
+    }
+
+    public void setInterviniente4(String interviniente4) {
+        this.interviniente4 = interviniente4;
+    }
+
+    public String getInterviniente5() {
+        return interviniente5;
+    }
+
+    public void setInterviniente5(String interviniente5) {
+        this.interviniente5 = interviniente5;
+    }
+
+    public String getInterviniente6() {
+        return interviniente6;
+    }
+
+    public void setInterviniente6(String interviniente6) {
+        this.interviniente6 = interviniente6;
     }
 
     public Personaje getIdpersonaje() {

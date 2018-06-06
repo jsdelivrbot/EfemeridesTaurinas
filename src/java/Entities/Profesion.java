@@ -6,16 +6,19 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -39,6 +42,8 @@ public class Profesion implements Serializable {
     @Basic(optional = false)
     @Column(name = "descripcion")
     private String descripcion;
+    @ManyToMany(mappedBy = "profesionList")
+    private List<Personaje> personajeList;
 
     public Profesion() {
     }
@@ -66,6 +71,15 @@ public class Profesion implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @XmlTransient
+    public List<Personaje> getPersonajeList() {
+        return personajeList;
+    }
+
+    public void setPersonajeList(List<Personaje> personajeList) {
+        this.personajeList = personajeList;
     }
 
     @Override

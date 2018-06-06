@@ -71,12 +71,12 @@
             </div>
 
             <%
-                Cartel cartel1 = new Cartel(efemeride.getToro1(), efemeride.getGanaderia1(), "interiviente");
-                Cartel cartel2 = new Cartel(efemeride.getToro2(), efemeride.getGanaderia2(), "interiviente");
-                Cartel cartel3 = new Cartel(efemeride.getToro3(), efemeride.getGanaderia3(), "interiviente");
-                Cartel cartel4 = new Cartel(efemeride.getToro4(), efemeride.getGanaderia4(), "interiviente");
-                Cartel cartel5 = new Cartel(efemeride.getToro5(), efemeride.getGanaderia5(), "interiviente");
-                Cartel cartel6 = new Cartel(efemeride.getToro6(), efemeride.getGanaderia6(), "interiviente");
+                Cartel cartel1 = new Cartel(efemeride.getToro1(), efemeride.getGanaderia1(), efemeride.getInterviniente1());
+                Cartel cartel2 = new Cartel(efemeride.getToro2(), efemeride.getGanaderia2(), efemeride.getInterviniente2());
+                Cartel cartel3 = new Cartel(efemeride.getToro3(), efemeride.getGanaderia3(), efemeride.getInterviniente3());
+                Cartel cartel4 = new Cartel(efemeride.getToro4(), efemeride.getGanaderia4(), efemeride.getInterviniente4());
+                Cartel cartel5 = new Cartel(efemeride.getToro5(), efemeride.getGanaderia5(), efemeride.getInterviniente5());
+                Cartel cartel6 = new Cartel(efemeride.getToro6(), efemeride.getGanaderia6(), efemeride.getInterviniente6());
 
                 List<Cartel> listacartel = new ArrayList<Cartel>();
                 listacartel.add(cartel1);
