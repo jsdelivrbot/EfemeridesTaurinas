@@ -232,7 +232,7 @@
                     session.setAttribute("errormessage", "Guardada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
                 } catch (Exception e) {
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("errormessage", "La id estaba duplicada" +e);
+                    session.setAttribute("errormessage", "Error al crear la efemeride" +e);
 
                 }
 
@@ -298,6 +298,8 @@
 
                     response.sendRedirect("../editEfemeride.jsp");
                 } catch (Exception e) {
+                    response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
+                    session.setAttribute("errormessage", "Error al intetar cargar la edición del personaje" +e);
                 }
 
             } else if (op.equals("saveeditefe")) {

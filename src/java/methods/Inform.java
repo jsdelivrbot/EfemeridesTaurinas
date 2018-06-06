@@ -171,13 +171,10 @@ public class Inform {
             table.setSpacingAfter(25);
             documento.add(table);
 
-            
             //dateFormat.parse(e.getFechaefemeride().toString());
-
             String OLD_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";
             String NEW_FORMAT = "dd/MM/yyyy";
 
-            
             DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 
             PdfPTable table2 = new PdfPTable(2);
@@ -200,14 +197,14 @@ public class Inform {
 
             documento.add(table2);
 
+            /*
+                Creacion de la tabla para los carteles
+             */
             Paragraph cartel = new Paragraph("Cartel");
             cartel.setSpacingBefore(50);
             documento.add(cartel);
 
             PdfPTable tableCartel = new PdfPTable(3);
-            tableCartel.addCell("Toro");
-            tableCartel.addCell("Ganadería");
-            tableCartel.addCell("Interviniente");
 
             List<Cartel> listacartel = new ArrayList<Cartel>();
 
@@ -225,10 +222,15 @@ public class Inform {
             listacartel.add(cartel5);
             listacartel.add(cartel6);
 
+            tableCartel.addCell("Toro");
+            tableCartel.addCell("Ganadería");
+            tableCartel.addCell("Interviniente");
             for (int i = 0; i < listacartel.size(); i++) {
-                tableCartel.addCell(listacartel.get(i).getNombretoro());
-                tableCartel.addCell(listacartel.get(i).getNombreganaderia());
-                tableCartel.addCell(listacartel.get(i).getNombreinterviniente());
+                if (listacartel.get(i).getNombretoro() != null || listacartel.get(i).getNombreganaderia() != null || listacartel.get(i).getNombreinterviniente() != null) {
+                    tableCartel.addCell(listacartel.get(i).getNombretoro());
+                    tableCartel.addCell(listacartel.get(i).getNombreganaderia());
+                    tableCartel.addCell(listacartel.get(i).getNombreinterviniente());
+                }
             }
 
             tableCartel.setSpacingBefore(50);

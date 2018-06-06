@@ -127,26 +127,7 @@
                 <!-- Start row biograpy and image-->
                 <div class="row">
                     <div class="col s12 m12 l12">
-                        <label for="img" class="black_taurinas">Imagen <i id="informationimage " onclick="myFunction()" class="material-icons information_orange_buttons">info</i></label>
-
-
-                        <div class="chip background_color_red white-text" id="dialogInformation" style="height: auto!important; display: none">
-                            <i class="material-icons close">close</i>
-                            Debe colocar la url de la imagen
-                        </div>
-
-                        <script>
-                            function myFunction() {
-                                var x = document.getElementById("dialogInformation");
-                                if (x.style.display === "none") {
-                                    x.style.display = "block";
-                                } else {
-                                    x.style.display = "none";
-                                }
-                            }
-                        </script>
-
-
+                        <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
                         <input  id="img" type="text" value="<%=personajeEdit.getFoto()%>" class="validate" name="img">
                         <label class="black_taurinas" for="biography">Biografía</label>
                         <textarea id="biography" value="" class="materialize-textarea" name="biography"><%=personajeEdit.getBiografia()%></textarea>  

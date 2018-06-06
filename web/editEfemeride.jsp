@@ -63,7 +63,7 @@
                         <textarea id="notes" class="materialize-textarea" name="notes"><%=efemeride.getNotas()%></textarea>
                     </div>
                 </div>
-                <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Si desea editar los carteles es conveniente eliminar la efemeride y rehacerla" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
+                <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Si desea editar el cartel es conveniente eliminar la efemeride y rehacerla" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
                 <%
                     List<Cartel> listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
                     if (listacartel.size() != 0) {

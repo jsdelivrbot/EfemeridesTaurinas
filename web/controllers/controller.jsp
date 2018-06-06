@@ -344,7 +344,7 @@
                     em.getTransaction().commit();
 
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
-                    session.setAttribute("correctmessage", "Eliminado " + p.getNombrepersonaje() + " " + p.getApellido1() + " " + p.getApellido2());
+                    session.setAttribute("correctmessage", "Eliminado el personaje " + p.getNombrepersonaje() + " " + p.getApellido1() + " " + p.getApellido2());
 
                 } catch (Exception e) {
                     //response.sendRedirect("../personajes.jsp");
@@ -438,18 +438,7 @@
                     em.merge(personaje);
                     em.getTransaction().commit();
 
-                    /*
-                    
-                    String idpersonaje = (String) request.getParameter("idPersonaje");
-                    sql = "SELECT P FROM Personaje p where p.idpersonaje =" + idpersonaje;
-                    q = em.createQuery(sql);
-                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                    Personaje p = (Personaje) q.getSingleResult();
-                    em.getTransaction().begin();
-                    em.remove(p);
-                    em.getTransaction().commit();
-                    
-                     */
+                 
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("correctmessage", personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2() + " ha sido editado correctamente");
                 } catch (Exception e) {
@@ -473,13 +462,12 @@
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     List<Efemeride> listaEfemeridesPersonaje = (List<Efemeride>) q.getResultList();
                     session.setAttribute("listaEfemeridesPersonaje", listaEfemeridesPersonaje);
-
-                    //aquiii
+                    
                     response.sendRedirect("../detailPersonajes.jsp");
 
                 } catch (Exception e) {
-                    //response.sendRedirect("../personajes.jsp");
-                    // session.setAttribute("errormessage", "Error al visualizar el personaje");
+                    response.sendRedirect("../personajes.jsp");
+                     session.setAttribute("errormessage", "Error al visualizar el personaje");
                 }
             } else if (op.equals("sendfilterefe")) {
 
