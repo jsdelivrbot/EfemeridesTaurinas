@@ -4,6 +4,8 @@
     Author     : agustin
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="Entities.Profesion"%>
 <%@page import="java.util.List"%>
 <%@page import="Entities.Personaje"%>
 <%@page import="javax.persistence.EntityManager"%>
@@ -47,7 +49,7 @@
             if (op.equals("loadallprofession")) {
                 try {
 
-                    sql = "SELECT p FROM Personaje p order by p.fechanacimiento DESC";
+                    sql = "SELECT p FROM Personaje p order by p.nombrepersonaje";
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     listapersonajes = (List<Personaje>) q.getResultList();
@@ -59,17 +61,42 @@
                     response.sendRedirect("../mainview.jsp");
                 }
             } else if (op.equals("searchcharacterprofession")) {
-                String nameandsurnames = (String) request.getParameter("nameandsurnames");
-                String profession = (String) request.getParameter("profession");
 
-                sql = "SELECT P FROM Personaje P where p.nombrepersonaje like '" + nameandsurnames + "' or p.apellido1 like '" + nameandsurnames + "' or p.apellido2 like '" + nameandsurnames + "'";
-                //q = em.createQuery(sql);
-                //q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                //Efemeride efem = (Efemeride) q.getSingleResult();
+                try {
 
-                out.print(sql);
-                Personaje p = new Personaje();
-                p.getProfesionList();
+                    String nameandnickname = (String) request.getParameter("nameandsurnames");
+                    String profession = (String) request.getParameter("profession");
+
+                    if (nameandnickname != "") {
+
+                        sql = "SELECT p FROM Personaje p where p.nombrepersonaje like '%" + nameandnickname + "%' or p.apodo1 like '%" + nameandnickname + "%'";
+
+                        q = em.createQuery(sql);
+                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                        listapersonajes = (List<Personaje>) q.getResultList();
+                        session.setAttribute("listapersonajes", listapersonajes);
+                        response.sendRedirect("../profesiones.jsp");
+                    } else if (profession != "") {
+
+                        session.removeAttribute("listapersonajes");
+                        sql = "SELECT p FROM Personaje p where p.profesionList = (SELECT PR FROM Profesion PR WHERE PR.descripcion like '%" + profession + "%')";
+                        q = em.createQuery(sql);
+                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                        List<Personaje> listapersonajesaux = new ArrayList<Personaje>();
+                        
+                        for (int i = 0; i < q.getResultList().size(); i++) {
+                            for(Profesion p:((Personaje) q.getResultList().get(i)).getProfesionList()){
+                                if(p.getDescripcion().matches(profession))listapersonajesaux.add((Personaje) q.getResultList().get(i));                    
+                            }
+                        }
+                        session.setAttribute("listapersonajes", listapersonajesaux);
+                        response.sendRedirect("../profesiones.jsp");
+                    }
+
+                } catch (Exception e) {
+                    session.setAttribute("errormessage", "Error buscando el personaje" + e);
+                    response.sendRedirect("../mainview.jsp");
+                }
             }
         %>
     </body>
