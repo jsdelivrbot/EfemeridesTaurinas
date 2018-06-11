@@ -41,6 +41,7 @@
             op = request.getParameter("op");
 
             List<Personaje> listapersonajes = null;
+            List<Profesion> listaprofesiones = null;
             /*
             List<Efemeride> listaefemerides = null;
             
@@ -49,11 +50,11 @@
             if (op.equals("loadallprofession")) {
                 try {
 
-                    sql = "SELECT p FROM Personaje p order by p.nombrepersonaje";
+                    sql = "SELECT P FROM Profesion P ORDER BY P.descripcion";
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                    listapersonajes = (List<Personaje>) q.getResultList();
-                    session.setAttribute("listapersonajes", listapersonajes);
+                    listaprofesiones = (List<Profesion>) q.getResultList();
+                    session.setAttribute("listaprofesiones", listaprofesiones);
                     response.sendRedirect("../profesiones.jsp");
 
                 } catch (Exception e) {
@@ -69,17 +70,17 @@
 
                     if (nameandnickname != "") {
 
-                        sql = "SELECT p FROM Personaje p where p.nombrepersonaje like '%" + nameandnickname + "%' or p.apodo1 like '%" + nameandnickname + "%'";
+                        sql = "SELECT PR FROM Profesion PR WHERE PR.personajeList = (SELECT P FROM Personaje P WHERE P.nombrepersonaje like '%"+nameandnickname+"%' or P.apodo1 like '%"+nameandnickname+"%')";
 
                         q = em.createQuery(sql);
                         q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                        listapersonajes = (List<Personaje>) q.getResultList();
-                        session.setAttribute("listapersonajes", listapersonajes);
+                        listaprofesiones = (List<Profesion>) q.getResultList();
+                        session.setAttribute("listaprofesiones", listaprofesiones);
                         response.sendRedirect("../profesiones.jsp");
                     } else if (profession != "") {
 
                         session.removeAttribute("listapersonajes");
-                        sql = "SELECT p FROM Personaje p where p.profesionList = (SELECT PR FROM Profesion PR WHERE PR.descripcion like '%" + profession + "%')";
+                        sql = "";
                         q = em.createQuery(sql);
                         q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                         List<Personaje> listapersonajesaux = new ArrayList<Personaje>();
@@ -89,7 +90,7 @@
                                 if(p.getDescripcion().matches(profession))listapersonajesaux.add((Personaje) q.getResultList().get(i));                    
                             }
                         }
-                        session.setAttribute("listapersonajes", listapersonajesaux);
+                        session.setAttribute("listaprofesiones", listaprofesiones);
                         response.sendRedirect("../profesiones.jsp");
                     }
 

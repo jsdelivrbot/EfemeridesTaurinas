@@ -4,6 +4,7 @@
     Author     : agustin
 --%>
 
+<%@page import="Entities.Profesion"%>
 <%@page import="Entities.Personaje"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -35,8 +36,8 @@
             </div>
 
             <div class="row">
-                <% List<Personaje> listapersonajes = (List<Personaje>) session.getAttribute("listapersonajes");
-                    if (listapersonajes.size() != 0) {
+                <% List<Profesion> listaprofesion = (List<Profesion>) session.getAttribute("listaprofesiones");
+                    if (listaprofesion.size() != 0) {
                 %>
                 <table class="striped highlight" id="myTable">
                     <thead>
@@ -46,18 +47,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (int i = 0; i < listapersonajes.size(); i++) {
-                                for (int j = 0; j < listapersonajes.get(i).getProfesionList().size(); j++) {%>
+                        <% for (int i = 0; i < listaprofesion.size(); i++) {
+                                for (int j = 0; j < listaprofesion.get(i).getPersonajeList().size(); j++) {%>
                         <tr>
-                            <td><%=listapersonajes.get(i).getNombrepersonaje()%> <%=listapersonajes.get(i).getApellido1()%> <%=listapersonajes.get(i).getApellido2()%></td>
-                            <td><%=listapersonajes.get(i).getProfesionList().get(j).getDescripcion()%></td>
+                            <td><%=listaprofesion.get(i).getPersonajeList().get(j).getNombrepersonaje() %> <%=listaprofesion.get(i).getPersonajeList().get(j).getApellido2() %> <%=listaprofesion.get(i).getPersonajeList().get(j).getApellido1() %></td>
+                            <td><%=listaprofesion.get(i).getDescripcion()%></td>
                             <td><a class="waves-effect waves-light btn small_button red"><i class="material-icons center">delete</i></a></td>
                         </tr>
                         <%}
                             }%>
                     </tbody>
                 </table>
-                <span class="margin_top_login"><%=listapersonajes.size()%> resultados</span>
+                <span class="margin_top_login"><%=listaprofesion.size()%> resultados</span>
                 <%} else {%>
                 <span class="">No se han encontrado resultados</span>
                 <%}%>
