@@ -18,6 +18,9 @@ function init() {
     // menú collapse
     $(".button-collapse").sideNav();
 
+    //media
+    $('.materialboxed').materialbox();
+
     //chips
     $('.chips').material_chip();
 
@@ -28,6 +31,9 @@ function init() {
     $('#modalcat').modal();
     $('#modalcharacter').modal();
     $('#modalefem').modal();
+    $('#modalprof').modal({
+        endingTop: '25%', // Ending top style attribute
+    });
 
 
 
@@ -68,3 +74,4 @@ function init() {
     });
 
 }
+

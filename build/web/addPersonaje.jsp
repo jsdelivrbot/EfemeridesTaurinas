@@ -55,9 +55,8 @@ Author     : agustin
                     <div class="col s12 m6 l4">
                         <label for="name_poster"  class="black_taurinas">Nombre Cartel</label>
                         <input id="name_poster" required="true" type="text" class="validate" name="name_poster">
-                        <label for="profession" class="black_taurinas">Profesión</label>
-                        <input id="name_poster" required="true" type="text" class="validate" name="profession">
-
+                        <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
+                        <input  id="img" type="text" class="validate" name="img">
                     </div>
                     <!-- End frist col personal detail-->
                     <!-- Start second col personal detail-->
@@ -117,10 +116,6 @@ Author     : agustin
                 <!-- Start row biograpy and image-->
                 <div class="row">
                     <div class="col s12 m12 l12">
-                        <label for="profession" class="black_taurinas">Profesión</label>
-                        <input  id="profession" type="text" class="validate" name="profession">
-                        <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
-                        <input  id="img" type="text" class="validate" name="img">
                         <label class="black_taurinas" for="biography">Biografía</label>
                         <textarea id="biography" class="materialize-textarea" name="biography"></textarea>  
                         <label class="black_taurinas" for="notes">Notas</label>

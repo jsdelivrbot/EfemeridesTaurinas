@@ -3,8 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/agust/Documents/GitHub/EfemeridesTaurinas/web/profesiones.jsp</file>
-            <file>file:/C:/Users/agust/Documents/GitHub/EfemeridesTaurinas/web/controllers/controllerProfesion.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/assets/shared/models/headerBack.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/personajes.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/controllers/controller.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/assets/shared/models/validateSession.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/profesiones.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/controllers/controllerProfesion.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/src/java/Entities/Profesion.java</file>
         </group>
     </open-files>
 </project-private>

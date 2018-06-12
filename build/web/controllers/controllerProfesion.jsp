@@ -4,6 +4,8 @@
     Author     : agustin
 --%>
 
+<%@page import="com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException"%>
+<%@page import="javax.persistence.NoResultException"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Entities.Profesion"%>
 <%@page import="java.util.List"%>
@@ -68,36 +70,162 @@
                     String nameandnickname = (String) request.getParameter("nameandsurnames");
                     String profession = (String) request.getParameter("profession");
 
-                    if (nameandnickname != "") {
+                    if (nameandnickname != "" && profession == "") {
 
-                        sql = "SELECT PR FROM Profesion PR WHERE PR.personajeList = (SELECT P FROM Personaje P WHERE P.nombrepersonaje like '%"+nameandnickname+"%' or P.apodo1 like '%"+nameandnickname+"%')";
+                        sql = "SELECT PR FROM Personaje PR WHERE PR.nombrepersonaje like '%" + nameandnickname + "%' or PR.apodo1 like '%" + nameandnickname + "%'";
+                        out.print(sql + "resultado");
+
+                        q = em.createQuery(sql);
+                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                        listapersonajes = (List<Personaje>) q.getResultList();
+                        session.setAttribute("listapersonajes", listapersonajes);
+                        session.removeAttribute("listaprofesiones");
+
+                        sql = "SELECT P FROM Profesion P order by P.descripcion";
+                        q = em.createQuery(sql);
+                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                        listaprofesiones = (List<Profesion>) q.getResultList();
+                        session.setAttribute("selectlistaprofesiones", listaprofesiones);
+
+                        response.sendRedirect("../profesiones.jsp");
+
+                    } else if (profession != "" && nameandnickname == "") {
+
+                        session.removeAttribute("listapersonajes");
+                        sql = "SELECT P FROM Profesion P WHERE P.descripcion LIKE '%" + profession + "%'";
+                        q = em.createQuery(sql);
+                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                        List<Profesion> listaprofesionaux = new ArrayList<Profesion>();
+                        listaprofesionaux = (List<Profesion>) q.getResultList();
+
+                        session.setAttribute("listaprofesiones", listaprofesionaux);
+                        response.sendRedirect("../profesiones.jsp");
+                    } else if (profession != "" && nameandnickname != "") {
+
+                        sql = "SELECT PR FROM Profesion PR WHERE PR.descripcion LIKE '%panadero%' and  PR.personajeList = (SELECT P FROM Personaje P WHERE P.nombrepersonaje like '%agustin%' or P.apodo1 like '%agustin%')";
 
                         q = em.createQuery(sql);
                         q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                         listaprofesiones = (List<Profesion>) q.getResultList();
                         session.setAttribute("listaprofesiones", listaprofesiones);
                         response.sendRedirect("../profesiones.jsp");
-                    } else if (profession != "") {
-
-                        session.removeAttribute("listapersonajes");
-                        sql = "";
-                        q = em.createQuery(sql);
-                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                        List<Personaje> listapersonajesaux = new ArrayList<Personaje>();
-                        
-                        for (int i = 0; i < q.getResultList().size(); i++) {
-                            for(Profesion p:((Personaje) q.getResultList().get(i)).getProfesionList()){
-                                if(p.getDescripcion().matches(profession))listapersonajesaux.add((Personaje) q.getResultList().get(i));                    
-                            }
-                        }
-                        session.setAttribute("listaprofesiones", listaprofesiones);
-                        response.sendRedirect("../profesiones.jsp");
+                    } else if (profession == "" && nameandnickname == "") {
+                        response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
                     }
 
                 } catch (Exception e) {
                     session.setAttribute("errormessage", "Error buscando el personaje" + e);
                     response.sendRedirect("../mainview.jsp");
                 }
+            } else if (op.equals("addprofesionpersonaje")) {
+                try {
+
+                    String selectidpersonajes = (String) request.getParameter("selectidpersonajes");
+                    String selectidprofesion = (String) request.getParameter("selectidprofesion");
+
+                    //comprobar si tiene una
+                    sql = "SELECT P.profesionList FROM Personaje P WHERE P.idpersonaje =" + selectidpersonajes;
+                    q = em.createQuery(sql);
+                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                    listaprofesiones = (List<Profesion>) q.getResultList();
+
+                    //la que queremos meter
+                    sql = "SELECT P FROM Profesion P WHERE P.idprofesion=" + selectidprofesion;
+                    q = em.createQuery(sql);
+                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                    List<Profesion> listaprofesionesaux = (List<Profesion>) q.getResultList();
+                    listaprofesiones.add(listaprofesionesaux.get(0));
+
+                    //el personaje que tenemos 
+                    sql = "SELECT P FROM Personaje P WHERE P.idpersonaje=" + selectidpersonajes;
+                    q = em.createQuery(sql);
+                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                    Personaje p = (Personaje) q.getSingleResult();
+
+                    p.setProfesionList(listaprofesiones);
+
+                    em.getTransaction().begin();
+                    em.persist(p);
+                    em.getTransaction().commit();
+
+                    response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
+                    session.setAttribute("correctmessage", "Añadida la profesion al personaje " + " " + p.getNombrepersonaje() + " " + p.getApellido1() + " " + p.getApellido2());
+
+                } catch (NoResultException nr) {
+                    session.setAttribute("errormessage", "Debe seleccionar ambos campos");
+                    response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
+                } catch (IndexOutOfBoundsException e) {
+                    session.setAttribute("errormessage", "Debe seleccionar ambos campos");
+                    response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
+                } catch (Exception ex) {
+                    session.setAttribute("errormessage", "Debe seleccionar ambos campos" + ex);
+                    response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
+
+                }
+
+            } else if (op.equals("deleteprofesionpersonaje")) {
+
+                try {
+                    String idprofesiondelete = (String) request.getParameter("idprofesiondelete");
+                    String idperonajedelete = (String) request.getParameter("idperonajedelete");
+
+                    //todas las profesiones que tiene el personaje
+                    sql = "SELECT P.profesionList FROM Personaje P WHERE P.idpersonaje =" + idperonajedelete;
+                    q = em.createQuery(sql);
+                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                    listaprofesiones = (List<Profesion>) q.getResultList();
+                    List<Profesion> listaprofesionesaux = new ArrayList<Profesion>();
+
+                    for (int i = 0; i < listaprofesiones.size(); i++) {
+
+                        if (listaprofesiones.get(i).getIdprofesion() != Integer.parseInt(idprofesiondelete)) {
+                            listaprofesionesaux.add(listaprofesiones.get(i));
+                        }
+
+                    }
+
+                    //el personaje que tenemos 
+                    sql = "SELECT P FROM Personaje P WHERE P.idpersonaje=" + idperonajedelete;
+                    q = em.createQuery(sql);
+                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                    Personaje p = (Personaje) q.getSingleResult();
+
+                    p.setProfesionList(listaprofesionesaux);
+
+                    em.getTransaction().begin();
+                    em.persist(p);
+                    em.getTransaction().commit();
+
+                    session.setAttribute("errormessage", "Borrada la profesion correctamente");
+                    response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
+
+                } catch (Exception e) {
+                    session.setAttribute("errormessage", "Error borrando la profesion" + e);
+                    response.sendRedirect("../mainview.jsp");
+                }
+
+            } else if (op.equals("addprofession")) {
+                try {
+                    String profession = (String) request.getParameter("newprofession");
+                    
+                    out.print(profession);
+
+                   
+                    Profesion p = new Profesion(0, profession);
+
+                    em.getTransaction().begin();
+                    em.persist(p);
+                    em.getTransaction().commit();
+                    
+                    session.setAttribute("errormessage", "Añadida la profesion correctamente");
+                    response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
+
+                } catch (Exception e) {
+                    session.setAttribute("errormessage", "Error añadiendo la profesion");
+                    response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
+                    
+                }
+
             }
         %>
     </body>

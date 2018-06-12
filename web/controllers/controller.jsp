@@ -438,7 +438,6 @@
                     em.merge(personaje);
                     em.getTransaction().commit();
 
-                 
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("correctmessage", personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2() + " ha sido editado correctamente");
                 } catch (Exception e) {
@@ -462,12 +461,12 @@
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     List<Efemeride> listaEfemeridesPersonaje = (List<Efemeride>) q.getResultList();
                     session.setAttribute("listaEfemeridesPersonaje", listaEfemeridesPersonaje);
-                    
+
                     response.sendRedirect("../detailPersonajes.jsp");
 
                 } catch (Exception e) {
                     response.sendRedirect("../personajes.jsp");
-                     session.setAttribute("errormessage", "Error al visualizar el personaje");
+                    session.setAttribute("errormessage", "Error al visualizar el personaje");
                 }
             } else if (op.equals("sendfilterefe")) {
 
@@ -541,6 +540,27 @@
 
                     Inform i = new Inform();
                     i.generateInformPDF(request, response, personajeEdit);
+
+                    response.sendRedirect("../detailPersonajes.jsp");
+                    session.setAttribute("correctmessage", "Informe generado correctamente");
+
+                } catch (Exception e) {
+                    response.sendRedirect("../personajes.jsp");
+                    session.setAttribute("errormessage", "Error al intentar generar el pdf");
+                }
+
+            } else if (op.equals("createfullinformpdf")) {
+                try {
+
+                    String idpersonaje = (String) request.getParameter("idcharacter");
+
+                    sql = "SELECT P FROM Personaje p where p.idpersonaje =" + idpersonaje;
+                    q = em.createQuery(sql);
+                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                    Personaje personajeEdit = (Personaje) q.getSingleResult();
+
+                    Inform i = new Inform();
+                    i.generateFullInformPDF(request, response, personajeEdit);
 
                     response.sendRedirect("../detailPersonajes.jsp");
                     session.setAttribute("correctmessage", "Informe generado correctamente");

@@ -13,7 +13,7 @@
     <jsp:include page="assets/shared/head.jsp" /> 
     <body class="body_html_mainview margin_botton">
         <jsp:include page="assets/shared/models/validateSession.jsp" />
-        
+
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <form class="character-form" action="controllers/controller.jsp?op=saveeditcharacter" method="POST" name="formcharacter">
             <div class="container margin_top_login">
@@ -65,9 +65,8 @@
                     <div class="col s12 m6 l4">
                         <label for="name_poster"  class="black_taurinas">Nombre Cartel</label>
                         <input id="name_poster" value="<%=personajeEdit.getNombrecartel()%>" required="true" type="text" class="validate" name="name_poster">
-                        <label for="profession" class="black_taurinas">Profesión</label>
-                        <input id="name_poster" required="true"  type="text" class="validate" name="profession">
-
+                        <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
+                        <input  id="img" type="text" value="<%=personajeEdit.getFoto()%>" class="validate" name="img">
                     </div>
                     <!-- End frist col personal detail-->
                     <!-- Start second col personal detail-->
@@ -89,8 +88,18 @@
                 </div>
                 <!-- End row Personal details-->
 
+
+                <div class="row margin_top_login">
+                    <%for (int i = 0; i < personajeEdit.getProfesionList().size(); i++) {%>
+                    <div class="col s12 m6 l3">
+                        <label for="profession" class="black_taurinas"><%=i + 1%>º Profesion</label>
+                        <input disabled value="<%=personajeEdit.getProfesionList().get(i).getDescripcion()%>" id="profession" type="text" class="validate">
+                    </div>
+                    <%}%>
+                </div>
+
                 <!-- Start row of complete and cossio -->
-                <div class="row center-align">
+                <div class="row center-align margin_top_login">
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
                         <input type="checkbox" class="" id="complete" name="checkcomplete"/>
@@ -127,8 +136,6 @@
                 <!-- Start row biograpy and image-->
                 <div class="row">
                     <div class="col s12 m12 l12">
-                        <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
-                        <input  id="img" type="text" value="<%=personajeEdit.getFoto()%>" class="validate" name="img">
                         <label class="black_taurinas" for="biography">Biografía</label>
                         <textarea id="biography" value="" class="materialize-textarea" name="biography"><%=personajeEdit.getBiografia()%></textarea>  
                         <label class="black_taurinas" for="notes">Notas</label>

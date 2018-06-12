@@ -30,10 +30,32 @@
                     <h5 class="titles_red_h5">Personaje</h5>
                 </div>
                 <div class="col s12 m5 l4">
-                    <form target="_blank" class="filter-form" action="controllers/controller.jsp?op=createinformpdf" method="POST" name="formfilter">
-                        <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
-                        <button class="btn waves-effect waves-light green" type="submit" name="action">Descargar informe<i class="material-icons right">picture_as_pdf</i></button>
-                    </form>
+
+
+                    <ul class="collapsible" data-collapsible="accordion">
+                        <li>
+                            <div class="collapsible-header"><i class="material-icons">file_download</i>Descargar informes</div>
+                            <div class="collapsible-body">
+                                <div class="row">
+                                    <form target="_blank" class="filter-form" action="controllers/controller.jsp?op=createinformpdf" method="POST" name="formfilter">
+                                        <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
+                                        <button class="btn waves-effect waves-light green" type="submit" name="action">Informe Personaje<i class="material-icons right">picture_as_pdf</i></button>
+                                    </form>
+                                </div>
+
+                                <% if (personajedatail.getEfemerideList().size() != 0) {%>
+                                <div class="row">
+                                    <form target="_blank" class="filter-form" action="controllers/controller.jsp?op=createfullinformpdf" method="POST" name="formfilter">
+                                        <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
+                                        <button class="btn waves-effect waves-light green" type="submit" name="action">Informe Completo<i class="material-icons right">picture_as_pdf</i></button>
+                                    </form>
+                                </div>
+                                <%}%>
+
+                            </div>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
 
@@ -91,10 +113,17 @@
                     <input disabled value="<%=personajedatail.getTelefono()%>" id="phone" type="number" class="validate" >  
                     <label for="email" class="black_taurinas">Email</label>
                     <input disabled value="<%=personajedatail.getCorreo()%>" id="email" type="email" class="validate">
-                    <label for="profession" class="black_taurinas">Profesion</label>
-                    <input disabled value="profesion" id="profession" type="text" class="validate">
                 </div>
                 <!-- End third col personal detail-->
+            </div>
+
+            <div class="row">
+                <%for (int i = 0; i < personajedatail.getProfesionList().size(); i++) {%>
+                <div class="col s12 m6 l3">
+                    <label for="profession" class="black_taurinas"><%=i + 1%>º Profesion</label>
+                    <input disabled value="<%=personajedatail.getProfesionList().get(i).getDescripcion()%>" id="profession" type="text" class="validate">
+                </div>
+                <%}%>
             </div>
             <!-- End row Personal details-->
             <div class="row">

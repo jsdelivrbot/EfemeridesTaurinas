@@ -14,7 +14,7 @@
 <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
 
 <jsp:include page="../../../assets/shared/models/commonscripts.jsp" />

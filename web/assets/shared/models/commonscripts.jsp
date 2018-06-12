@@ -19,3 +19,17 @@
         }
     }
 </script>
+
+<script>
+    $(document).ready(function () {
+        $('#myTable').pageMe({
+            pagerSelector: '#myPager',
+            activeColor: 'blue',
+            prevText: 'Anterior',
+            nextText: 'Siguiente',
+            showPrevNext: true,
+            hidePageNumbers: false,
+            perPage: 5
+        });
+    });
+</script>
