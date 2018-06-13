@@ -77,17 +77,17 @@
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
                         <label for="town" class="black_taurinas">Población</label>
-                        <input required="required" id="town" type="text" class="validate" name="town" value="poblacionprueba">
+                        <input required="required" id="town" type="text" class="validate" name="town" value="">
                         <label for="date" class="black_taurinas">Fecha</label>
-                        <input required="required" id="date" type="text" class="datepicker" name="date" value="25 Junio, 2018">
+                        <input required="required" id="date" type="text" class="datepicker" name="date" value="">
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
                     <div class="col s12 m6 l6">
                         <label for="event" class="black_taurinas">Evento</label>
-                        <input required="required" id="event" type="text" class="validate" name="event" value="eventoprueba">
+                        <input required="required" id="event" type="text" class="validate" name="event" value="">
                         <label for="report" class="black_taurinas">Reportaje</label>
-                        <input required="required" id="report" type="text" class="validate" name="report" value="reportajeprueba">
+                        <input required="required" id="report" type="text" class="validate" name="report" value="">
                     </div>
                     <!-- End col 2-->
                 </div>
@@ -95,7 +95,7 @@
                 <div class="row">
                     <div class="s12">
                         <label class="black_taurinas" for="notes">Notas</label>
-                        <textarea id="notes" class="materialize-textarea" name="notes">notasprueba</textarea>
+                        <textarea id="notes" class="materialize-textarea" name="notes"></textarea>
                     </div>
                 </div>
                 <br/><br/><br/>

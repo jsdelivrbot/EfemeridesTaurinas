@@ -8,7 +8,7 @@
     <div class="container">
         <div class="modal-content">
 
-            <h5 class="titles_red_h5">Añadir Profesion <i id="informationimage " data-position="bottom" data-delay="50" data-tooltip="Debe rellenar ambos campos" onclick="myFunction()" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
+            <h5 class="titles_red_h5">Añadir Profesion</h5> 
 
             <div class="row">
                 <form class="filter-form" action="controllers/controllerProfesion.jsp?op=addprofession" method="POST" name="addelementstable">

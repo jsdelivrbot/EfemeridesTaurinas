@@ -4,6 +4,7 @@
     Author     : agustin
 --%>
 
+<%@page import="java.security.MessageDigest"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="methods.Inform"%>
 <%@page import="com.itextpdf.text.Paragraph"%>
@@ -99,7 +100,21 @@
                     session.setAttribute("errormessage", "Rellene los credenciales");
                     response.sendRedirect("../login.jsp");
                 } else {
-                    sql = "SELECT u from Usuario u where u.nombreusuario = '" + username + "' and u.contraseña = '" + password + "'";
+                    //UPDATE usuario SET contraseña = MD5('connect') WHERE idusuario = 1;
+                    
+                    
+                    MessageDigest m = MessageDigest.getInstance("MD5");
+                    m.update(password.getBytes("UTF8"));
+                    byte s[] = m.digest();
+                    String result = "";
+                    for (int i = 0; i < s.length; i++) {
+                        result += Integer.toHexString((0x000000ff & s[i]) | 0xffffff00).substring(6);
+                    }
+
+                    
+                    
+
+                    sql = "SELECT u from Usuario u where u.nombreusuario = '" + username + "' and u.contraseña = '" + result + "'";
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
 
@@ -113,6 +128,7 @@
                         response.sendRedirect("../login.jsp");
 
                     }
+                     
                 }
             } else if (op.equals("loadallcharacters")) {
 
@@ -564,32 +580,6 @@
 
                     response.sendRedirect("../detailPersonajes.jsp");
                     session.setAttribute("correctmessage", "Informe generado correctamente");
-
-                } catch (Exception e) {
-                    response.sendRedirect("../personajes.jsp");
-                    session.setAttribute("errormessage", "Error al intentar generar el pdf");
-                }
-            } else if (op.equals("createinformexcel")) {
-                try {
-
-                    String idpersonaje = (String) request.getParameter("idcharacter");
-
-                    sql = "SELECT P FROM Personaje p where p.idpersonaje =" + idpersonaje;
-                    q = em.createQuery(sql);
-                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                    Personaje personajeEdit = (Personaje) q.getSingleResult();
-                    //session.setAttribute("personajeEdit", personajeEdit);
-
-                    Inform i = new Inform();
-                    i.generateInformExcel(personajeEdit.getNombrepersonaje(), personajeEdit.getApellido1(), personajeEdit.getApellido2(),
-                            personajeEdit.getApodo1(), personajeEdit.getApodo2(), personajeEdit.getProvincianacimiento(),
-                            personajeEdit.getPueblonacimiento(), personajeEdit.getNombrecartel(), "esta es la profesion ", personajeEdit.getDireccion(),
-                            personajeEdit.getContacto(), personajeEdit.getTelefono(), personajeEdit.getCorreo(),
-                            personajeEdit.getProvinciaactual(), personajeEdit.getPuebloactual(), personajeEdit.getBiografia(),
-                            personajeEdit.getNotas(), personajeEdit.getNotas());
-
-                    response.sendRedirect("../personajes.jsp");
-                    session.setAttribute("correctmessage", "Generado correctamente el informe");
 
                 } catch (Exception e) {
                     response.sendRedirect("../personajes.jsp");

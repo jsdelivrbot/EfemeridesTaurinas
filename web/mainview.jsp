@@ -33,8 +33,7 @@
                 <div class="col s12 m6 l6">
                     <div class="card">
                         <div class="">
-                            <img onerror="this.src='assets/img/no-photo.png';"  src="assets/img/bullfighting.jpg"  class="image_card_about_us">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <img onerror="this.src='assets/img/no-photo.png';"  src=" assets/img/imageefemeride.jpg"  class="image_card_about_us">
                         </div>
                         <div class="card-action">
                             <a href="controllers/controllerEfemeride.jsp?op=loadallefems" class="waves-effect waves-light btn small_button background_color_red">Ver Efemérides</a>
@@ -45,8 +44,7 @@
                 <div class="col s12 m6 l6">
                     <div class="card">
                         <div class="">
-                            <img onerror="this.src='assets/img/no-photo.png';"  src="assets/img/bullfighting.jpg" class="image_card_about_us">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <img onerror="this.src='assets/img/no-photo.png';"  src="assets/img/imagentoros.jpg" class="image_card_about_us">
                         </div>
                         <div class="card-action">
                             <a href="controllers/controller.jsp?op=loadallcharacters" class="waves-effect waves-light btn small_button background_color_red">Ver personajes</a>
@@ -67,12 +65,13 @@
             <hr>
             <div class="row">
                 <div class="col s12 m12 l12  portfolio-holder">
-                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="https://i.pinimg.com/originals/1a/7b/11/1a7b1186aa20f3b15fd899084d11f683.jpg">
-                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="https://i.pinimg.com/originals/1a/7b/11/1a7b1186aa20f3b15fd899084d11f683.jpg">
-                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="https://i.pinimg.com/originals/1a/7b/11/1a7b1186aa20f3b15fd899084d11f683.jpg">
-                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="https://i.pinimg.com/originals/1a/7b/11/1a7b1186aa20f3b15fd899084d11f683.jpg">
-                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="https://i.pinimg.com/originals/1a/7b/11/1a7b1186aa20f3b15fd899084d11f683.jpg">
-                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="https://i.pinimg.com/originals/1a/7b/11/1a7b1186aa20f3b15fd899084d11f683.jpg">
+                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery1.jpg">
+                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery2.jpg">
+                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery3.jpg">
+                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery4.jpg">
+                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery5.jpg">
+                    <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery6.jpg">
+                    
                 </div>
             </div>
         </div>

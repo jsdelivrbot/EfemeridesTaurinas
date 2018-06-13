@@ -131,7 +131,7 @@
                             </select>
                         </div>
                         <div class="col s12 m12 l4 right-align">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Añadir Profesion<i class="material-icons right">add</i></button>
+                            <button class="btn waves-effect waves-light green" type="submit" name="action">Asociar Profesion<i class="material-icons right">add</i></button>
                         </div>
                     </form>
                 </div>
