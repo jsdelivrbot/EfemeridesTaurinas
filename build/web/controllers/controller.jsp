@@ -100,9 +100,7 @@
                     session.setAttribute("errormessage", "Rellene los credenciales");
                     response.sendRedirect("../login.jsp");
                 } else {
-                    //UPDATE usuario SET contraseña = MD5('connect') WHERE idusuario = 1;
-                    
-                    
+
                     MessageDigest m = MessageDigest.getInstance("MD5");
                     m.update(password.getBytes("UTF8"));
                     byte s[] = m.digest();
@@ -110,9 +108,6 @@
                     for (int i = 0; i < s.length; i++) {
                         result += Integer.toHexString((0x000000ff & s[i]) | 0xffffff00).substring(6);
                     }
-
-                    
-                    
 
                     sql = "SELECT u from Usuario u where u.nombreusuario = '" + username + "' and u.contraseña = '" + result + "'";
                     q = em.createQuery(sql);
@@ -128,7 +123,7 @@
                         response.sendRedirect("../login.jsp");
 
                     }
-                     
+
                 }
             } else if (op.equals("loadallcharacters")) {
 
@@ -151,34 +146,33 @@
             } else if (op.equals("savenewcharacter")) {
 
                 try {
-                    nombrepersonaje = (String) request.getParameter("first_name");
-                    apellido1 = (String) request.getParameter("frist_surname");
-                    apellido2 = (String) request.getParameter("second_surname");
-                    apodo1 = (String) request.getParameter("first_nickname");
-                    apodo2 = (String) request.getParameter("second_nickname");
-                    nombrecartel = (String) request.getParameter("name_poster");
-                    direccion = (String) request.getParameter("direction");
+                    nombrepersonaje = new String(request.getParameter("first_name").getBytes("ISO-8859-1"), "UTF-8");
+                    apellido1 = new String(request.getParameter("frist_surname").getBytes("ISO-8859-1"), "UTF-8");
+                    apellido2 = new String(request.getParameter("second_surname").getBytes("ISO-8859-1"), "UTF-8");
+                    apodo1 = new String(request.getParameter("first_nickname").getBytes("ISO-8859-1"), "UTF-8");
+                    apodo2 = new String(request.getParameter("second_nickname").getBytes("ISO-8859-1"), "UTF-8");
+                    nombrecartel = new String(request.getParameter("name_poster").getBytes("ISO-8859-1"), "UTF-8");
+                    direccion = new String(request.getParameter("direction").getBytes("ISO-8859-1"), "UTF-8");
                     telefono = (String) request.getParameter("phone");
                     fechanacimiento = (String) request.getParameter("birth_date");
-                    contacto = (String) request.getParameter("contact");
+                    contacto = new String(request.getParameter("contact").getBytes("ISO-8859-1"), "UTF-8");
                     email = (String) request.getParameter("email");
-                    imagen = (String) request.getParameter("img");
-                    biografia = (String) request.getParameter("biography");
-                    //profesion = (String) request.getParameter("profession");
-                    averiguar = (String) request.getParameter("find_out");
+                    imagen = new String(request.getParameter("img").getBytes("ISO-8859-1"), "UTF-8");
+                    biografia = new String(request.getParameter("biography").getBytes("ISO-8859-1"), "UTF-8");
+                    averiguar = new String(request.getParameter("find_out").getBytes("ISO-8859-1"), "UTF-8");
                     completo = (String) request.getParameter("checkcomplete");
                     cossio = (String) request.getParameter("checkcossio");
-                    notas = (String) request.getParameter("notes");
-                    provinciaactual = (String) request.getParameter("current_province");
-                    provincianacimiento = (String) request.getParameter("birth_province");
-                    puebloactual = (String) request.getParameter("current_town");
-                    pueblonacimiento = (String) request.getParameter("birth_town");
-
+                    notas = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
+                    provinciaactual = new String(request.getParameter("current_province").getBytes("ISO-8859-1"), "UTF-8");
+                    provincianacimiento = new String(request.getParameter("birth_province").getBytes("ISO-8859-1"), "UTF-8");
+                    puebloactual = new String(request.getParameter("current_town").getBytes("ISO-8859-1"), "UTF-8");
+                    pueblonacimiento = new String(request.getParameter("birth_town").getBytes("ISO-8859-1"), "UTF-8");
 
                     /*
-                    out.print("Personaje " + nombrepersonaje + " " + apellido1 + " " + apellido2 + " " + apodo1 + " " + apodo2 + " " + nombrecartel + " " + direccion + " " +
-                            telefono + " " + contacto + " " + email + " " + imagen + " " + biografia + " " + profesion + " " + averiguar + " " + notas + " " +
-                            provinciaactual + " " + provincianacimiento + " " + puebloactual + " " + pueblonacimiento);
+                    out.print("Personaje " + nombrepersonaje + " " + apellido1 + " " + apellido2 + " " + apodo1 + " " + apodo2 + " " + nombrecartel + " " + direccion + " "
+                            + telefono + " " + contacto + " " + email + " " + imagen + " " + biografia + " " + profesion + " " + averiguar + " " + notas + " "
+                            + provinciaactual + " " + provincianacimiento + " " + puebloactual + " " + pueblonacimiento);
+
                      */
                     Personaje personaje = new Personaje();
                     personaje.setNombrepersonaje(nombrepersonaje);
@@ -216,22 +210,14 @@
                         personaje.setCossio(true);
                     }
 
-                    //personaje.setProfesion(profession);
                     em.getTransaction().begin();
                     em.persist(personaje);
                     em.getTransaction().commit();
 
-                    /*
-                    transaction = em.getTransaction();
-                    transaction.begin();
-                    em.persist(personaje);
-                    transaction.commit();
-
-                     */
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("correctmessage", "Añadido el personaje correctamente");
                 } catch (Exception e) {
-                    session.setAttribute("errormessage", "Error añadiendo el personaje");
+                    session.setAttribute("errormessage", "Error añadiendo el personaje" + e);
                     response.sendRedirect("../personajes.jsp");
                 }
             } else if (op.equals("loadallefemerides")) {
@@ -389,6 +375,7 @@
 
                     String idpersonaje = (String) request.getParameter("idcharacter");
 
+                    /*
                     nombrepersonaje = (String) request.getParameter("first_name");
                     apellido1 = (String) request.getParameter("frist_surname");
                     apellido2 = (String) request.getParameter("second_surname");
@@ -411,6 +398,40 @@
                     provincianacimiento = (String) request.getParameter("birth_province");
                     puebloactual = (String) request.getParameter("current_town");
                     pueblonacimiento = (String) request.getParameter("birth_town");
+                    */
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    nombrepersonaje = new String(request.getParameter("first_name").getBytes("ISO-8859-1"), "UTF-8");
+                    apellido1 = new String(request.getParameter("frist_surname").getBytes("ISO-8859-1"), "UTF-8");
+                    apellido2 = new String(request.getParameter("second_surname").getBytes("ISO-8859-1"), "UTF-8");
+                    apodo1 = new String(request.getParameter("first_nickname").getBytes("ISO-8859-1"), "UTF-8");
+                    apodo2 = new String(request.getParameter("second_nickname").getBytes("ISO-8859-1"), "UTF-8");
+                    nombrecartel = new String(request.getParameter("name_poster").getBytes("ISO-8859-1"), "UTF-8");
+                    direccion = new String(request.getParameter("direction").getBytes("ISO-8859-1"), "UTF-8");
+                    telefono = (String) request.getParameter("phone");
+                    fechanacimiento = (String) request.getParameter("birth_date");
+                    contacto = new String(request.getParameter("contact").getBytes("ISO-8859-1"), "UTF-8");
+                    email = (String) request.getParameter("email");
+                    imagen = new String(request.getParameter("img").getBytes("ISO-8859-1"), "UTF-8");
+                    biografia = new String(request.getParameter("biography").getBytes("ISO-8859-1"), "UTF-8");
+                    averiguar = new String(request.getParameter("find_out").getBytes("ISO-8859-1"), "UTF-8");
+                    completo = (String) request.getParameter("checkcomplete");
+                    cossio = (String) request.getParameter("checkcossio");
+                    notas = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
+                    provinciaactual = new String(request.getParameter("current_province").getBytes("ISO-8859-1"), "UTF-8");
+                    provincianacimiento = new String(request.getParameter("birth_province").getBytes("ISO-8859-1"), "UTF-8");
+                    puebloactual = new String(request.getParameter("current_town").getBytes("ISO-8859-1"), "UTF-8");
+                    pueblonacimiento = new String(request.getParameter("birth_town").getBytes("ISO-8859-1"), "UTF-8");
+                    
 
                     Personaje personaje = new Personaje();
                     personaje.setIdpersonaje(Integer.parseInt(idpersonaje));
