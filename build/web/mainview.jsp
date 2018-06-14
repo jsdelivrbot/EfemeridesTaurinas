@@ -12,7 +12,7 @@
 
     <jsp:include page="assets/shared/head.jsp" /> 
 
-    <body class="body_html_mainview margin_botton" >
+    <body class="body_html_mainview margin_botton" oncopy="return false;" >
 
         <jsp:include page="assets/shared/models/validateSession.jsp" />
 

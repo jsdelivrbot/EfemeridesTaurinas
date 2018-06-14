@@ -12,10 +12,8 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/personajes.jsp</file>
-            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/controllers/controller.jsp</file>
-            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/addPersonaje.jsp</file>
-            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/assets/shared/head.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/controllers/controllerEfemeride.jsp</file>
+            <file>file:/C:/Users/agustin/Documents/GitHub/EfemeridesTaurinas/web/detailEfemeride.jsp</file>
         </group>
     </open-files>
 </project-private>

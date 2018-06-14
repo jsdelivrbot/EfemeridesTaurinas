@@ -47,12 +47,9 @@
                 </div>
                 <div class="col s12 m4 l4">
 
-                    <% DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
-                        //dateFormat.parse(efemeride.getFechaefemeride().toString());
-                        String date = dateFormat.format(efemeride.getFechaefemeride());
-                    %>
+                    <%  DateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");%>
                     <label for="date" class="black_taurinas">Fecha</label>
-                    <input disabled="" value="<%= date%>" id="date" type="text" class="validate">
+                    <input disabled="" value="<%=dateFormat.format(efemeride.getFechaefemeride()) %>" id="date" type="text" class="validate">
                 </div>
                 <div class="col s12 m4 l4">
                     <label for="evento" class="black_taurinas">Evento</label>

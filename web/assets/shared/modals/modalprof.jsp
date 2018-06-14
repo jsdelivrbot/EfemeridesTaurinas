@@ -4,7 +4,7 @@
     Author     : agustin
 --%>
 
-<div id="modalprof" class="modal" style="height:  auto!important; width: 80%!important">
+<div id="modalprof" class="modal carrousel_modalprof">
     <div class="container">
         <div class="modal-content">
 

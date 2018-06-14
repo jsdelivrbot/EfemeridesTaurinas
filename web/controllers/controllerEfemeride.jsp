@@ -114,12 +114,12 @@
             } else if (op.equals("savenewefe")) {
                 try {
 
-                    String town = (String) request.getParameter("town");
-                    String date = (String) request.getParameter("date");
-                    String event = (String) request.getParameter("event");
-                    String report = (String) request.getParameter("report");
-                    String idpersonajes = (String) request.getParameter("idpersonajes");
-                    String notes = (String) request.getParameter("notes");
+                    String town = new String(request.getParameter("town").getBytes("ISO-8859-1"), "UTF-8");
+                    String date = new String(request.getParameter("date").getBytes("ISO-8859-1"), "UTF-8");
+                    String event = new String(request.getParameter("event").getBytes("ISO-8859-1"), "UTF-8");
+                    String report = new String(request.getParameter("report").getBytes("ISO-8859-1"), "UTF-8");
+                    String idpersonajes = new String(request.getParameter("idpersonajes").getBytes("ISO-8859-1"), "UTF-8");
+                    String notes = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
 
                     listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
 
@@ -143,8 +143,6 @@
                     efemeride.setPoblacion(town);
                     efemeride.setReportaje(report);
                     efemeride.setIdpersonaje(personaje);
-
-                    
 
                     switch (listacartel.size()) {
                         case 1:
@@ -232,7 +230,7 @@
                     session.setAttribute("errormessage", "Guardada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
                 } catch (Exception e) {
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("errormessage", "Error al crear la efemeride" +e);
+                    session.setAttribute("errormessage", "Error al crear la efemeride" + e);
 
                 }
 
@@ -299,20 +297,19 @@
                     response.sendRedirect("../editEfemeride.jsp");
                 } catch (Exception e) {
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("errormessage", "Error al intetar cargar la edición del personaje" +e);
+                    session.setAttribute("errormessage", "Error al intetar cargar la edición del personaje" + e);
                 }
 
             } else if (op.equals("saveeditefe")) {
 
                 try {
-
-                    String town = (String) request.getParameter("town");
-                    String date = (String) request.getParameter("date");
-                    String event = (String) request.getParameter("event");
-                    String report = (String) request.getParameter("report");
-                    String idpersonajes = (String) request.getParameter("idpersonajes");
-                    String notes = (String) request.getParameter("notes");
-                    String idefemeride = (String) request.getParameter("idefemeride");
+                    String town = new String(request.getParameter("town").getBytes("ISO-8859-1"), "UTF-8");
+                    String date = new String(request.getParameter("date").getBytes("ISO-8859-1"), "UTF-8");
+                    String event = new String(request.getParameter("event").getBytes("ISO-8859-1"), "UTF-8");
+                    String report = new String(request.getParameter("report").getBytes("ISO-8859-1"), "UTF-8");
+                    String idpersonajes = new String(request.getParameter("idpersonajes").getBytes("ISO-8859-1"), "UTF-8");
+                    String notes = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
+                    String idefemeride = new String(request.getParameter("idefemeride").getBytes("ISO-8859-1"), "UTF-8");
 
                     listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
 
@@ -415,7 +412,7 @@
                             efemeride.setInterviniente6(listacartel.get(5).getNombreinterviniente());
                             break;
                     }
-                    
+
                     em.getTransaction().begin();
                     em.merge(efemeride);
                     em.getTransaction().commit();

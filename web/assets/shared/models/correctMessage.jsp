@@ -19,7 +19,7 @@
 <div class="row" id="correctmessage">
     <div class="">
         <div class="card error_message_login">
-            <div class="card-content white-text" style="text-align: center;">
+            <div class="card-content white-text text_align_center_style">
                 <span><%=message%></span>
             </div>
         </div>

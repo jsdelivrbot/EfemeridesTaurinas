@@ -35,7 +35,6 @@
                                 <th>Toros</th>
                                 <th>Ganaderías</th>
                                 <th>Intervinientes</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,10 +44,6 @@
                                 <td><%=listacartel.get(i).getNombretoro()%></td>
                                 <td><%=listacartel.get(i).getNombreganaderia()%></td>
                                 <td><%=listacartel.get(i).getNombreinterviniente()%></td>
-                                <td>
-                                    <button action="controllers/controller.jsp?op=deleteselectedcartel" method="POST" name="deleteselectedform">X</button>
-                                    <input class="hidden_display" name="idcartel" value="<%=i%>">
-                                </td>
                             </tr>
                             <% } %>
                         </tbody>

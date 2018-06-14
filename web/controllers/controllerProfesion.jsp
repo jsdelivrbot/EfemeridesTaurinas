@@ -206,13 +206,10 @@
 
             } else if (op.equals("addprofession")) {
                 try {
-                    String profession = (String) request.getParameter("newprofession");
                     
-                    out.print(profession);
-
-                   
+                    String profession= new String(request.getParameter("newprofession").getBytes("ISO-8859-1"), "UTF-8");
+                    
                     Profesion p = new Profesion(0, profession);
-
                     em.getTransaction().begin();
                     em.persist(p);
                     em.getTransaction().commit();

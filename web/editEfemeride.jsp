@@ -26,13 +26,6 @@
                     Efemeride efemeride = (Efemeride) session.getAttribute("efemeride");
                     DateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
             %>
-            <script type="text/javascript">
-                function poncombo(combo, valor) {
-                    for (i = 0; i < combo.options.length; i++)
-                        if (combo.options[i].value == valor)
-                            combo.options[i].selected = true;
-                }
-            </script>
             <h5 class="titles_red_h5">Editar Efeméride: <span class="black_taurinas"><%=efemeride.getIdpersonaje().getNombrepersonaje()%> <%=efemeride.getIdpersonaje().getApellido1()%> <%=efemeride.getIdpersonaje().getApellido2()%></span></h5>
             <!-- End Row title-->
             <!-- Start Row image and credentials-->
@@ -79,8 +72,7 @@
                         </thead>
                         <tbody>
                             <%for (int i = 0; i < listacartel.size(); i++) {
-                            if (listacartel.get(i).getNombretoro() != null && listacartel.get(i).getNombreganaderia() != null && listacartel.get(i).getNombreinterviniente() != null) { 
-                                listacartel.clear(); %>
+                            if (listacartel.get(i).getNombretoro() != null && listacartel.get(i).getNombreganaderia() != null && listacartel.get(i).getNombreinterviniente() != null) {%>
                             <tr>
                                 <td><%=listacartel.get(i).getNombretoro()%></td>
                                 <td><%=listacartel.get(i).getNombreganaderia()%></td>
@@ -94,7 +86,7 @@
                 <%
                     session.setAttribute("listacartel", listacartel);
                 } else if (listacartel.size() == 0) {%>
-                <span>No existe cartel <%=listacartel.size()%></span>
+                <span>No existe cartel</span>
                 <%}%>
                 <div class="row margin_top_login">
                     <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
@@ -125,12 +117,10 @@
                     <button type="submit" class="waves-effect waves-light btn grey darken-4 "><i class="material-icons left">save</i>Guardar</button>
                 </div>
             </form>
-            <script language="javascript" type="text/javascript">
-                poncombo(document.formcharacter.selectcharactersefemerides, '<%=session.getAttribute("selectcategoria")%>');
-            </script>
+            
             <% } catch (Exception e) {
-                    session.setAttribute("errormessage", "Error visualizar la edición de la efemeride");
-                    response.sendRedirect("mainview.jsp");
+                   session.setAttribute("errormessage", "Error visualizar la edición de la efemeride");
+                   response.sendRedirect("mainview.jsp");
                 }%>
             <!-- Start Modal -->
             <jsp:include page="assets/shared/modals/modalcat.jsp" />

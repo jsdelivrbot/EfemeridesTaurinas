@@ -404,6 +404,25 @@ footer {
 }
 
 
+.carrousel_style{
+    max-width: 90%!important;
+    margin-left: 5%;
+}
+
+
+.carrousel_modalprof{
+    height:  auto!important; 
+    width: 80%!important;
+}
+
+.text_align_center_style{
+    text-align: center;
+}
+
+.error_message_style{
+    text-align: center;
+    width: 100%;
+}
 
 @media (max-width: 768px) {
     .carousel-ef {

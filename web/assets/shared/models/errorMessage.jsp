@@ -21,7 +21,7 @@
 <div class="row" id="errormessage">
     <div class="">
         <div class="card error_message_login">
-            <div class="card-content white-text" style="text-align: center; width: 100%">
+            <div class="card-content white-text error_message_style">
                 <span><%=error%></span>
             </div>
         </div>
