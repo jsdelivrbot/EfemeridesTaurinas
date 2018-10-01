@@ -1,0 +1,438 @@
+.margin_top {
+    margin-top:  25px;
+}
+
+.body_html_mainview
+{
+    background-color: #EDEDED !important;
+
+}
+
+.intro
+{
+    text-align: center;
+    padding-top: 13%;
+    padding-bottom: 13%;
+}
+
+.intro h1
+{
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.intro h5
+{
+    text-transform: uppercase;
+    background-color: #f5f5f5;
+    padding: 10px;
+    color: #333333;
+    display: inline-block;
+    font-size: 1.2rem;
+}
+
+
+.about .col
+{
+    margin-bottom: 24px;
+}
+
+.about h5
+{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.about h6
+{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+}
+
+.about hr
+{
+    width: 40px;
+    margin-bottom: 45px;
+}
+
+.about .card
+{
+    text-align: center;
+}
+
+.about .card img
+{
+    margin-bottom: 0px;
+}
+
+.portfolio .col
+{
+    margin-bottom: 24px;
+}
+
+.portfolio h5
+{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.portfolio h6
+{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+}
+
+.portfolio hr
+{
+    width: 40px;
+    margin-bottom: 45px;
+}
+
+.portfolio .portfolio-holder
+{
+    clear: both;
+    text-align: center;
+}
+
+.portfolio img
+{
+    width: 33%;
+    display: inline-block;
+    float: left;
+}
+
+.contact .col
+{
+    margin-bottom: 24px;
+}
+
+.contact h5
+{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+.contact h6
+{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 45px;
+}
+
+.contact hr
+{
+    width: 40px;
+    margin-bottom: 45px;
+}
+
+.contact .contact-holder
+{
+    padding-left: 40px;
+    text-align: left;
+}
+
+.contact .contact-holder h6
+{
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.contact .contact-holder p
+{
+    margin-bottom: 30px;
+}
+footer
+{
+    padding-top: 0px;
+}
+
+.imagen_header_backgroud {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    opacity: 0.2;
+}
+
+.image_card_about_us {
+    width: 100%;
+}
+
+.margin_top_login
+{
+    padding-top: 80px;
+}
+
+.red_taurinas{
+    color: red;
+}
+
+.black_taurinas{
+    color: black !important;
+
+}
+
+
+.logo_headerBack
+{
+    position: absolute !important;
+    color: white !important;
+    display: inline-block !important;
+    font-size: 1rem !important;
+    padding: 0 !important;    
+}
+
+.text_align_right
+{
+    text-align: right;
+}
+
+.card_bullfighter {
+    width: 100%;
+    float: left;
+    height: 240px;
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.image_card_bullfighter{
+    width: 100%;
+}
+
+.separador
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.product-description {
+    background: white;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.modal 
+{ 
+    width: 90% !important ; 
+    height: 90% !important ; 
+}
+
+.color_red
+{
+    color: #ab002e !important;
+}
+
+
+.color_white
+{
+    color: white !important;
+}
+
+.background_color_red
+{
+    background-color: #ab002e;
+}
+
+.guide_events
+{
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    font-size: 1.5rem;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.image_character_detail
+{
+    height: auto;
+    width: 120%;
+}
+
+.titles_red_h5
+{
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: #ab002e;
+}
+
+.wrapper-image
+{
+    overflow: hidden;
+    height: 340px;
+    margin-bottom: 40px;
+}
+
+.small_button
+{
+    height: 24px;
+    line-height: 24px;
+    padding: 0 0.5rem;
+    font-size: 9px;
+}
+.carousel-ef{
+    min-height: 280px;
+    height:auto!important;
+    padding:20px 0;
+}
+.wrapper{
+    padding:0 10%;
+}
+.carrousel_center
+{
+    margin-top: 80px; 
+}
+.sticky_navbar
+{
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 2222;
+}
+
+.sticky_footer
+{
+    background: transparent;
+    box-sizing: border-box;
+    overflow: hidden;
+    /*
+    position: fixed;
+    width:  100%;
+    bottom:  0;
+    */
+}
+
+.header_mainview
+{
+    overflow: hidden;
+    position: relative;
+}
+
+.header_title_mainview
+{
+    position: relative;
+    z-index: 1;
+}
+
+.min_height_card_character
+{
+    max-height: 360px;
+}
+
+.error_message_login
+{
+    background: rgba(0,0,0,.5);
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    z-index: 21;
+}
+
+.hidden_display
+{
+    visibility: hidden;
+    display: none;
+}
+
+.button_search 
+{
+    max-width: 4%;
+    padding-left: 10px;
+}
+
+.input_search
+{
+    max-width: 75%;
+}
+
+.button_add_character
+{
+    margin-top: -15px;
+}
+
+.background_color_grey
+{
+    background-color: #EDEDED
+}
+
+.width_hr
+{
+    width: 50px;
+}
+
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+body {
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;    
+    width: 100%;
+}
+
+.margin_botton
+{
+    margin-bottom: 70px;
+}
+
+.margin_top_card_action
+{
+    margin-top: 20px;
+}
+
+.information_orange_buttons
+{
+    font-size: 16px; 
+    color: orange;
+    cursor: help;    
+}
+
+
+.carrousel_style{
+    max-width: 90%!important;
+    margin-left: 5%;
+}
+
+
+.carrousel_modalprof{
+    height:  auto!important; 
+    width: 80%!important;
+}
+
+.text_align_center_style{
+    text-align: center;
+}
+
+.error_message_style{
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .carousel-ef {
+        height: 420px!important;
+    }
+    .imagen_header_backgroud {
+        height:auto;
+        width: 170%;
+        top: 0;
+    }
+}
+
+
