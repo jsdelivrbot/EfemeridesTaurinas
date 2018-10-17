@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : torerosdetail
     Created on : 08-may-2018, 13:56:33
     Author     : agustin
@@ -12,17 +12,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <jsp:include page="assets/shared/head.jsp" /> 
+    <jsp:include page="assets/shared/head.jsp" />
     <body class="body_html_mainview margin_botton">
         <jsp:include page="assets/shared/models/validateSession.jsp" />
 
         <jsp:include page="assets/shared/models/headerBack.jsp" />
-        <div class="container margin_top_login">
+        <div class="container wrapper_container">
 
             <%
                 try {
                     Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
                     DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+
+                    //TODO:prueba
             %>
             <!-- Start Row title-->
             <div class="row">
@@ -30,8 +32,6 @@
                     <h5 class="titles_red_h5">Personaje</h5>
                 </div>
                 <div class="col s12 m5 l4">
-
-
                     <ul class="collapsible" data-collapsible="accordion">
                         <li>
                             <div class="collapsible-header"><i class="material-icons">file_download</i>Descargar informes</div>
@@ -110,7 +110,7 @@
                 <!-- Start third col personal detail-->
                 <div class="col s12 m6 l4">
                     <label for="phone" class="black_taurinas">Teléfono</label>
-                    <input disabled value="<%=personajedatail.getTelefono()%>" id="phone" type="number" class="validate" >  
+                    <input disabled value="<%=personajedatail.getTelefono()%>" id="phone" type="number" class="validate" >
                     <label for="email" class="black_taurinas">Email</label>
                     <input disabled value="<%=personajedatail.getCorreo()%>" id="email" type="email" class="validate">
                 </div>

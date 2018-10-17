@@ -19,7 +19,7 @@
         <jsp:include page="assets/shared/models/validateSession.jsp" />
 
         <jsp:include page="assets/shared/models/headerBack.jsp" />
-        <div class="container margin_top_login ">
+        <div class="container wrapper_container ">
             <!-- Start Row title-->
             <% try {
 

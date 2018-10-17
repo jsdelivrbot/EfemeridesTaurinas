@@ -8,7 +8,6 @@
 <%@page import="Entities.Cartel"%>
 <%@page import="Entities.Personaje"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <jsp:include page="assets/shared/head.jsp" /> 
@@ -16,9 +15,9 @@
         <jsp:include page="assets/shared/models/validateSession.jsp" />
 
         <jsp:include page="assets/shared/models/headerBack.jsp" />
-        <div class="container margin_top_login ">
+        <div class="container wrapper_container ">
             <!-- Start Row title-->
-            <h5 class="titles_red_h5 right-align">AÃ±adir EfemÃ©ride</h5>
+            <h5 class="titles_red_h5 right-align">Añadir Efeméride</h5>
             <!-- End Row title-->
             <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="right" data-delay="50" data-tooltip="Un cartel esta formado por el toro, la ganaderia y el interviniente" onclick="myFunction()" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
 
@@ -33,7 +32,7 @@
                         <thead>
                             <tr>
                                 <th>Toros</th>
-                                <th>GanaderÃ­as</th>
+                                <th>Ganaderías</th>
                                 <th>Intervinientes</th>
                             </tr>
                         </thead>
@@ -59,19 +58,19 @@
 
                 <div class="row margin_top_login">
                     <%if (listacartel.size() < 6) { %>
-                    <button class="btn waves-effect waves-light blue modal-trigger right-align" data-target="modalcat">AÃ±adir cartel</button>
+                    <button class="btn waves-effect waves-light blue modal-trigger right-align" data-target="modalcat">Añadir cartel</button>
                     <%}%>
                     <a class="waves-effect waves-light btn red " href="controllers/controllerEfemeride.jsp?op=deleteallrows">Borrar todos los carteles</a>
                 </div>
                 <!-- End no existing data in the table -->
 
                 <!-- Start row title more data -->
-                <h5 class="titles_red_h5 margin_top_login">MÃ¡s datos</h5>
+                <h5 class="titles_red_h5 margin_top_login">Más datos</h5>
                 <!-- End row title more data -->
                 <div class="row">
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
-                        <label for="town" class="black_taurinas">PoblaciÃ³n</label>
+                        <label for="town" class="black_taurinas">Población</label>
                         <input required="required" id="town" type="text" class="validate" name="town" value="">
                         <label for="date" class="black_taurinas">Fecha</label>
                         <input required="required" id="date" type="text" class="datepicker" name="date" value="">

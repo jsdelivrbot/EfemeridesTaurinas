@@ -10,10 +10,10 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
     <jsp:include page="assets/shared/head.jsp" /> 
-    
+
     <script language="javascript" type="text/javascript">
         function poncombo(combo, valor)
         {
@@ -63,47 +63,34 @@
                         for (int i = 0; i < listaefemerides.size(); i++) {
                 %>
                 <div class="col s12 m6 l4" style="margin-bottom: 10px;">
-                    <div class="card horizontal" style="height: 200px">
-                        <div class="card-stacked">
-                            <div class="card-content">
-                                <h5><%=listaefemerides.get(i).getIdpersonaje().getNombrepersonaje()%> <%=listaefemerides.get(i).getIdpersonaje().getApellido1()%> <%=listaefemerides.get(i).getIdpersonaje().getApellido2()%></h5>
-                                <p>Fecha: <%= dateFormat.format(listaefemerides.get(i).getFechaefemeride())%></p>
-                                <p>Población: <%=listaefemerides.get(i).getPoblacion()%></p>
-                            </div>
-                            <div class="card-action">
-                                <div class="fixed-action-btn horizontal " style="position: absolute; display: inline-block; right: 7px; margin-bottom: -15px">
-                                    <a class="btn-floating btn-large background_color_red">
-                                        <i class="large material-icons">menu</i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=detailefemeride" method="POST" name="formfilter">
-                                                <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
-                                                <input class="hidden_display" name="idcharacter" value="<%=listaefemerides.get(i).getIdpersonaje().getIdpersonaje()%>">
-                                                <button type="submit" class="waves-effect waves-light btn-floating green"><i class="material-icons">remove_red_eye</i></button>
-                                            </form>
-                                        </li>
-                                        <li>
-                                            <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=loadllcharactersforeditefemerides" method="POST" name="formfilter">
-                                                <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
-                                                <input class="hidden_display" name="idcharacter" value="<%=listaefemerides.get(i).getIdpersonaje().getIdpersonaje()%>">
-                                                <button type="submit" class="waves-effect waves-light btn-floating blue"><i class="material-icons">edit</i></button>
-                                            </form>
-                                        </li>
-
-                                        <li>
-                                            <!--<input class="hidden_display" name="idefemeride" value=">">
-                                            <button class="waves-effect waves-light btn-floating red modal-trigger" data-target="modalefem"><i class="material-icons">delete</i></button>-->
-                                            <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=deleteefemeride" method="POST" name="formfilter">
-                                                <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
-                                                <button type="submit" class="waves-effect waves-light btn-floating red"><i class="material-icons">delete</i></button>
-                                            </form>
-
-
-                                        </li>
-                                    </ul>
+                    <div class="card">
+                        <div class="card-content min_height_card_efemeride">
+                            <h5><%=listaefemerides.get(i).getIdpersonaje().getNombrepersonaje()%> <%=listaefemerides.get(i).getIdpersonaje().getApellido1()%> <%=listaefemerides.get(i).getIdpersonaje().getApellido2()%></h5>
+                            <p>Fecha: <%= dateFormat.format(listaefemerides.get(i).getFechaefemeride())%></p>
+                            <p>Población: <%=listaefemerides.get(i).getPoblacion()%></p>
+                        </div>
+                        <div class="card-action">
+                            <div class="row">
+                                <div class="col s2 offset-s3">
+                                    <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=detailefemeride" method="POST" name="formfilter">
+                                        <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
+                                        <input class="hidden_display" name="idcharacter" value="<%=listaefemerides.get(i).getIdpersonaje().getIdpersonaje()%>">
+                                        <button type="submit" class="waves-effect waves-light btn-floating blue-grey lighten-3"><i class="material-icons">remove_red_eye</i></button>
+                                    </form>
                                 </div>
-
+                                <div class="col s2">
+                                    <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=loadllcharactersforeditefemerides" method="POST" name="formfilter">
+                                        <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
+                                        <input class="hidden_display" name="idcharacter" value="<%=listaefemerides.get(i).getIdpersonaje().getIdpersonaje()%>">
+                                        <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">edit</i></button>
+                                    </form>
+                                </div>
+                                <div class="col s2">
+                                    <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=deleteefemeride" method="POST" name="formfilter">
+                                        <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
+                                        <button type="submit" class="waves-effect waves-light btn-floating blue-grey darken-3"><i class="material-icons">delete</i></button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -116,9 +103,6 @@
                         response.sendRedirect("mainview.jsp");
                     }%>
             </div>
-
-
-            <jsp:include page="assets/shared/modals/modalconfirmationdeleteefem.jsp" />
         </div>
     </div>
 

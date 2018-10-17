@@ -22,7 +22,7 @@
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <jsp:include page="assets/shared/models/validateSession.jsp" />
         
-        <div class="container margin_top_login">
+        <div class="container wrapper_container">
 
             <%
                 try {

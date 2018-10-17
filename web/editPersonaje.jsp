@@ -16,7 +16,7 @@
 
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <form class="character-form" action="controllers/controller.jsp?op=saveeditcharacter" method="POST" name="formcharacter">
-            <div class="container margin_top_login">
+            <div class="container wrapper_container">
                 <!-- Start Row title-->
                 <h5 class="titles_red_h5">Editar Personaje</h5>
                 <!-- End Row title-->
@@ -137,11 +137,11 @@
                 <div class="row">
                     <div class="col s12 m12 l12">
                         <label class="black_taurinas" for="biography">Biografía</label>
-                        <textarea id="biography" value="" class="materialize-textarea" name="biography"><%=personajeEdit.getBiografia()%></textarea>  
+                        <textarea lang="es" id="biography" value="" class="materialize-textarea" name="biography"><%=personajeEdit.getBiografia()%></textarea>  
                         <label class="black_taurinas" for="notes">Notas</label>
-                        <textarea id="notes" value="" class="materialize-textarea" name="notes"><%=personajeEdit.getNotas()%></textarea>  
+                        <textarea lang="es" id="notes" value="" class="materialize-textarea" name="notes"><%=personajeEdit.getNotas()%></textarea>  
                         <label class="black_taurinas" for="find_out">Averiguar</label>
-                        <textarea id="find_out" value="" class="materialize-textarea" name="find_out"><%=personajeEdit.getAveriguar()%></textarea>  
+                        <textarea lang="es" id="find_out" value="" class="materialize-textarea" name="find_out"><%=personajeEdit.getAveriguar()%></textarea>  
                     </div>
                 </div>
                 <!-- End row biograpy and image-->

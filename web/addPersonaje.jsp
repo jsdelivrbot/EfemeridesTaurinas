@@ -14,7 +14,7 @@ Author     : agustin
 
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <form class="character-form" action="controllers/controller.jsp?op=savenewcharacter" method="POST" name="formcharacter">
-            <div class="container margin_top_login">
+            <div class="container wrapper_container">
                 <!-- Start Row title-->
                 <h5 class="titles_red_h5">Añadir Personaje</h5>
                 <!-- End Row title-->
@@ -118,11 +118,11 @@ Author     : agustin
                 <div class="row">
                     <div class="col s12 m12 l12">
                         <label class="black_taurinas" for="biography">Biografía</label>
-                        <textarea id="biography" class="materialize-textarea" name="biography"></textarea>  
+                        <textarea lang="es" id="biography" class="materialize-textarea" name="biography"></textarea>  
                         <label class="black_taurinas" for="notes">Notas</label>
-                        <textarea id="notes" class="materialize-textarea" name="notes"></textarea>  
+                        <textarea lang="es" id="notes" class="materialize-textarea" name="notes"></textarea>  
                         <label class="black_taurinas" for="find_out">Averiguar</label>
-                        <textarea id="find_out" class="materialize-textarea" name="find_out"></textarea>  
+                        <textarea lang="es" id="find_out" class="materialize-textarea" name="find_out"></textarea>  
                     </div>
                 </div>
                 <!-- End row biograpy and image-->

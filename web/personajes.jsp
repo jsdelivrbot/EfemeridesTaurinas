@@ -59,44 +59,41 @@
 
                         for (int i = 0; i < listaPersonaje.size(); i++) {%>
                 <div class="col s12 m6 l4">
-                    <div class="card">
+                    <div class="card" style="min-height: 500px">
                         <div class="card-content min_height_card_character">
                             <div class="img card_bullfighter"><img onerror="this.src='assets/img/no-photo.png';" class="image_card_bullfighter" src="<%=listaPersonaje.get(i).getFoto()%>"></div>
                             <h5><%=listaPersonaje.get(i).getNombrepersonaje()%> <%=listaPersonaje.get(i).getApellido1()%> <%=listaPersonaje.get(i).getApellido2()%> </h5>
                             <p>"<%=listaPersonaje.get(i).getApodo1()%>"</p>
                         </div>
                         <div class="card-action margin_top_card_action">
+                            
                             <div class="row">
-                                <div class="fixed-action-btn horizontal " style="position: absolute; display: inline-block; right: 7px;">
-                                    <a class="btn-floating btn-large background_color_red">
-                                        <i class="large material-icons">menu</i>
-                                    </a>
-                                    <ul>
-                                        <li>
-                                            <form class="filter-form" action="controllers/controller.jsp?op=detailcharacter" method="POST" name="formfilter">
+                                <div class="col s2 offset-s3">
+                                    <form class="filter-form" action="controllers/controller.jsp?op=detailcharacter" method="POST" name="formfilter">
                                                 <input class="hidden_display " name="idcharacter" value="<%=listaPersonaje.get(i).getIdpersonaje()%>">
-                                                <button type="submit" class="waves-effect waves-light btn-floating green"><i class="material-icons">remove_red_eye</i></button>
+                                                <button type="submit" class="waves-effect waves-light btn-floating  blue-grey lighten-3"><i class="material-icons">remove_red_eye</i></button>
                                             </form>
-                                        </li>
-                                        <li>
-                                            <form class="filter-form" action="controllers/controller.jsp?op=editcharacter" method="POST" name="formfilter">
-                                                <input class="hidden_display " name="idcharacter" value="<%=listaPersonaje.get(i).getIdpersonaje()%>">
-                                                <button type="submit" class="waves-effect waves-light btn-floating blue"><i class="material-icons">edit</i></button>
-                                            </form>
-                                        </li>
-
-                                        <li>
-                                            <form class="filter-form" action="controllers/controller.jsp?op=deletecharacter" method="POST" name="formDelete-<%=listaPersonaje.get(i).getIdpersonaje()%>">
-                                                <input class="hidden_display" name="idperonajedelete" value="<%=listaPersonaje.get(i).getIdpersonaje()%>">
-                                                <button type="button" onclick="return confirmdelete(<%=listaPersonaje.get(i).getIdpersonaje()%>);" id="deletebutton" class="deletebutton waves-effect waves-light btn-floating red"><i id="delete" class= " material-icons">delete</i></button>
-                                            </form>
-
-                                        </li>
-                                    </ul>
                                 </div>
-
-
+                                <div class="col s2">
+                                    <form class="filter-form" action="controllers/controller.jsp?op=editcharacter" method="POST" name="formfilter">
+                                                <input class="hidden_display " name="idcharacter" value="<%=listaPersonaje.get(i).getIdpersonaje()%>">
+                                                <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">edit</i></button>
+                                            </form>
+                                </div>
+                                <div class="col s2">
+                                    <form class="filter-form" action="controllers/controller.jsp?op=deletecharacter" method="POST" name="formDelete-<%=listaPersonaje.get(i).getIdpersonaje()%>">
+                                                <input class="hidden_display" name="idperonajedelete" value="<%=listaPersonaje.get(i).getIdpersonaje()%>">
+                                                <button type="button" onclick="return confirmdelete(<%=listaPersonaje.get(i).getIdpersonaje()%>);" id="deletebutton" class="deletebutton waves-effect waves-light btn-floating blue-grey darken-3"><i id="delete" class= " material-icons">delete</i></button>
+                                            </form> 
+                                </div>
                             </div>
+                                            
+                                        
+                                            
+                                        
+                                            
+
+                               
                         </div>
                     </div>
                 </div>
@@ -114,7 +111,7 @@
 
             <!-- End row of character-->
         </div>
-        <jsp:include page="assets/shared/modals/modalconfirmationdeletcharacter.jsp" />
+       
     </div>
 
 

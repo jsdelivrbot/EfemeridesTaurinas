@@ -254,7 +254,7 @@ footer
 .image_character_detail
 {
     height: auto;
-    width: 120%;
+    width: 100%;
 }
 
 .titles_red_h5
@@ -285,6 +285,12 @@ footer
 }
 .wrapper{
     padding:0 10%;
+}
+
+.wrapper_container{
+    padding:2% 3%;
+    margin-top: 6%;
+    background-color: white;
 }
 .carrousel_center
 {
@@ -325,6 +331,11 @@ footer
 .min_height_card_character
 {
     max-height: 360px;
+}
+
+.min_height_card_efemeride
+{
+    min-height: 200px;
 }
 
 .error_message_login
@@ -423,6 +434,8 @@ footer {
     text-align: center;
     width: 100%;
 }
+
+
 
 @media (max-width: 768px) {
     .carousel-ef {

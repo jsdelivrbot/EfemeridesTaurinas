@@ -31,8 +31,9 @@
 
 <html>
     <head>
+        <link rel="icon" href="assets/img/icon_bullfighter.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Efemérides Taurinas</title>
     </head>
     <body>
 

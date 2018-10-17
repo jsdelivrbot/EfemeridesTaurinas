@@ -14,19 +14,19 @@
                 <form class="filter-form" action="controllers/controller.jsp?op=addelementstable" method="POST" name="addelementstable">
                     <div class="row">
                         <div class="input-field col s12">
-                            <input  required="required" name="nombretoro" id="newcategoria" type="text" class="validate">
+                            <input lang="es" required="required" name="nombretoro" id="newcategoria" type="text" class="validate">
                             <label for="categoria">Toro</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input required="required" name="nombreganaderia" id="newcategoria" type="text" class="validate">
+                            <input lang="es" required="required" name="nombreganaderia" id="newcategoria" type="text" class="validate">
                             <label for="categoria">Ganadería</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input required="required" name="nombreinterviniente" id="newcategoria" type="text" class="validate">
+                            <input lang="es" required="required" name="nombreinterviniente" id="newcategoria" type="text" class="validate">
                             <label for="categoria">Interviniente</label>
                         </div>
                     </div>

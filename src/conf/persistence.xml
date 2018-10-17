@@ -7,6 +7,11 @@
     <class>Entities.Personaje</class>
     <class>Entities.Efemeride</class>
     <class>Entities.Trabajo</class>
+    <class>entities.Fotos</class>
+    <class>entities.Usuario</class>
+    <class>entities.Efemeride</class>
+    <class>entities.Personaje</class>
+    <class>entities.Profesion</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/torosdb?zeroDateTimeBehavior=convertToNull"/>

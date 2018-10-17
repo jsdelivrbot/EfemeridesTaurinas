@@ -17,9 +17,7 @@
         <jsp:include page="assets/shared/models/validateSession.jsp" />
         <jsp:include page="assets/shared/models/headerBack.jsp" />
 
-
-
-        <div class="container margin_top_login">
+        <div class="container wrapper_container">
             <h5 class="titles_red_h5">Profesiones  <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Puede buscar por nombre y profesión" class=" tooltipped material-icons information_orange_buttons">info</i></h5>
             <div class="row">
                 <form class="filter-form-efe" action="controllers/controllerProfesion.jsp?op=searchcharacterprofession" method="POST" name="formfilterefe">
