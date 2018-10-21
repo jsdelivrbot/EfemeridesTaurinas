@@ -13,6 +13,8 @@
 
         if (confirm("Si elimina un personaje se eliminarán todos las efemérides asocidas a el ¿Seguro que quiere continuar?")) {
             console.log("ACEPTADO");
+            console.log(id);
+            console.log(formName);
             $('form[name="' + formName + '"]').submit();
         } else {
             console.log("CANCELADO");

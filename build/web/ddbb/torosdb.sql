@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-10-2018 a las 16:06:30
+-- Tiempo de generación: 21-10-2018 a las 16:02:10
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -95,9 +95,9 @@ CREATE TABLE `personaje` (
   `correo` varchar(255) DEFAULT NULL,
   `biografia` varchar(255) DEFAULT NULL,
   `provincianacimiento` varchar(255) DEFAULT NULL,
-  `pueblonacimiento` int(255) DEFAULT NULL,
-  `provinciaactual` int(255) DEFAULT NULL,
-  `puebloactual` int(255) DEFAULT NULL
+  `pueblonacimiento` varchar(255) DEFAULT NULL,
+  `provinciaactual` varchar(255) DEFAULT NULL,
+  `puebloactual` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -147,6 +147,26 @@ CREATE TABLE `trabajo` (
   `idprofesion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL,
+  `nombreusuario` varchar(255) NOT NULL,
+  `contraseña` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`idusuario`, `nombreusuario`, `contraseña`) VALUES
+(1, 'superadmin', 'b640a0ce465fa2a4150c36b305c1c11b'),
+(2, 'admin', '21232f297a57a5a743894a0e4a801fc3');
+
 --
 -- Índices para tablas volcadas
 --
@@ -192,6 +212,12 @@ ALTER TABLE `trabajo`
   ADD KEY `FK_TRABAJO_PROFESION` (`idprofesion`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idusuario`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -199,13 +225,19 @@ ALTER TABLE `trabajo`
 -- AUTO_INCREMENT de la tabla `efemeride`
 --
 ALTER TABLE `efemeride`
-  MODIFY `idefemeride` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idefemeride` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- AUTO_INCREMENT de la tabla `personaje`
 --
 ALTER TABLE `personaje`
-  MODIFY `idpersonaje` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpersonaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
 -- Restricciones para tablas volcadas

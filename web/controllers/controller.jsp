@@ -4,16 +4,17 @@
     Author     : agustin
 --%>
 
+<%@page import="java.io.File"%>
+<%@page import="java.io.FileInputStream"%>
+<%@page import="javax.swing.JFileChooser"%>
 <%@page import="java.security.MessageDigest"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="methods.Inform"%>
 <%@page import="com.itextpdf.text.Paragraph"%>
 <%@page import="java.io.FileOutputStream"%>
 <%@page import="com.itextpdf.text.pdf.PdfWriter"%>
 <%@page import="com.itextpdf.text.PageSize"%>
 <%@page import="com.itextpdf.text.Document"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Entities.Cartel"%>
 <%@page import="Entities.Efemeride"%>
 <%@page import="javax.persistence.Persistence"%>
 <%@page import="javax.persistence.EntityManagerFactory"%>
@@ -70,11 +71,13 @@
             String direccion = null;
             String telefono = null;
             String fechanacimiento = null;
+            String fechapicadores = null;
+            String fechapresentacion = null;
+            String fechaalternativa = null;
             String contacto = null;
             String email = null;
             String imagen = null;
             String biografia = null;
-            String profesion = null;
 
             //estos son los que faltan
             String averiguar = null;
@@ -89,7 +92,6 @@
             List<Usuario> listaUsuario;
             List<Personaje> listaPersonaje;
             List<Efemeride> listaEfemeride;
-            List<Cartel> listacartel = new ArrayList<>();
 
             op = request.getParameter("op");
 
@@ -140,6 +142,7 @@
                     response.sendRedirect("../personajes.jsp");
 
                 } catch (Exception e) {
+
                     session.setAttribute("errormessage", "Error al cargar los personajes");
                     response.sendRedirect("../mainview.jsp");
                 }
@@ -158,7 +161,6 @@
                     fechanacimiento = (String) request.getParameter("birth_date");
                     contacto = new String(request.getParameter("contact").getBytes("ISO-8859-1"), "UTF-8");
                     email = (String) request.getParameter("email");
-                    imagen = new String(request.getParameter("img").getBytes("ISO-8859-1"), "UTF-8");
                     biografia = new String(request.getParameter("biography").getBytes("ISO-8859-1"), "UTF-8");
                     averiguar = new String(request.getParameter("find_out").getBytes("ISO-8859-1"), "UTF-8");
                     completo = (String) request.getParameter("checkcomplete");
@@ -169,35 +171,38 @@
                     puebloactual = new String(request.getParameter("current_town").getBytes("ISO-8859-1"), "UTF-8");
                     pueblonacimiento = new String(request.getParameter("birth_town").getBytes("ISO-8859-1"), "UTF-8");
 
+                    fechapicadores = new String(request.getParameter("picadores_date").getBytes("ISO-8859-1"), "UTF-8");
+                    fechapresentacion = new String(request.getParameter("presentation_date").getBytes("ISO-8859-1"), "UTF-8");
+                    fechaalternativa = new String(request.getParameter("alternative_date").getBytes("ISO-8859-1"), "UTF-8");
+
                     /*
                     out.print("Personaje " + nombrepersonaje + " " + apellido1 + " " + apellido2 + " " + apodo1 + " " + apodo2 + " " + nombrecartel + " " + direccion + " "
-                            + telefono + " " + contacto + " " + email + " " + imagen + " " + biografia + " " + profesion + " " + averiguar + " " + notas + " "
+                            + telefono + " " + contacto + " " + email + " " + imagen + " " + biografia + " " + averiguar + " " + notas + " "
                             + provinciaactual + " " + provincianacimiento + " " + puebloactual + " " + pueblonacimiento);
-
                      */
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
+
                     Personaje personaje = new Personaje();
-                    personaje.setNombrepersonaje(nombrepersonaje);
                     personaje.setApellido1(apellido1);
                     personaje.setApellido2(apellido2);
                     personaje.setApodo1(apodo1);
                     personaje.setApodo2(apodo2);
-                    personaje.setNombrecartel(nombrecartel);
-                    personaje.setDireccion(direccion);
-                    personaje.setTelefono(telefono);
-                    personaje.setContacto(contacto);
-                    personaje.setCorreo(email);
-                    personaje.setFoto(imagen);
                     personaje.setBiografia(biografia);
-                    personaje.setAveriguar(averiguar);
+                    personaje.setCorreo(email);
+                    personaje.setDireccion(direccion);
+                    personaje.setFechaalternativa(formatter.parse(fechaalternativa));
+                    personaje.setFechanacimiento(formatter.parse(fechanacimiento));
+                    personaje.setFechapicadores(formatter.parse(fechapicadores));
+                    personaje.setFechapresentacion(formatter.parse(fechapresentacion));
+                    personaje.setNombrecartel(nombrecartel);
+                    personaje.setNombrepersonaje(nombrepersonaje);
                     personaje.setNotas(notas);
+                    personaje.setPersonadecontacto(contacto);
                     personaje.setProvinciaactual(provinciaactual);
                     personaje.setProvincianacimiento(provincianacimiento);
                     personaje.setPuebloactual(puebloactual);
                     personaje.setPueblonacimiento(pueblonacimiento);
-
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
-                    Date fechaParaGuardar = formatter.parse(fechanacimiento);
-                    personaje.setFechanacimiento(fechaParaGuardar);
+                    personaje.setTelefono(telefono);
 
                     if (completo == null) {
                         personaje.setCompleto(false);
@@ -217,6 +222,7 @@
 
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("correctmessage", "Añadido el personaje correctamente");
+
                 } catch (Exception e) {
                     session.setAttribute("errormessage", "Error añadiendo el personaje" + e);
                     response.sendRedirect("../personajes.jsp");
@@ -323,7 +329,7 @@
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     listaPersonaje = (List<Personaje>) q.getResultList();
                     session.setAttribute("listaPersonaje", listaPersonaje);
-
+                    session.setAttribute("buscar", buscar);
                     //out.print("buscar " +buscar);
                     response.sendRedirect("../personajes.jsp");
                 } catch (Exception e) {
@@ -375,42 +381,6 @@
                 try {
 
                     String idpersonaje = (String) request.getParameter("idcharacter");
-
-                    /*
-                    nombrepersonaje = (String) request.getParameter("first_name");
-                    apellido1 = (String) request.getParameter("frist_surname");
-                    apellido2 = (String) request.getParameter("second_surname");
-                    apodo1 = (String) request.getParameter("first_nickname");
-                    apodo2 = (String) request.getParameter("second_nickname");
-                    nombrecartel = (String) request.getParameter("name_poster");
-                    direccion = (String) request.getParameter("direction");
-                    telefono = (String) request.getParameter("phone");
-                    fechanacimiento = (String) request.getParameter("birth_date");
-                    contacto = (String) request.getParameter("contact");
-                    email = (String) request.getParameter("email");
-                    imagen = (String) request.getParameter("img");
-                    biografia = (String) request.getParameter("biography");
-                    //profesion = (String) request.getParameter("profession");
-                    averiguar = (String) request.getParameter("find_out");
-                    completo = (String) request.getParameter("checkcomplete");
-                    cossio = (String) request.getParameter("checkcossio");
-                    notas = (String) request.getParameter("notes");
-                    provinciaactual = (String) request.getParameter("current_province");
-                    provincianacimiento = (String) request.getParameter("birth_province");
-                    puebloactual = (String) request.getParameter("current_town");
-                    pueblonacimiento = (String) request.getParameter("birth_town");
-                    */
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     nombrepersonaje = new String(request.getParameter("first_name").getBytes("ISO-8859-1"), "UTF-8");
                     apellido1 = new String(request.getParameter("frist_surname").getBytes("ISO-8859-1"), "UTF-8");
                     apellido2 = new String(request.getParameter("second_surname").getBytes("ISO-8859-1"), "UTF-8");
@@ -422,9 +392,7 @@
                     fechanacimiento = (String) request.getParameter("birth_date");
                     contacto = new String(request.getParameter("contact").getBytes("ISO-8859-1"), "UTF-8");
                     email = (String) request.getParameter("email");
-                    imagen = new String(request.getParameter("img").getBytes("ISO-8859-1"), "UTF-8");
                     biografia = new String(request.getParameter("biography").getBytes("ISO-8859-1"), "UTF-8");
-                    averiguar = new String(request.getParameter("find_out").getBytes("ISO-8859-1"), "UTF-8");
                     completo = (String) request.getParameter("checkcomplete");
                     cossio = (String) request.getParameter("checkcossio");
                     notas = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
@@ -432,34 +400,36 @@
                     provincianacimiento = new String(request.getParameter("birth_province").getBytes("ISO-8859-1"), "UTF-8");
                     puebloactual = new String(request.getParameter("current_town").getBytes("ISO-8859-1"), "UTF-8");
                     pueblonacimiento = new String(request.getParameter("birth_town").getBytes("ISO-8859-1"), "UTF-8");
-                    
+                    fechapicadores = new String(request.getParameter("picadores_date"));
+                    fechapresentacion = new String(request.getParameter("presentation_date").getBytes("ISO-8859-1"), "UTF-8");
+                    fechaalternativa = new String(request.getParameter("alternative_date").getBytes("ISO-8859-1"), "UTF-8");
+                    out.print("dsfasdf");
+
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
 
                     Personaje personaje = new Personaje();
                     personaje.setIdpersonaje(Integer.parseInt(idpersonaje));
-                    personaje.setNombrepersonaje(nombrepersonaje);
                     personaje.setApellido1(apellido1);
                     personaje.setApellido2(apellido2);
                     personaje.setApodo1(apodo1);
                     personaje.setApodo2(apodo2);
-                    personaje.setNombrecartel(nombrecartel);
-                    personaje.setDireccion(direccion);
-                    personaje.setTelefono(telefono);
-                    personaje.setContacto(contacto);
-                    personaje.setCorreo(email);
-                    personaje.setFoto(imagen);
                     personaje.setBiografia(biografia);
-                    personaje.setAveriguar(averiguar);
+                    personaje.setCorreo(email);
+                    personaje.setDireccion(direccion);
+                    personaje.setFechaalternativa(formatter.parse(fechaalternativa));
+                    personaje.setFechanacimiento(formatter.parse(fechanacimiento));
+                    personaje.setFechapicadores(formatter.parse(fechapicadores));
+                    personaje.setFechapresentacion(formatter.parse(fechapresentacion));
+                    personaje.setNombrecartel(nombrecartel);
+                    personaje.setNombrepersonaje(nombrepersonaje);
                     personaje.setNotas(notas);
+                    personaje.setPersonadecontacto(contacto);
                     personaje.setProvinciaactual(provinciaactual);
                     personaje.setProvincianacimiento(provincianacimiento);
                     personaje.setPuebloactual(puebloactual);
                     personaje.setPueblonacimiento(pueblonacimiento);
+                    personaje.setTelefono(telefono);
 
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
-                    Date fechaParaGuardar = formatter.parse(fechanacimiento);
-                    personaje.setFechanacimiento(fechaParaGuardar);
-
-                    //personaje.setProfesion(profession);
                     if (completo == null) {
                         personaje.setCompleto(false);
                     } else if (completo != null) {
@@ -475,7 +445,6 @@
                     em.getTransaction().begin();
                     em.merge(personaje);
                     em.getTransaction().commit();
-
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("correctmessage", personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2() + " ha sido editado correctamente");
                 } catch (Exception e) {
@@ -494,10 +463,10 @@
                     Personaje personajedatail = (Personaje) q.getSingleResult();
                     session.setAttribute("personajedatail", personajedatail);
 
-                    sql = "SELECT E FROM Efemeride E WHERE E.idpersonaje = (SELECT P FROM Personaje P WHERE P.idpersonaje = " + idpersonaje + ")";
-                    q = em.createQuery(sql);
-                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                    List<Efemeride> listaEfemeridesPersonaje = (List<Efemeride>) q.getResultList();
+                    //sql = "SELECT E FROM Efemeride E WHERE E.idpersonaje = (SELECT P FROM Personaje P WHERE P.idpersonaje = " + idpersonaje + ")";
+                    //q = em.createQuery(sql);
+                    //q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                    List<Efemeride> listaEfemeridesPersonaje = personajedatail.getEfemerideList();
                     session.setAttribute("listaEfemeridesPersonaje", listaEfemeridesPersonaje);
 
                     response.sendRedirect("../detailPersonajes.jsp");
@@ -542,23 +511,22 @@
                         break;
                 }
 
-            } else if (op.equals("addelementstable")) {
+            } else if (op.equals("saveimage")) {
                 try {
 
-                    List<Cartel> aux = (ArrayList<Cartel>) session.getAttribute("listacartel");
-                    if (aux != null) {
-                        listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
-                    }
+                    String valor = (String) request.getParameter("imageValue");
+                    //TODO: aqui
+                    out.print(valor);
+                    out.print("jsdhflsakjfdhk");
 
-                    String nombretoro = (String) request.getParameter("nombretoro");
-                    String nombreganaderia = (String) request.getParameter("nombreganaderia");
-                    String nombreinterviniente = (String) request.getParameter("nombreinterviniente");
+                    File image = new File(valor);
+                    FileInputStream fis = new FileInputStream(image);
 
-                    Cartel cartel = new Cartel(nombretoro, nombreganaderia, nombreinterviniente);
+                    String sqll = "insert into imgtst (username,image) values (?, ?)";
+                    pst = con.prepareStatement(sql);
 
-                    listacartel.add(cartel);
-                    session.setAttribute("listacartel", listacartel);
-                    response.sendRedirect("../addEfemeride.jsp");
+                    pst.setString(1, user);
+                    pst.setBinaryStream(2, fis, (int) file.length());
 
                 } catch (Exception e) {
                     response.sendRedirect("../efemerides.jsp");
@@ -576,9 +544,8 @@
                     Personaje personajeEdit = (Personaje) q.getSingleResult();
                     //session.setAttribute("personajeEdit", personajeEdit);
 
-                    Inform i = new Inform();
-                    i.generateInformPDF(request, response, personajeEdit);
-
+//                    Inform i = new Inform();
+//                    i.generateInformPDF(request, response, personajeEdit);
                     response.sendRedirect("../detailPersonajes.jsp");
                     session.setAttribute("correctmessage", "Informe generado correctamente");
 
@@ -597,9 +564,8 @@
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     Personaje personajeEdit = (Personaje) q.getSingleResult();
 
-                    Inform i = new Inform();
-                    i.generateFullInformPDF(request, response, personajeEdit);
-
+//                    Inform i = new Inform();
+                    // i.generateFullInformPDF(request, response, personajeEdit);
                     response.sendRedirect("../detailPersonajes.jsp");
                     session.setAttribute("correctmessage", "Informe generado correctamente");
 

@@ -59,6 +59,22 @@
         <jsp:include page="assets/shared/models/carrousel.jsp" />
         <!-- End Carrousel-->
 
+
+
+
+
+
+        <div class="nav-background">
+            <img class="active" src="img/cityscape-line3.png" alt="cityscape">
+            <img src="img/cityscape-line1.png" alt="cityscape">
+            <img src="img/cityscape-line2.png" alt="cityscape">
+        </div>
+
+
+
+
+
+
         <!-- Start Galery -->
         <div class="container portfolio margin_top_login">
             <h5>Galería</h5>
@@ -71,7 +87,7 @@
                     <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery4.jpg">
                     <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery5.jpg">
                     <img onerror="this.src='assets/img/no-photo.png';"  class="materialboxed" src="assets/img/galery6.jpg">
-                    
+
                 </div>
             </div>
         </div>

@@ -4,13 +4,14 @@
     Author     : agustin
 --%>
 
+<%@page import="javax.persistence.EntityTransaction"%>
 <%@page import="methods.Inform"%>
+<%@page import="Entities.Profesion"%>
 <%@page import="org.eclipse.persistence.exceptions.DatabaseException"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="Entities.Cartel"%>
 <%@page import="Entities.Personaje"%>
 <%@page import="Entities.Efemeride"%>
 <%@page import="javax.persistence.Query"%>
@@ -42,6 +43,7 @@
 
             }
 
+            SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
             String op = null;
             String sql = null;
             Query q = null;
@@ -49,26 +51,18 @@
 
             List<Efemeride> listaefemerides = null;
             List<Personaje> listapersonajes = null;
-            List<Cartel> listacartel = new ArrayList<>();
 
             if (op.equals("detailefemeride")) {
 
                 try {
 
                     String idefemeride = (String) request.getParameter("idefemeride");
-                    String idcharacter = (String) request.getParameter("idcharacter");
 
                     sql = "SELECT E FROM Efemeride E where e.idefemeride =" + idefemeride;
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     Efemeride efem = (Efemeride) q.getSingleResult();
                     session.setAttribute("efem", efem);
-
-                    sql = "SELECT p FROM Personaje p where p.idpersonaje =" + idcharacter;
-                    q = em.createQuery(sql);
-                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                    Personaje perso = (Personaje) q.getSingleResult();
-                    session.setAttribute("perso", perso);
 
                     response.sendRedirect("../detailEfemeride.jsp");
 
@@ -78,7 +72,7 @@
                 }
             } else if (op.equals("loadallefems")) {
                 try {
-                    sql = "SELECT E FROM Efemeride E";
+                    sql = "SELECT E FROM Efemeride E GROUP BY E.idefemeride";
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     listaefemerides = (List<Efemeride>) q.getResultList();
@@ -106,7 +100,7 @@
                     em.getTransaction().commit();
 
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("correctmessage", "Eliminada la efemeride de " + e.getIdpersonaje().getNombrepersonaje() + " " + e.getIdpersonaje().getApellido1() + " " + e.getIdpersonaje().getApellido2());
+                    session.setAttribute("correctmessage", "Eliminada la efemeride de " + e.getPersonajeList().get(0).getNombrepersonaje());
 
                 } catch (Exception e) {
                     session.setAttribute("errormessage", e.toString());
@@ -115,123 +109,60 @@
             } else if (op.equals("savenewefe")) {
                 try {
 
-                    String town = new String(request.getParameter("town").getBytes("ISO-8859-1"), "UTF-8");
-                    String date = new String(request.getParameter("date").getBytes("ISO-8859-1"), "UTF-8");
-                    String event = new String(request.getParameter("event").getBytes("ISO-8859-1"), "UTF-8");
-                    String report = new String(request.getParameter("report").getBytes("ISO-8859-1"), "UTF-8");
-                    String idpersonajes = new String(request.getParameter("idpersonajes").getBytes("ISO-8859-1"), "UTF-8");
-                    String notes = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
+                    String pueblo = new String(request.getParameter("town").getBytes("ISO-8859-1"), "UTF-8");
+                    String provincia = new String(request.getParameter("province").getBytes("ISO-8859-1"), "UTF-8");
+                    String tipoevento = new String(request.getParameter("event").getBytes("ISO-8859-1"), "UTF-8");
+                    String foto = new String(request.getParameter("foto").getBytes("ISO-8859-1"), "UTF-8");
+                    String cartel = new String(request.getParameter("cartel").getBytes("ISO-8859-1"), "UTF-8");
+                    String ganaderia = new String(request.getParameter("ganadery").getBytes("ISO-8859-1"), "UTF-8");
+                    String fechaefemeride = new String(request.getParameter("date").getBytes("ISO-8859-1"), "UTF-8");
+                    String fechareal = new String(request.getParameter("real_date").getBytes("ISO-8859-1"), "UTF-8");
+                    String reportaje = new String(request.getParameter("report").getBytes("ISO-8859-1"), "UTF-8");
+                    String notas = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
+                    String fuente = new String(request.getParameter("fuente").getBytes("ISO-8859-1"), "UTF-8");
+                    String lista[] = request.getParameterValues("idpersonajes");
 
-                    listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
+                    ArrayList<Personaje> listPersonajesSelect = new ArrayList<>();
 
-                    /*
-                    out.println("Datos " + town + " date " + date + " event " + event + " report " + report + " idpersonaje -->" + idpersonajes + "<-- \n");
-                    for (int i = 0; i < listacartel.size(); i++) {
-                        out.println("Toro " + listacartel.get(i).getNombretoro() + " Ganaderia " + listacartel.get(i).getNombreganaderia() + " Interviniente " + listacartel.get(i).getNombreinterviniente() +"\n");
-                    }*/
-                    sql = "SELECT P FROM Personaje P WHERE P.idpersonaje =" + idpersonajes;
-                    q = em.createQuery(sql);
-                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                    Personaje personaje = (Personaje) q.getSingleResult();
+                    for (int i = 0; i < lista.length; i++) {
+                        sql = "SELECT P FROM Personaje P WHERE P.idpersonaje =" + lista[i];
+                        q = em.createQuery(sql);
+                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                        Personaje personaje = (Personaje) q.getSingleResult();
+                        listPersonajesSelect.add(personaje);
+                    }
 
                     Efemeride efemeride = new Efemeride();
-                    efemeride.setEvento(event);
+                    efemeride.setIdefemeride(-1);
+                    efemeride.setPueblo(pueblo);
+                    efemeride.setProvincia(provincia);
+                    efemeride.setTipoevento(tipoevento);
+                    efemeride.setFoto(foto);
+                    efemeride.setCartel(cartel);
+                    efemeride.setGanaderia(ganaderia);
+                    efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
+                    efemeride.setFechareal(formatter.parse(fechareal));
+                    efemeride.setReportaje(reportaje);
+                    efemeride.setNotas(notas);
+                    efemeride.setFuente(fuente);
 
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
-                    Date fechaParaGuardar = formatter.parse(date);
-                    efemeride.setFechaefemeride(fechaParaGuardar);
-                    efemeride.setNotas(notes);
-                    efemeride.setPoblacion(town);
-                    efemeride.setReportaje(report);
-                    efemeride.setIdpersonaje(personaje);
-
-                    switch (listacartel.size()) {
-                        case 1:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            break;
-                        case 2:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            break;
-                        case 3:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            break;
-                        case 4:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            efemeride.setToro4(listacartel.get(3).getNombretoro());
-                            efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
-                            break;
-                        case 5:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            efemeride.setToro4(listacartel.get(3).getNombretoro());
-                            efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
-                            efemeride.setToro5(listacartel.get(4).getNombretoro());
-                            efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
-                            break;
-                        case 6:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            efemeride.setToro4(listacartel.get(3).getNombretoro());
-                            efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
-                            efemeride.setToro5(listacartel.get(4).getNombretoro());
-                            efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
-                            efemeride.setToro6(listacartel.get(5).getNombretoro());
-                            efemeride.setGanaderia6(listacartel.get(5).getNombreganaderia());
-                            efemeride.setInterviniente6(listacartel.get(5).getNombreinterviniente());
-                            break;
+                    if (efemeride.getPersonajeList() == null) { //si es nulo creo una nueva lista en la que añado el personaje y le meto la lista de persoanjes a la efemeride
+                        efemeride.setPersonajeList(listPersonajesSelect);
+                    } else {//si no es nulo le cojo el arry y le añado el personaje directamente
+                        for (Personaje p : listPersonajesSelect) {
+                            efemeride.getPersonajeList().add(p);
+                        }
                     }
 
                     em.getTransaction().begin();
                     em.persist(efemeride);
                     em.getTransaction().commit();
-
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("errormessage", "Guardada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
+                    //session.setAttribute("errormessage", "Guardada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
                 } catch (Exception e) {
-                    response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("errormessage", "Error al crear la efemeride" + e);
+                    //response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
+                    //session.setAttribute("errormessage", "Error al crear la efemeride" + e);
+                    out.print(e);
 
                 }
 
@@ -242,7 +173,6 @@
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     listapersonajes = (List<Personaje>) q.getResultList();
                     session.setAttribute("listapersonajes", listapersonajes);
-                    session.setAttribute("listacartel", listacartel);
 
                     response.sendRedirect("../addEfemeride.jsp");
                 } catch (Exception e) {
@@ -252,7 +182,7 @@
                 session.removeAttribute("listacartel");
                 response.sendRedirect("controllerEfemeride.jsp?op=loadllcharactersforefemerides");
             } else if (op.equals("createinformpdf")) {
-                String idefemeride = (String) request.getParameter("idefemedide");
+                String idefemeride = (String) request.getParameter("idefem");
                 sql = "SELECT E FROM Efemeride E WHERE E.idefemeride = " + idefemeride;
                 q = em.createQuery(sql);
                 q.setHint("javax.persistence.cache.storeMode", "REFRESH");
@@ -261,7 +191,6 @@
 
                 Inform i = new Inform();
                 i.generateInformPDFEfemeride(request, response, efemeride);
-
                 response.sendRedirect("../detailPersonajes.jsp");
                 session.setAttribute("correctmessage", "Informe generado correctamente");
 
@@ -279,22 +208,6 @@
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     Efemeride efemeride = (Efemeride) q.getSingleResult();
                     session.setAttribute("efemeride", efemeride);
-
-                    Cartel cartel1 = new Cartel(efemeride.getToro1(), efemeride.getGanaderia1(), efemeride.getInterviniente1());
-                    Cartel cartel2 = new Cartel(efemeride.getToro2(), efemeride.getGanaderia2(), efemeride.getInterviniente2());
-                    Cartel cartel3 = new Cartel(efemeride.getToro3(), efemeride.getGanaderia3(), efemeride.getInterviniente3());
-                    Cartel cartel4 = new Cartel(efemeride.getToro4(), efemeride.getGanaderia4(), efemeride.getInterviniente4());
-                    Cartel cartel5 = new Cartel(efemeride.getToro5(), efemeride.getGanaderia5(), efemeride.getInterviniente5());
-                    Cartel cartel6 = new Cartel(efemeride.getToro6(), efemeride.getGanaderia6(), efemeride.getInterviniente6());
-                    listacartel.add(cartel1);
-                    listacartel.add(cartel2);
-                    listacartel.add(cartel3);
-                    listacartel.add(cartel4);
-                    listacartel.add(cartel5);
-                    listacartel.add(cartel6);
-
-                    session.setAttribute("listacartel", listacartel);
-
                     response.sendRedirect("../editEfemeride.jsp");
                 } catch (Exception e) {
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
@@ -304,122 +217,59 @@
             } else if (op.equals("saveeditefe")) {
 
                 try {
-                    String town = new String(request.getParameter("town").getBytes("ISO-8859-1"), "UTF-8");
-                    String date = new String(request.getParameter("date").getBytes("ISO-8859-1"), "UTF-8");
-                    String event = new String(request.getParameter("event").getBytes("ISO-8859-1"), "UTF-8");
-                    String report = new String(request.getParameter("report").getBytes("ISO-8859-1"), "UTF-8");
-                    String idpersonajes = new String(request.getParameter("idpersonajes").getBytes("ISO-8859-1"), "UTF-8");
-                    String notes = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
                     String idefemeride = new String(request.getParameter("idefemeride").getBytes("ISO-8859-1"), "UTF-8");
+                    String pueblo = new String(request.getParameter("town").getBytes("ISO-8859-1"), "UTF-8");
+                    String provincia = new String(request.getParameter("province").getBytes("ISO-8859-1"), "UTF-8");
+                    String tipoevento = new String(request.getParameter("event").getBytes("ISO-8859-1"), "UTF-8");
+                    String foto = new String(request.getParameter("foto").getBytes("ISO-8859-1"), "UTF-8");
+                    String cartel = new String(request.getParameter("cartel").getBytes("ISO-8859-1"), "UTF-8");
+                    String ganaderia = new String(request.getParameter("ganadery").getBytes("ISO-8859-1"), "UTF-8");
+                    String fechaefemeride = new String(request.getParameter("date").getBytes("ISO-8859-1"), "UTF-8");
+                    String fechareal = new String(request.getParameter("real_date").getBytes("ISO-8859-1"), "UTF-8");
+                    String reportaje = new String(request.getParameter("report").getBytes("ISO-8859-1"), "UTF-8");
+                    String notas = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
+                    String fuente = new String(request.getParameter("fuente").getBytes("ISO-8859-1"), "UTF-8");
+                    String lista[] = request.getParameterValues("idpersonajes");
 
-                    listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
+                    ArrayList<Personaje> listPersonajesSelect = new ArrayList<>();
 
-                    /*   out.println("Datos " + town + " date " + date + " event " + event + " report " + report + " idpersonaje -->" + idpersonajes + "<-- \n"+ " notes "+notes);
-                for (int i = 0; i < listacartel.size(); i++) {
-                    out.println("Toro"+i+" " + listacartel.get(i).getNombretoro() + " Ganaderia"+i+" " + listacartel.get(i).getNombreganaderia() + " Interviniente"+i+" " + listacartel.get(i).getNombreinterviniente() + "\n");
-                }*/
-                    sql = "SELECT P FROM Personaje P WHERE P.idpersonaje =" + idpersonajes;
-                    q = em.createQuery(sql);
-                    q.setHint("javax.persistence.cache.storeMode", "REFRESH");
-                    Personaje personaje = (Personaje) q.getSingleResult();
-
-                    Efemeride efemeride = new Efemeride();
-                    efemeride.setEvento(event);
-
-                    SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
-                    Date fechaParaGuardar = formatter.parse(date);
-                    efemeride.setFechaefemeride(fechaParaGuardar);
-                    efemeride.setNotas(notes);
-                    efemeride.setPoblacion(town);
-                    efemeride.setReportaje(report);
-                    efemeride.setIdpersonaje(personaje);
-
-                    efemeride.setIdefemeride(Integer.parseInt(idefemeride));
-
-                    switch (listacartel.size()) {
-                        case 1:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            break;
-                        case 2:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            break;
-                        case 3:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            break;
-                        case 4:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            efemeride.setToro4(listacartel.get(3).getNombretoro());
-                            efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
-                            break;
-                        case 5:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            efemeride.setToro4(listacartel.get(3).getNombretoro());
-                            efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
-                            efemeride.setToro5(listacartel.get(4).getNombretoro());
-                            efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
-                            break;
-                        case 6:
-                            efemeride.setToro1(listacartel.get(0).getNombretoro());
-                            efemeride.setGanaderia1(listacartel.get(0).getNombreganaderia());
-                            efemeride.setInterviniente1(listacartel.get(0).getNombreinterviniente());
-                            efemeride.setToro2(listacartel.get(1).getNombretoro());
-                            efemeride.setGanaderia2(listacartel.get(1).getNombreganaderia());
-                            efemeride.setInterviniente2(listacartel.get(1).getNombreinterviniente());
-                            efemeride.setToro3(listacartel.get(2).getNombretoro());
-                            efemeride.setGanaderia3(listacartel.get(2).getNombreganaderia());
-                            efemeride.setInterviniente3(listacartel.get(2).getNombreinterviniente());
-                            efemeride.setToro4(listacartel.get(3).getNombretoro());
-                            efemeride.setGanaderia4(listacartel.get(3).getNombreganaderia());
-                            efemeride.setInterviniente4(listacartel.get(3).getNombreinterviniente());
-                            efemeride.setToro5(listacartel.get(4).getNombretoro());
-                            efemeride.setGanaderia5(listacartel.get(4).getNombreganaderia());
-                            efemeride.setInterviniente5(listacartel.get(4).getNombreinterviniente());
-                            efemeride.setToro6(listacartel.get(5).getNombretoro());
-                            efemeride.setGanaderia6(listacartel.get(5).getNombreganaderia());
-                            efemeride.setInterviniente6(listacartel.get(5).getNombreinterviniente());
-                            break;
+                    for (int i = 0; i < lista.length; i++) {
+                        sql = "SELECT P FROM Personaje P WHERE P.idpersonaje =" + lista[i];
+                        q = em.createQuery(sql);
+                        q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                        Personaje personaje = (Personaje) q.getSingleResult();
+                        listPersonajesSelect.add(personaje);
                     }
 
-                    em.getTransaction().begin();
+                    Efemeride efemeride = new Efemeride();
+                    efemeride.setIdefemeride(Integer.parseInt(idefemeride));
+                    efemeride.setPueblo(pueblo);
+                    efemeride.setProvincia(provincia);
+                    efemeride.setTipoevento(tipoevento);
+                    efemeride.setFoto(foto);
+                    efemeride.setCartel(cartel);
+                    efemeride.setGanaderia(ganaderia);
+                    efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
+                    efemeride.setFechareal(formatter.parse(fechareal));
+                    efemeride.setReportaje(reportaje);
+                    efemeride.setNotas(notas);
+                    efemeride.setFuente(fuente);
+
+                    if (efemeride.getPersonajeList() == null) { //si es nulo creo una nueva lista en la que añado el personaje y le meto la lista de persoanjes a la efemeride
+                        efemeride.setPersonajeList(listPersonajesSelect);
+                    } else {//si no es nulo le cojo el arry y le añado el personaje directamente
+                        for (Personaje p : listPersonajesSelect) {
+                            efemeride.getPersonajeList().add(p);
+                        }
+                    }
+
+                    EntityTransaction tx = em.getTransaction();
+                    tx.begin();
                     em.merge(efemeride);
-                    em.getTransaction().commit();
+                    tx.commit();
 
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    session.setAttribute("errormessage", "Editada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
+                    //session.setAttribute("errormessage", "Editada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
                 } catch (Exception e) {
                     //response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
                     //session.setAttribute("errormessage", "Error al editar la efeméride");

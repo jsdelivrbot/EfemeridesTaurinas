@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package Entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -219,7 +219,7 @@ public class Efemeride implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Efemeride[ idefemeride=" + idefemeride + " ]";
+        return "Entities.Efemeride[ idefemeride=" + idefemeride + " ]";
     }
     
 }

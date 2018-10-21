@@ -61,27 +61,30 @@
                         List<Efemeride> listaefemerides = (List<Efemeride>) session.getAttribute("listaefemerides");
                         DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
                         for (int i = 0; i < listaefemerides.size(); i++) {
+
+
                 %>
                 <div class="col s12 m6 l4" style="margin-bottom: 10px;">
                     <div class="card">
                         <div class="card-content min_height_card_efemeride">
-                            <h5><%=listaefemerides.get(i).getIdpersonaje().getNombrepersonaje()%> <%=listaefemerides.get(i).getIdpersonaje().getApellido1()%> <%=listaefemerides.get(i).getIdpersonaje().getApellido2()%></h5>
+                            <h5>Evento: <%=listaefemerides.get(i).getTipoevento()%></h5>
                             <p>Fecha: <%= dateFormat.format(listaefemerides.get(i).getFechaefemeride())%></p>
-                            <p>Población: <%=listaefemerides.get(i).getPoblacion()%></p>
+                            <p>Pueblo: <%=listaefemerides.get(i).getPueblo()%></p>
+                            <p>Provincia: <%=listaefemerides.get(i).getProvincia()%></p>
                         </div>
                         <div class="card-action">
                             <div class="row">
                                 <div class="col s2 offset-s3">
                                     <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=detailefemeride" method="POST" name="formfilter">
                                         <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
-                                        <input class="hidden_display" name="idcharacter" value="<%=listaefemerides.get(i).getIdpersonaje().getIdpersonaje()%>">
+
                                         <button type="submit" class="waves-effect waves-light btn-floating blue-grey lighten-3"><i class="material-icons">remove_red_eye</i></button>
                                     </form>
                                 </div>
                                 <div class="col s2">
                                     <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=loadllcharactersforeditefemerides" method="POST" name="formfilter">
                                         <input class="hidden_display" name="idefemeride" value="<%=listaefemerides.get(i).getIdefemeride()%>">
-                                        <input class="hidden_display" name="idcharacter" value="<%=listaefemerides.get(i).getIdpersonaje().getIdpersonaje()%>">
+
                                         <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">edit</i></button>
                                     </form>
                                 </div>

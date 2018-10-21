@@ -29,21 +29,29 @@ Author     : agustin
                         <label for="second_surname"  required="true" class="black_taurinas">Segundo Apellido</label>
                         <input  id="surname" type="text" class="validate" name="second_surname">
                         <label for="birth_province" class="black_taurinas">Provincia de nacimiento</label>
-                        <input id="birth_province" type="text" class="validate" name="birth_province">
+                        <input id="birth_province" type="text" class="validate" name="birth_province"/>
+                        <label for="picadores_date" required="true" class="black_taurinas">Fecha Picadores</label>
+                        <input id="picadores_date" type="text" class="datepicker" name="picadores_date"/>
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
                     <div class="col s12 m6 l6">
                         <label for="first_nickname" required="true" class="black_taurinas">Primer Apodo</label>
-                        <input id="first_nickname" type="text" class="validate" name="first_nickname">
+                        <input id="first_nickname" type="text" class="validate" name="first_nickname"/>
                         <label for="second_nickname" class="black_taurinas">Segundo Apodo</label>
-                        <input id="second_nickname" type="text" class="validate" name="second_nickname">
+                        <input id="second_nickname" type="text" class="validate" name="second_nickname"/>
                         <label for="birth_date" required="true" class="black_taurinas">Fecha Nacimiento</label>
-                        <input id="birth_date" type="text" class="datepicker" name="birth_date">
+                        <input id="birth_date" type="text" class="datepicker" name="birth_date"/>
                         <label for="birth_town" class="black_taurinas">Pueblo de nacimiento</label>
-                        <input id="birth_town" type="text" class="validate" name="birth_town">
+                        <input id="birth_town" type="text" class="validate" name="birth_town"/>
+                        <label for="presentation_date" required="true" class="black_taurinas">Fecha Presentación</label>
+                        <input id="presentation_date" type="text" class="datepicker" name="presentation_date"/>
                     </div>
                     <!-- End col 2-->
+                    <div class="col s12 m6 l6 offset-m3 offset-l3">
+                        <label for="alternative_date" required="true" class="black_taurinas">Fecha Alternativa</label>
+                        <input id="alternative_date" type="text" class="datepicker" name="alternative_date"/>
+                    </div>
                 </div>
                 <!-- End Row image and credentials-->
 
@@ -120,9 +128,7 @@ Author     : agustin
                         <label class="black_taurinas" for="biography">Biografía</label>
                         <textarea lang="es" id="biography" class="materialize-textarea" name="biography"></textarea>  
                         <label class="black_taurinas" for="notes">Notas</label>
-                        <textarea lang="es" id="notes" class="materialize-textarea" name="notes"></textarea>  
-                        <label class="black_taurinas" for="find_out">Averiguar</label>
-                        <textarea lang="es" id="find_out" class="materialize-textarea" name="find_out"></textarea>  
+                        <textarea lang="es" id="notes" class="materialize-textarea" name="notes"></textarea>
                     </div>
                 </div>
                 <!-- End row biograpy and image-->

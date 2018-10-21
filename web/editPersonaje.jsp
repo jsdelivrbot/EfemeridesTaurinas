@@ -25,9 +25,9 @@
 
                     <%
                         try {
-
                             Personaje personajeEdit = (Personaje) session.getAttribute("personajeEdit");
                             DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+
                     %>
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
@@ -66,7 +66,9 @@
                         <label for="name_poster"  class="black_taurinas">Nombre Cartel</label>
                         <input id="name_poster" value="<%=personajeEdit.getNombrecartel()%>" required="true" type="text" class="validate" name="name_poster">
                         <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
-                        <input  id="img" type="text" value="<%=personajeEdit.getFoto()%>" class="validate" name="img">
+                        <input  id="img" type="text" value="<%=personajeEdit.getFotografia()%>" class="validate" name="img">
+                        <label for="picadores_date" required="true" class="black_taurinas">Fecha Picadores</label>
+                        <input id="picadores_date" type="text" value="<%=dateFormat.format(personajeEdit.getFechapicadores())%>" class="datepicker" name="picadores_date">
                     </div>
                     <!-- End frist col personal detail-->
                     <!-- Start second col personal detail-->
@@ -74,7 +76,9 @@
                         <label for="direction" class="black_taurinas">Dirección</label>
                         <input id="direction" value="<%=personajeEdit.getDireccion()%>" type="text" class="validate" name="direction">
                         <label for="contact" class="black_taurinas">Contacto</label>
-                        <input id="contact" value="<%=personajeEdit.getContacto()%>" type="text" class="validate" name="contact">
+                        <input id="contact" value="<%=personajeEdit.getPersonadecontacto()%>" type="text" class="validate" name="contact">
+                        <label for="presentation_date" required="true" class="black_taurinas">Fecha Presentacion</label>
+                        <input id="presentation_date" type="text" value="<%=dateFormat.format(personajeEdit.getFechapresentacion())%>" class="datepicker" name="presentation_date">
                     </div>
                     <!-- End second col personal detail-->
                     <!-- Start third col personal detail-->
@@ -83,6 +87,8 @@
                         <input id="phone" value="<%=personajeEdit.getTelefono()%>" type="number" class="validate" name="phone">  
                         <label for="email" class="black_taurinas">Email</label>
                         <input id="email" value="<%=personajeEdit.getCorreo()%>" type="email" class="validate" name="email">
+                        <label for="alternative_date" required="true" class="black_taurinas">Fecha Alternativa</label>
+                        <input id="alternative_date" type="text" value="<%=dateFormat.format(personajeEdit.getFechaalternativa())%>" class="datepicker" name="alternative_date">
                     </div>
                     <!-- End third col personal detail-->
                 </div>
@@ -140,8 +146,6 @@
                         <textarea lang="es" id="biography" value="" class="materialize-textarea" name="biography"><%=personajeEdit.getBiografia()%></textarea>  
                         <label class="black_taurinas" for="notes">Notas</label>
                         <textarea lang="es" id="notes" value="" class="materialize-textarea" name="notes"><%=personajeEdit.getNotas()%></textarea>  
-                        <label class="black_taurinas" for="find_out">Averiguar</label>
-                        <textarea lang="es" id="find_out" value="" class="materialize-textarea" name="find_out"><%=personajeEdit.getAveriguar()%></textarea>  
                     </div>
                 </div>
                 <!-- End row biograpy and image-->

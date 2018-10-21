@@ -20,11 +20,10 @@
         <div class="container wrapper_container">
 
             <%
-                try {
-                    Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
-                    DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+                Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
+                DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 
-                    //TODO:prueba
+
             %>
             <!-- Start Row title-->
             <div class="row">
@@ -66,7 +65,7 @@
                 <!-- Start col image-->
                 <div class="col s12 m4 l5">
                     <div class="mate wrapper-image">
-                        <img onerror="this.src='assets/img/no-photo.png';" class="image_character_detail" src="<%=personajedatail.getFoto()%>" >
+                        <img onerror="this.src='assets/img/no-photo.png';" class="image_character_detail" src="<%=personajedatail.getFotografia()%>" >
                     </div>
                 </div>
                 <!-- End col image-->
@@ -95,6 +94,8 @@
                     <input disabled value="<%=dateFormat.format(personajedatail.getFechanacimiento())%>" id="birth_date" type="text" class="datepicker">
                     <label for="brith_province" class="black_taurinas">Provincia de nacimiento</label>
                     <input disabled value="<%=personajedatail.getProvincianacimiento()%>" id="brith_province" type="text" class="validate">
+                    <label for="alternative_date" class="black_taurinas">Fecha Alternativa</label>
+                    <input disabled value="<%=dateFormat.format(personajedatail.getFechaalternativa())%>" id="alternative_date" type="text" class="validate">
                 </div>
                 <!-- End frist col personal detail-->
                 <!-- Start second col personal detail-->
@@ -102,9 +103,9 @@
                     <label for="direction" class="black_taurinas">Dirección</label>
                     <input disabled value="<%=personajedatail.getDireccion()%>" id="direction" type="text" class="validate">
                     <label for="contact" class="black_taurinas">Contacto</label>
-                    <input disabled value="<%=personajedatail.getContacto()%>" id="contact" type="text" class="validate">
+                    <input disabled value="<%=personajedatail.getPersonadecontacto()%>" id="contact" type="text" class="validate">
                     <label for="brith_town" class="black_taurinas">Pueblo de nacimiento</label>
-                    <input disabled value="<%=personajedatail.getPueblonacimiento()%>" id="brith_town" type="text" class="validate">
+                    <input disabled value="<%=0%>" id="brith_town" type="text" class="validate">
                 </div>
                 <!-- End second col personal detail-->
                 <!-- Start third col personal detail-->
@@ -113,6 +114,10 @@
                     <input disabled value="<%=personajedatail.getTelefono()%>" id="phone" type="number" class="validate" >
                     <label for="email" class="black_taurinas">Email</label>
                     <input disabled value="<%=personajedatail.getCorreo()%>" id="email" type="email" class="validate">
+                    <label for="picadores_date" class="black_taurinas">Fecha Picadores</label>
+                    <input disabled value="<%=dateFormat.format(personajedatail.getFechapicadores())%>" id="picadores_date" type="text" class="validate">
+                    <label for="presentation_date" class="black_taurinas">Fecha Presentacion</label>
+                    <input disabled value="<%=dateFormat.format(personajedatail.getFechapresentacion())%>" id="presentation_date" type="text" class="validate">
                 </div>
                 <!-- End third col personal detail-->
             </div>
@@ -177,13 +182,12 @@
                     <textarea disabled value=""  id="biography" class="materialize-textarea"><%=personajedatail.getBiografia()%></textarea>
                     <label for="notes">Notas</label>
                     <textarea disabled value=""  id="notes" class="materialize-textarea"><%=personajedatail.getNotas()%></textarea>
-                    <label for="find_out">Averiguar</label>
-                    <textarea disabled value=""  id="find_out" class="materialize-textarea"><%=personajedatail.getAveriguar()%></textarea>
                 </div>
             </div>
             <!-- End col personal biograpy-->
             <!-- Start Table efemerides -->
             <h5 class="titles_red_h5">Efemérides</h5>
+
             <%
                 List<Efemeride> listaEfemeridesPersonaje = (List<Efemeride>) session.getAttribute("listaEfemeridesPersonaje");
                 if (listaEfemeridesPersonaje.size() != 0) {%>
@@ -212,14 +216,11 @@
             </table>
             <%
             } else {%>
-            <p>No existe cartel</p>
+            <p>El personaje no tiene asignadas efemerides</p>
             <%}%>
+
             <!-- End Table efemerides -->
         </div>
-        <%} catch (Exception e) {
-                session.setAttribute("errormessage", "Error visualizar el detalle del personaje");
-                response.sendRedirect("mainview.jsp");
-            }%>
         <jsp:include page="assets/shared/body.jsp" />
     </body>
 </html>

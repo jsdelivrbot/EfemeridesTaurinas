@@ -5,7 +5,6 @@
 --%>
 
 <%@page import="java.util.ArrayList"%>
-<%@page import="Entities.Cartel"%>
 <%@page import="Entities.Personaje"%>
 <%@page import="java.util.List"%>
 <!DOCTYPE html>
@@ -17,89 +16,60 @@
         <jsp:include page="assets/shared/models/headerBack.jsp" />
         <div class="container wrapper_container ">
             <!-- Start Row title-->
-            <h5 class="titles_red_h5 right-align">Añadir Efeméride</h5>
+            <h5 class="titles_red_h5">Añadir Efeméride</h5>
             <!-- End Row title-->
-            <h5 class="titles_red_h5">Cartel <i id="informationimage " data-position="right" data-delay="50" data-tooltip="Un cartel esta formado por el toro, la ganaderia y el interviniente" onclick="myFunction()" class=" tooltipped material-icons information_orange_buttons">info</i></h5> 
-
             <form class="character-form" action="controllers/controllerEfemeride.jsp?op=savenewefe" method="POST" name="formcharacter">
-                <%
-                    List<Cartel> listacartel = (ArrayList<Cartel>) session.getAttribute("listacartel");
-                    if (listacartel.size() != 0) {
-                %>
-                <!-- Start row table -->
-                <div class="row margin_top_login">
-                    <table class="striped centered highlight">
-                        <thead>
-                            <tr>
-                                <th>Toros</th>
-                                <th>Ganaderías</th>
-                                <th>Intervinientes</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%for (int i = 0; i < listacartel.size(); i++) {
-                            %>
-                            <tr>
-                                <td><%=listacartel.get(i).getNombretoro()%></td>
-                                <td><%=listacartel.get(i).getNombreganaderia()%></td>
-                                <td><%=listacartel.get(i).getNombreinterviniente()%></td>
-                            </tr>
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-                <!-- End row table -->
-                <%
-                    session.setAttribute("listacartel", listacartel);
-                } else if (listacartel.size() == 0) {%>
-                <!-- Start no existing data in the table -->
-                <span>No existe cartel</span>
-                <%}%>
 
-                <div class="row margin_top_login">
-                    <%if (listacartel.size() < 6) { %>
-                    <button class="btn waves-effect waves-light blue modal-trigger right-align" data-target="modalcat">Añadir cartel</button>
-                    <%}%>
-                    <a class="waves-effect waves-light btn red " href="controllers/controllerEfemeride.jsp?op=deleteallrows">Borrar todos los carteles</a>
-                </div>
-                <!-- End no existing data in the table -->
-
-                <!-- Start row title more data -->
-                <h5 class="titles_red_h5 margin_top_login">Más datos</h5>
-                <!-- End row title more data -->
                 <div class="row">
                     <!-- Start col 1-->
-                    <div class="col s12 m6 l6">
-                        <label for="town" class="black_taurinas">Población</label>
+                    <div class="col s12 m4 l4">
+                        <label for="province" class="black_taurinas">Provincia</label>
+                        <input required="required" id="province" type="text" class="validate" name="province" value="">
+                        <label for="town" class="black_taurinas">Pueblo</label>
                         <input required="required" id="town" type="text" class="validate" name="town" value="">
-                        <label for="date" class="black_taurinas">Fecha</label>
-                        <input required="required" id="date" type="text" class="datepicker" name="date" value="">
+                        <label for="event" class="black_taurinas">Tipo de Evento</label>
+                        <input required="required" id="event" type="text" class="validate" name="event" value="">
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
-                    <div class="col s12 m6 l6">
-                        <label for="event" class="black_taurinas">Evento</label>
-                        <input required="required" id="event" type="text" class="validate" name="event" value="">
+                    <div class="col s12 m4 l4">
+                        <label for="foto" class="black_taurinas">Fotografía</label>
+                        <input required="required" id="foto" type="text" class="validate" name="foto" value="">
+                        <label for="cartel" class="black_taurinas">Cartel</label>
+                        <input required="required" id="cartel" type="text" class="validate" name="cartel" value="">
+                        <label for="ganadery" class="black_taurinas">Ganadería</label>
+                        <input required="required" id="ganadery" type="text" class="validate" name="ganadery" value="">
+
+                    </div>
+                    <!-- End col 2-->
+                    <!-- Start col 3-->
+                    <div class="col s12 m4 l4">
+                        <label for="date" class="black_taurinas">Fecha</label>
+                        <input required="required" id="date" type="text" class="datepicker" name="date" value="">
+                        <label for="real_date" class="black_taurinas">Fecha</label>
+                        <input required="required" id="real_date" type="text" class="datepicker" name="real_date" value="">
                         <label for="report" class="black_taurinas">Reportaje</label>
                         <input required="required" id="report" type="text" class="validate" name="report" value="">
                     </div>
-                    <!-- End col 2-->
+                    <!-- End col 3-->
                 </div>
                 <!-- End Row image and credentials-->
+                <h5 class="titles_red_h5">Más datos</h5>
                 <div class="row">
                     <div class="s12">
                         <label class="black_taurinas" for="notes">Notas</label>
                         <textarea id="notes" class="materialize-textarea" name="notes"></textarea>
+                        <label class="black_taurinas" for="fuente">Fuente</label>
+                        <textarea id="fuente" class="materialize-textarea" name="fuente"></textarea>
                     </div>
                 </div>
-                <br/><br/><br/>
 
                 <!-- Start select characters -->
                 <div class="row margin_top_login">
                     <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
                         <div class="input-field col s12">
                             <!-- Start select-->
-                            <select required="required" id="selectcharactersefemerides"  name="idpersonajes">
+                            <select multiple required="required" id="selectcharactersefemerides"  name="idpersonajes">
                                 <option value="" disabled selected>Seleccione un personaje</option>
                                 <%
                                     try {

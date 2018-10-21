@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package Entities;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -117,11 +117,11 @@ public class Personaje implements Serializable {
     @Column(name = "provincianacimiento")
     private String provincianacimiento;
     @Column(name = "pueblonacimiento")
-    private Integer pueblonacimiento;
+    private String pueblonacimiento;
     @Column(name = "provinciaactual")
-    private Integer provinciaactual;
+    private String provinciaactual;
     @Column(name = "puebloactual")
-    private Integer puebloactual;
+    private String puebloactual;
     @ManyToMany(mappedBy = "personajeList")
     private List<Efemeride> efemerideList;
     @JoinTable(name = "trabajo", joinColumns = {
@@ -315,27 +315,27 @@ public class Personaje implements Serializable {
         this.provincianacimiento = provincianacimiento;
     }
 
-    public Integer getPueblonacimiento() {
+    public String getPueblonacimiento() {
         return pueblonacimiento;
     }
 
-    public void setPueblonacimiento(Integer pueblonacimiento) {
+    public void setPueblonacimiento(String pueblonacimiento) {
         this.pueblonacimiento = pueblonacimiento;
     }
 
-    public Integer getProvinciaactual() {
+    public String getProvinciaactual() {
         return provinciaactual;
     }
 
-    public void setProvinciaactual(Integer provinciaactual) {
+    public void setProvinciaactual(String provinciaactual) {
         this.provinciaactual = provinciaactual;
     }
 
-    public Integer getPuebloactual() {
+    public String getPuebloactual() {
         return puebloactual;
     }
 
-    public void setPuebloactual(Integer puebloactual) {
+    public void setPuebloactual(String puebloactual) {
         this.puebloactual = puebloactual;
     }
 
@@ -388,7 +388,7 @@ public class Personaje implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Personaje[ idpersonaje=" + idpersonaje + " ]";
+        return "Entities.Personaje[ idpersonaje=" + idpersonaje + " ]";
     }
     
 }
