@@ -28,7 +28,7 @@
                 Efemeride efemeride = (Efemeride) session.getAttribute("efem");
 
                 DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");%>
-            <div class="row margin_top_login">
+            <div class="row">
                 <div class="col s6">
                     <h5 class="titles_red_h5 ">Editar Efeméride</h5>
                 </div>

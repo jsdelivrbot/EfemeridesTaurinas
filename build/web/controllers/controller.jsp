@@ -4,6 +4,9 @@
     Author     : agustin
 --%>
 
+<%@page import="java.io.OutputStream"%>
+<%@page import="java.io.InputStream"%>
+<%@page import="java.net.URL"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.FileInputStream"%>
 <%@page import="javax.swing.JFileChooser"%>
@@ -79,8 +82,6 @@
             String imagen = null;
             String biografia = null;
 
-            //estos son los que faltan
-            String averiguar = null;
             String completo = null;
             String cossio = null;
             String notas = null;
@@ -162,7 +163,6 @@
                     contacto = new String(request.getParameter("contact").getBytes("ISO-8859-1"), "UTF-8");
                     email = (String) request.getParameter("email");
                     biografia = new String(request.getParameter("biography").getBytes("ISO-8859-1"), "UTF-8");
-                    averiguar = new String(request.getParameter("find_out").getBytes("ISO-8859-1"), "UTF-8");
                     completo = (String) request.getParameter("checkcomplete");
                     cossio = (String) request.getParameter("checkcossio");
                     notas = new String(request.getParameter("notes").getBytes("ISO-8859-1"), "UTF-8");
@@ -492,12 +492,12 @@
                             response.sendRedirect("../efemerides.jsp");
                         } catch (Exception e) {
                             response.sendRedirect("../efemerides.jsp");
-                            session.setAttribute("errormessage", "Error al ordenar las efemerides");
+                            session.setAttribute("errormessage", "Error al ordenar las efemerides por fecha");
                         }
                         break;
                     case 2:
                         try {
-                            sql = "SELECT e FROM Efemeride e order by e.poblacion";
+                            sql = "SELECT E FROM Efemeride E order by e.provincia";
                             q = em.createQuery(sql);
                             q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                             listaEfemeride = (List<Efemeride>) q.getResultList();
@@ -506,7 +506,21 @@
                             response.sendRedirect("../efemerides.jsp");
                         } catch (Exception e) {
                             response.sendRedirect("../efemerides.jsp");
-                            session.setAttribute("errormessage", "Error al ordenar las efemerides");
+                            session.setAttribute("errormessage", "Error al ordenar las efemerides por provincia");
+                        }
+                        break;
+                    case 3:
+                        try {
+                            sql = "SELECT E FROM Efemeride E order by e.pueblo";
+                            q = em.createQuery(sql);
+                            q.setHint("javax.persistence.cache.storeMode", "REFRESH");
+                            listaEfemeride = (List<Efemeride>) q.getResultList();
+                            session.setAttribute("listaefemerides", listaEfemeride);
+
+                            response.sendRedirect("../efemerides.jsp");
+                        } catch (Exception e) {
+                            response.sendRedirect("../efemerides.jsp");
+                            session.setAttribute("errormessage", "Error al ordenar las efemerides por pueblo");
                         }
                         break;
                 }
@@ -516,21 +530,32 @@
 
                     String valor = (String) request.getParameter("imageValue");
                     //TODO: aqui
-                    out.print(valor);
-                    out.print("jsdhflsakjfdhk");
+                    URL url = new URL("http://localhost:8084/EfemeridesTaurinas/assets/img/imageefemeride.jpg");
+                    InputStream is = url.openStream();
+                    OutputStream os = new FileOutputStream("EfemeridesTaurinas/temp/urena.jpeg");
 
-                    File image = new File(valor);
-                    FileInputStream fis = new FileInputStream(image);
+                    byte[] b = new byte[2048];
+                    int length;
 
+                    while ((length = is.read(b)) != -1) {
+                        os.write(b, 0, length);
+                    }
+
+                    is.close();
+                    os.close();
+
+                    //File image = new File(valor);
+                    //FileInputStream fis = new FileInputStream(image);
+/*
                     String sqll = "insert into imgtst (username,image) values (?, ?)";
                     pst = con.prepareStatement(sql);
 
                     pst.setString(1, user);
                     pst.setBinaryStream(2, fis, (int) file.length());
-
+                     */
                 } catch (Exception e) {
-                    response.sendRedirect("../efemerides.jsp");
-                    session.setAttribute("errormessage", "Error añadir elementos a la tabla");
+                    response.sendRedirect("../galery.jsp");
+                    session.setAttribute("errormessage", "Error guardar la imagen" + e);
                 }
 
             } else if (op.equals("createinformpdf")) {

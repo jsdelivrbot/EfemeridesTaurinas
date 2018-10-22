@@ -18,9 +18,9 @@
 
         <!-- Header image -->
         <div class="intro grey darken-4  z-depth-1 header_mainview">
-            <h1 class="grey-text text-lighten-5 header_title_mainview" >EFEMÉRIDES <span class="color_red">TAURINAS</span></h1>
+            <h1 class="grey-text text-lighten-5 header_title_mainview" >EFEMÉRIDES TAURINAS <span class="color_red">TOLEDANAS</span></h1>
             <img src="assets/img/image07.jpg"  class=" imagen_header_backgroud">
-            <p class="guide_events">Guía de eventos del mundo del toro</p>
+            <p class="guide_events">Guía de eventos del toro en Toledo</p>
         </div>
         <!-- Start Header with no back -->
         <jsp:include page="assets/shared/models/header.jsp" />
@@ -58,22 +58,6 @@
         <!-- Start Carrousel-->
         <jsp:include page="assets/shared/models/carrousel.jsp" />
         <!-- End Carrousel-->
-
-
-
-
-
-
-        <div class="nav-background">
-            <img class="active" src="img/cityscape-line3.png" alt="cityscape">
-            <img src="img/cityscape-line1.png" alt="cityscape">
-            <img src="img/cityscape-line2.png" alt="cityscape">
-        </div>
-
-
-
-
-
 
         <!-- Start Galery -->
         <div class="container portfolio margin_top_login">

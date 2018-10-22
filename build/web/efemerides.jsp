@@ -40,7 +40,8 @@
                             <!-- controllers/controller.jsp?op=loadallefemerides -->
                             <option value="" disabled selected>Ordenar por</option>
                             <option value="1">Fecha</option>
-                            <option value="2">Pueblo</option>
+                            <option value="2">Provincia</option>
+                            <option value="3">Pueblo</option>
                         </select>
                     </form>
                     <script language="javascript" type="text/javascript">
