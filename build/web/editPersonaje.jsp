@@ -4,6 +4,7 @@
     Author     : agustin
 --%>
 
+<%@page import="Entities.Fotos"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="Entities.Personaje"%>
@@ -150,11 +151,47 @@
                 </div>
                 <!-- End row biograpy and image-->
 
-                <div class="row center-align">
+
+                <table cellpadding="1" cellspacing="1" class="striped table table-hover" id="myTable">
+                    <thead>
+                        <tr>
+                            <th>Personaje</th>
+                            <th>Imagen</th>
+                            <th>Nombre imagen</th>
+                            <th>Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (Fotos f:personajeEdit.getFotosList()) {%>
+                        <tr>
+                            <td><%=personajeEdit.getNombrepersonaje()%></td>
+                            <td><img class="materialboxed" width="60" src="<%=f.getImagen()%>"></td>
+                            <!--<td>
+                                <form class="delete-profesion" action="controllers/controllerProfesion.jsp?op=deleteprofesionpersonaje" method="POST" name="deleteprofesion">
+                                    <input class="hidden_display" name="idprofesiondelete" value="">
+                                    <input class="hidden_display" name="idperonajedelete" value="">
+                                    <button class="waves-effect waves-light btn small_button red" type="submit" name="action"><i class="material-icons center">delete</i></button>
+                                </form>
+                            </td>-->
+                            <td><%=f.getNombreimagen()%></td>
+                            <td><button class="waves-effect waves-light btn small_button red" type="submit" name="action"><i class="material-icons center">delete</i></button></td>
+                        </tr>
+                        <%}%>
+                    </tbody>
+                </table>
+                <div class="col-md-12 center text-center">
+                    <span class="left" id="total_reg"></span>
+                    <ul class="pagination pager" id="myPager"></ul>
+                </div>
+
+                <div class="row center-align margin_top">
                     <button class="waves-effect waves-light btn grey darken-4" type="submit"><i class="material-icons left">save</i>Guardar</button>
                     <a class="waves-effect waves-light btn grey darken-4" href="personajes.jsp"><i class="material-icons left">cancel</i>Cancelar</a>
                 </div>
             </div>
+
+
+
             <% } catch (Exception e) {
                     session.setAttribute("errormessage", "Error visualizar la edición del personaje");
                     response.sendRedirect("mainview.jsp");

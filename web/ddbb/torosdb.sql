@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-10-2018 a las 16:02:10
+-- Tiempo de generación: 24-10-2018 a las 00:22:38
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -52,7 +52,8 @@ CREATE TABLE `efemeride` (
 CREATE TABLE `fotos` (
   `idimagen` int(11) NOT NULL,
   `idpersonaje` int(11) NOT NULL,
-  `imagen` mediumblob NOT NULL
+  `imagen` varchar(255) NOT NULL,
+  `nombreimagen` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -99,8 +100,6 @@ CREATE TABLE `personaje` (
   `provinciaactual` varchar(255) DEFAULT NULL,
   `puebloactual` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `profesion`
@@ -228,6 +227,12 @@ ALTER TABLE `efemeride`
   MODIFY `idefemeride` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 
 --
+-- AUTO_INCREMENT de la tabla `fotos`
+--
+ALTER TABLE `fotos`
+  MODIFY `idimagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+
+--
 -- AUTO_INCREMENT de la tabla `personaje`
 --
 ALTER TABLE `personaje`
@@ -237,7 +242,7 @@ ALTER TABLE `personaje`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

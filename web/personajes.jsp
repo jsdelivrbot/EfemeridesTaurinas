@@ -18,7 +18,7 @@
         <!-- End Header with back-->
 
 
-            <div class="container margin_top_login">
+        <div class="container margin_top_login">
             <!-- Start Row title and add-->
             <div class="row">
                 <div class="col s12">
@@ -56,38 +56,51 @@
             <div class="row">
                 <%
                     List<Personaje> listaPersonaje = (List<Personaje>) session.getAttribute("listaPersonaje");
-                    for (int i = 0; i < listaPersonaje.size(); i++) {
+                    for (Personaje p : listaPersonaje) {
+                        String img = "";
+                        if (p.getFotosList().size() > 0) {
+                            img = p.getFotosList().get(0).getImagen();
+                        }
 
                 %>
+
+                <!-- onerror="this.src='assets/img/no-photo.png';"> -->
 
                 <div class="col s12 m6 l4">
                     <div class="card" style="min-height: 500px">
                         <div class="card-content min_height_card_character">
-                            <div class="img card_bullfighter"><img onerror="this.src='assets/img/no-photo.png';" class="image_card_bullfighter" src="<%=listaPersonaje.get(i).getFotografia()%>"></div>
-                            <h5><%=listaPersonaje.get(i).getNombrepersonaje()%> <%=listaPersonaje.get(i).getApellido1()%> <%=listaPersonaje.get(i).getApellido2()%></h5>
-                            <p>"<%=listaPersonaje.get(i).getApodo1()%>"</p>
+                            <div class="img card_bullfighter"><img onerror="this.src='assets/img/no-photo.png';" class="image_card_bullfighter" src="<%=img%>"/></div>
+                            <h5><%=p.getNombrepersonaje()%> <%=p.getApellido1()%> <%=p.getApellido2()%></h5>
+                            <p>"<%=p.getApodo1()%>"</p>
+
                         </div>
                         <div class="card-action margin_top_card_action">
 
                             <div class="row">
-                                <div class="col s2 offset-s3">
+                                <div class="col s2 offset-s2">
                                     <form class="filter-form" action="controllers/controller.jsp?op=detailcharacter" method="POST" name="formfilter">
-                                        <input class="hidden_display " name="idcharacter" value="<%=listaPersonaje.get(i).getIdpersonaje()%>"/>
+                                        <input class="hidden_display " name="idcharacter" value="<%=p.getIdpersonaje()%>"/>
                                         <button type="submit" class="waves-effect waves-light btn-floating  blue-grey lighten-3"><i class="material-icons">remove_red_eye</i></button>
                                     </form>
                                 </div>
                                 <div class="col s2">
                                     <form class="filter-form" action="controllers/controller.jsp?op=editcharacter" method="POST" name="formfilter">
-                                        <input class="hidden_display " name="idcharacter" value="<%=listaPersonaje.get(i).getIdpersonaje()%>"/>
+                                        <input class="hidden_display " name="idcharacter" value="<%=p.getIdpersonaje()%>"/>
                                         <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">edit</i></button>
                                     </form>
                                 </div>
                                 <div class="col s2">
                                     <form class="filter-form" action="controllers/controller.jsp?op=deletecharacter" method="POST">
-                                        <input class="hidden_display" name="idperonajedelete" value="<%=listaPersonaje.get(i).getIdpersonaje()%>"/>
-                                        <button type="button" onclick="return confirmdelete(<%=listaPersonaje.get(i).getIdpersonaje()%>);" id="deletebutton" class="deletebutton waves-effect waves-light btn-floating blue-grey darken-3"><i id="delete" class= " material-icons">delete</i></button>
+                                        <input class="hidden_display" name="idperonajedelete" value="<%=p.getIdpersonaje()%>"/>
+                                        <button type="button" onclick="return confirmdelete(<%=p.getIdpersonaje()%>);" id="deletebutton" class="deletebutton waves-effect waves-light btn-floating blue-grey darken-3"><i id="delete" class= " material-icons">delete</i></button>
                                     </form> 
                                 </div>
+                                <div class="col s2">
+                                    <form class="filter-form" action="controllers/controller.jsp?op=prepararIdGuardarImagen" method="POST" name="formfilter">
+                                        <input class="hidden_display " name="idcharacter" value="<%=p.getIdpersonaje()%>"/>
+                                        <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">image</i></button>
+                                    </form>
+                                </div> 
                             </div>
                         </div>
                     </div>

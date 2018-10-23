@@ -23,15 +23,15 @@ Author     : agustin
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
                         <label for="first_name" class="black_taurinas">Nombre</label>
-                        <input id="first_name" required="true" type="text" class="validate" name="first_name">
+                        <input id="first_name" required="true" type="text" class="validate" name="first_name"/>
                         <label for="surname" class="black_taurinas">Primer Apellido</label>
-                        <input  id="frist_surname" required="true" type="text" class="validate" name="frist_surname">
+                        <input  id="frist_surname" required="true" type="text" class="validate" name="frist_surname"/>
                         <label for="second_surname"  required="true" class="black_taurinas">Segundo Apellido</label>
                         <input  id="surname" type="text" class="validate" name="second_surname">
-                        <label for="birth_province" class="black_taurinas">Provincia de nacimiento</label>
-                        <input id="birth_province" type="text" class="validate" name="birth_province"/>
-                        <label for="picadores_date" required="true" class="black_taurinas">Fecha Picadores</label>
-                        <input id="picadores_date" type="text" class="datepicker" name="picadores_date"/>
+                            <label for="birth_province" class="black_taurinas">Provincia de nacimiento</label>
+                            <input id="birth_province" type="text" class="validate" name="birth_province"/>
+                            <label for="picadores_date" required="true" class="black_taurinas">Fecha Picadores</label>
+                            <input id="picadores_date" type="text" class="datepicker" name="picadores_date"/>
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
@@ -63,25 +63,25 @@ Author     : agustin
                     <!-- Start frist col personal detail-->
                     <div class="col s12 m6 l4">
                         <label for="name_poster"  class="black_taurinas">Nombre Cartel</label>
-                        <input id="name_poster" required="true" type="text" class="validate" name="name_poster">
+                        <input id="name_poster" required="true" type="text" class="validate" name="name_poster"/>
                         <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
-                        <input  id="img" type="text" class="validate" name="img">
+                        <input  id="img" type="text" class="validate" name="img"/>
                     </div>
                     <!-- End frist col personal detail-->
                     <!-- Start second col personal detail-->
                     <div class="col s12 m6 l4">
                         <label for="direction" class="black_taurinas">Dirección</label>
-                        <input id="direction" type="text" class="validate" name="direction">
+                        <input id="direction" type="text" class="validate" name="direction"/>
                         <label for="contact" class="black_taurinas">Contacto</label>
-                        <input id="contact" type="text" class="validate" name="contact">
+                        <input id="contact" type="text" class="validate" name="contact"/>
                     </div>
                     <!-- End second col personal detail-->
                     <!-- Start third col personal detail-->
                     <div class="col s12 m6 l4">
                         <label for="phone" class="black_taurinas">Teléfono</label>
-                        <input id="phone" type="number" class="validate" name="phone">  
+                        <input id="phone" type="number" class="validate" name="phone"/>  
                         <label for="email" class="black_taurinas">Email</label>
-                        <input id="email" type="email" class="validate" name="email">
+                        <input id="email" type="email" class="validate" name="email"/>
                     </div>
                     <!-- End third col personal detail-->
                 </div>
@@ -109,13 +109,13 @@ Author     : agustin
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
                         <label for="current_province" class="black_taurinas">Provincia actual</label>
-                        <input id="current_province" type="text" class="validate" name="current_province">
+                        <input id="current_province" type="text" class="validate" name="current_province"/>
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
                     <div class="col s12 m6 l6">
                         <label for="current_town" class="black_taurinas">Pueblo actual</label>
-                        <input id="current_town" type="text" class="validate" name="current_town">
+                        <input id="current_town" type="text" class="validate" name="current_town"/>
                     </div>
                     <!-- End col 2-->
                 </div>
@@ -133,10 +133,15 @@ Author     : agustin
                 </div>
                 <!-- End row biograpy and image-->
 
+                <div class="col s6">
+                    <input multiple type="file" name="file"/>
+                </div>
+
                 <div class="row center-align">
                     <button   class="waves-effect waves-light btn grey darken-4" type="submit"><i class="material-icons left">save</i>Guardar</button>
                     <a class="waves-effect waves-light btn grey darken-4" href="personajes.jsp"><i class="material-icons left">cancel</i>Cancelar</a>
                 </div>
+
             </div>
         </form>
         <jsp:include page="assets/shared/body.jsp" />

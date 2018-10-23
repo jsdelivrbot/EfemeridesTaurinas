@@ -4,6 +4,8 @@
     Author     : agustin
 --%>
 
+<%@page import="Entities.Personaje"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,25 +24,25 @@
                 <div class="col s6">
                     <h5 class="titles_red_h5 ">Galería</h5>
                 </div>
-                <div class="col s6">
-                    <button class="btn waves-effect waves-light green right" type="submit" name="action">Añadir imagen<i class="material-icons right">add</i></button>
-                </div>
             </div>
 
-            <form action="controllers/controller.jsp?op=saveimage" method="POST" class="addimage-form" name="addimage">
-                <div class="file-field input-field">
-                    <div class="btn">
-                        <span>Imagen</span>
-                        <input type="file" multiple>
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" name="imageValue" placeholder="Asocia mas de una imagen">
-                    </div>
-                </div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
+            <%
+                List<Personaje> listaPersonajeImage = (List<Personaje>) session.getAttribute("listaPersonajeImage");
+            %>
 
+            <!--enctype="multipart/form-data"-->
+            <form action="controllers/controller.jsp?op=saveimage" enctype="multipart/form-data"  method="POST" class="addimage-form" name="addimage">
+                <div class="row">
+                    <div class="col s6">
+                        <input multiple class="" type="file" name="file"/>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </form>
 
 

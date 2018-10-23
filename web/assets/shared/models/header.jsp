@@ -11,6 +11,7 @@
                 <li><a  href="controllers/controllerEfemeride.jsp?op=loadallefems">Efemérides</a></li>
                 <li><a  href="controllers/controller.jsp?op=loadallcharacters">Personajes</a></li>
                 <li><a href="controllers/controllerProfesion.jsp?op=loadallprofession">Profesiones</a></li>
+                <li><a href="controllers/controller.jsp?op=prepareCharacterImage">Galeria</a></li>
                 <li><a href="controllers/controller.jsp?op=logout">Salir</a></li>
             </ul>
             <ul class="side-nav center background_color_grey" id="mobile-demo">
@@ -24,6 +25,8 @@
                 <li><a href="controllers/controllerProfesion.jsp?op=loadallprofession">PROFESIONES</a></li>
                 <li><hr width="70px"></li>
                 <li><a  href="controllers/controller.jsp?op=loadallcharacters">PERSONAJES</a></li>
+                <li><hr width="70px"></li>
+                <li><a href="controllers/controller.jsp?op=prepareCharacterImage">GALERIA</a></li>
                 <li><hr width="70px"></li>
                 <li><a href="controllers/controller.jsp?op=logout">SALIR</a></li>               
             </ul>

@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -28,16 +27,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Fotos.findAll", query = "SELECT f FROM Fotos f")
     , @NamedQuery(name = "Fotos.findByIdimagen", query = "SELECT f FROM Fotos f WHERE f.fotosPK.idimagen = :idimagen")
-    , @NamedQuery(name = "Fotos.findByIdpersonaje", query = "SELECT f FROM Fotos f WHERE f.fotosPK.idpersonaje = :idpersonaje")})
+    , @NamedQuery(name = "Fotos.findByIdpersonaje", query = "SELECT f FROM Fotos f WHERE f.fotosPK.idpersonaje = :idpersonaje")
+    , @NamedQuery(name = "Fotos.findByImagen", query = "SELECT f FROM Fotos f WHERE f.imagen = :imagen")
+    , @NamedQuery(name = "Fotos.findByNombreimagen", query = "SELECT f FROM Fotos f WHERE f.nombreimagen = :nombreimagen")})
 public class Fotos implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected FotosPK fotosPK;
     @Basic(optional = false)
-    @Lob
     @Column(name = "imagen")
-    private byte[] imagen;
+    private String imagen;
+    @Basic(optional = false)
+    @Column(name = "nombreimagen")
+    private String nombreimagen;
     @JoinColumn(name = "idpersonaje", referencedColumnName = "idpersonaje", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Personaje personaje;
@@ -49,9 +52,10 @@ public class Fotos implements Serializable {
         this.fotosPK = fotosPK;
     }
 
-    public Fotos(FotosPK fotosPK, byte[] imagen) {
+    public Fotos(FotosPK fotosPK, String imagen, String nombreimagen) {
         this.fotosPK = fotosPK;
         this.imagen = imagen;
+        this.nombreimagen = nombreimagen;
     }
 
     public Fotos(int idimagen, int idpersonaje) {
@@ -66,12 +70,20 @@ public class Fotos implements Serializable {
         this.fotosPK = fotosPK;
     }
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getNombreimagen() {
+        return nombreimagen;
+    }
+
+    public void setNombreimagen(String nombreimagen) {
+        this.nombreimagen = nombreimagen;
     }
 
     public Personaje getPersonaje() {

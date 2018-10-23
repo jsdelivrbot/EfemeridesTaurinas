@@ -4,6 +4,7 @@
     Author     : agustin
 --%>
 
+<%@page import="Entities.Fotos"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.List"%>
@@ -23,6 +24,10 @@
                 Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
                 DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 
+                String img = "";
+                if (personajedatail.getFotosList().size() > 0) {
+                    img = personajedatail.getFotosList().get(0).getImagen();
+                }
 
             %>
             <!-- Start Row title-->
@@ -65,7 +70,7 @@
                 <!-- Start col image-->
                 <div class="col s12 m4 l5">
                     <div class="mate wrapper-image">
-                        <img onerror="this.src='assets/img/no-photo.png';" class="image_character_detail" src="<%=personajedatail.getFotografia()%>" >
+                        <img onerror="this.src='assets/img/no-photo.png';" class="image_character_detail" src="<%=img%>" >
                     </div>
                 </div>
                 <!-- End col image-->
@@ -218,8 +223,22 @@
             } else {%>
             <p>El personaje no tiene asignadas efemerides</p>
             <%}%>
-
             <!-- End Table efemerides -->
+            <h5 class="titles_red_h5">Efemérides</h5>
+            <div class="row">
+                <%for (Fotos f : personajedatail.getFotosList()) {%>
+
+
+                <div class="col s12 m6 l4">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="<%=f.getImagen()%>" data-caption="<%=personajedatail.getNombrepersonaje()%> <%=personajedatail.getApellido1()%> <%=personajedatail.getApodo2()%>" width="200" class="materialboxed">
+                        </div>
+                    </div>
+                </div>
+
+                <% }%>
+            </div>
         </div>
         <jsp:include page="assets/shared/body.jsp" />
     </body>
