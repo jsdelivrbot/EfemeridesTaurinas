@@ -7,6 +7,7 @@
 <%@page import="Entities.Fotos"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="Entities.Efemeride"%>
 <%@page import="Entities.Personaje"%>
@@ -22,6 +23,10 @@
 
             <%
                 Personaje personajedatail = (Personaje) session.getAttribute("personajedatail");
+                String fechaalternativaEdit = (String) session.getAttribute("fechaalternativaEdit");
+                String fechanacimientoEdit = (String) session.getAttribute("fechanacimientoEdit");
+                String fechapicadoresEdit = (String) session.getAttribute("fechapicadoresEdit");
+                String fechapresentacionEdit = (String) session.getAttribute("fechapresentacionEdit");
                 DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 
                 String img = "";
@@ -36,29 +41,12 @@
                     <h5 class="titles_red_h5">Personaje</h5>
                 </div>
                 <div class="col s12 m5 l4">
-                    <ul class="collapsible" data-collapsible="accordion">
-                        <li>
-                            <div class="collapsible-header"><i class="material-icons">file_download</i>Descargar informes</div>
-                            <div class="collapsible-body">
-                                <div class="row">
-                                    <form target="_blank" class="filter-form" action="controllers/controller.jsp?op=createinformpdf" method="POST" name="formfilter">
-                                        <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
-                                        <button class="btn waves-effect waves-light green" type="submit" name="action">Informe Personaje<i class="material-icons right">picture_as_pdf</i></button>
-                                    </form>
-                                </div>
 
-                                <% if (personajedatail.getEfemerideList().size() != 0) {%>
-                                <div class="row">
-                                    <form target="_blank" class="filter-form" action="controllers/controller.jsp?op=createfullinformpdf" method="POST" name="formfilter">
-                                        <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
-                                        <button class="btn waves-effect waves-light green" type="submit" name="action">Informe Completo<i class="material-icons right">picture_as_pdf</i></button>
-                                    </form>
-                                </div>
-                                <%}%>
+                    <form target="_blank" class="filter-form" action="controllers/controller.jsp?op=createinformpdf" method="POST" name="formfilter">
+                        <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
+                        <button class="btn waves-effect waves-light green" type="submit" name="action">Informe Personaje<i class="material-icons right">picture_as_pdf</i></button>
+                    </form>
 
-                            </div>
-                        </li>
-                    </ul>
 
                 </div>
             </div>
@@ -96,11 +84,11 @@
                     <label for="name_poster" class="black_taurinas">Nombre Cartel</label>
                     <input disabled value="<%=personajedatail.getNombrecartel()%>" id="name_poster" type="text" class="validate">
                     <label for="birth_date" class="black_taurinas">Fecha Nacimiento</label>
-                    <input disabled value="<%=dateFormat.format(personajedatail.getFechanacimiento())%>" id="birth_date" type="text" class="datepicker">
+                    <input disabled value="<%=fechanacimientoEdit%>" id="birth_date" type="text" class="datepicker">
                     <label for="brith_province" class="black_taurinas">Provincia de nacimiento</label>
                     <input disabled value="<%=personajedatail.getProvincianacimiento()%>" id="brith_province" type="text" class="validate">
                     <label for="alternative_date" class="black_taurinas">Fecha Alternativa</label>
-                    <input disabled value="<%=dateFormat.format(personajedatail.getFechaalternativa())%>" id="alternative_date" type="text" class="validate">
+                    <input disabled value="<%=fechaalternativaEdit%>" id="alternative_date" type="text" class="validate">
                 </div>
                 <!-- End frist col personal detail-->
                 <!-- Start second col personal detail-->
@@ -120,9 +108,9 @@
                     <label for="email" class="black_taurinas">Email</label>
                     <input disabled value="<%=personajedatail.getCorreo()%>" id="email" type="email" class="validate">
                     <label for="picadores_date" class="black_taurinas">Fecha Picadores</label>
-                    <input disabled value="<%=dateFormat.format(personajedatail.getFechapicadores())%>" id="picadores_date" type="text" class="validate">
+                    <input disabled value="<%=fechapicadoresEdit%>" id="picadores_date" type="text" class="validate">
                     <label for="presentation_date" class="black_taurinas">Fecha Presentacion</label>
-                    <input disabled value="<%=dateFormat.format(personajedatail.getFechapresentacion())%>" id="presentation_date" type="text" class="validate">
+                    <input disabled value="<%=fechapresentacionEdit%>" id="presentation_date" type="text" class="validate">
                 </div>
                 <!-- End third col personal detail-->
             </div>
@@ -204,10 +192,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (int i = 0; i < listaEfemeridesPersonaje.size(); i++) {%>
+                    <% for (int i = 0; i < listaEfemeridesPersonaje.size(); i++) {
+                        String date = "";
+                        if (listaEfemeridesPersonaje.get(i).getFechaefemeride()!=null){
+                           date =  dateFormat.format(listaEfemeridesPersonaje.get(i).getFechaefemeride());
+                        }
+                    
+                    %>
                     <tr>
                         <td><%=personajedatail.getNombrepersonaje()%> <%=personajedatail.getApellido1()%> <%=personajedatail.getApellido2()%></td>
-                        <td><%=dateFormat.format(listaEfemeridesPersonaje.get(i).getFechaefemeride())%></td>
+                        <td><%=date%></td>
                         <td>
                             <form class="filter-form" action="controllers/controllerEfemeride.jsp?op=detailefemeride" method="POST" name="formfilter">
                                 <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
@@ -224,20 +218,13 @@
             <p>El personaje no tiene asignadas efemerides</p>
             <%}%>
             <!-- End Table efemerides -->
-            <h5 class="titles_red_h5">Efemérides</h5>
+            <h5 class="titles_red_h5">Galería</h5>
             <div class="row">
-                <%for (Fotos f : personajedatail.getFotosList()) {%>
-
-
-                <div class="col s12 m6 l4">
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="<%=f.getImagen()%>" data-caption="<%=personajedatail.getNombrepersonaje()%> <%=personajedatail.getApellido1()%> <%=personajedatail.getApodo2()%>" width="200" class="materialboxed">
-                        </div>
-                    </div>
+                <div class="contenedor-imagenes">
+                    <%for (Fotos f : personajedatail.getFotosList()) {%>
+                    <img onerror="this.src='assets/img/no-photo.png';" src="<%=f.getImagen()%>" data-caption="<%=personajedatail.getNombrepersonaje()%> <%=personajedatail.getApellido1()%> <%=personajedatail.getApodo2()%>" width="200" class="materialboxed galeria_imagen">
+                    <% }%>
                 </div>
-
-                <% }%>
             </div>
         </div>
         <jsp:include page="assets/shared/body.jsp" />

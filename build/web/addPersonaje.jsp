@@ -26,17 +26,17 @@ Author     : agustin
                         <input id="first_name" required="true" type="text" class="validate" name="first_name"/>
                         <label for="surname" class="black_taurinas">Primer Apellido</label>
                         <input  id="frist_surname" required="true" type="text" class="validate" name="frist_surname"/>
-                        <label for="second_surname"  required="true" class="black_taurinas">Segundo Apellido</label>
+                        <label for="second_surname"  class="black_taurinas">Segundo Apellido</label>
                         <input  id="surname" type="text" class="validate" name="second_surname">
                             <label for="birth_province" class="black_taurinas">Provincia de nacimiento</label>
                             <input id="birth_province" type="text" class="validate" name="birth_province"/>
-                            <label for="picadores_date" required="true" class="black_taurinas">Fecha Picadores</label>
+                            <label for="picadores_date" class="black_taurinas">Fecha Picadores</label>
                             <input id="picadores_date" type="text" class="datepicker" name="picadores_date"/>
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
                     <div class="col s12 m6 l6">
-                        <label for="first_nickname" required="true" class="black_taurinas">Primer Apodo</label>
+                        <label for="first_nickname" class="black_taurinas">Primer Apodo</label>
                         <input id="first_nickname" type="text" class="validate" name="first_nickname"/>
                         <label for="second_nickname" class="black_taurinas">Segundo Apodo</label>
                         <input id="second_nickname" type="text" class="validate" name="second_nickname"/>
@@ -44,12 +44,12 @@ Author     : agustin
                         <input id="birth_date" type="text" class="datepicker" name="birth_date"/>
                         <label for="birth_town" class="black_taurinas">Pueblo de nacimiento</label>
                         <input id="birth_town" type="text" class="validate" name="birth_town"/>
-                        <label for="presentation_date" required="true" class="black_taurinas">Fecha Presentación</label>
+                        <label for="presentation_date"  class="black_taurinas">Fecha Presentación</label>
                         <input id="presentation_date" type="text" class="datepicker" name="presentation_date"/>
                     </div>
                     <!-- End col 2-->
                     <div class="col s12 m6 l6 offset-m3 offset-l3">
-                        <label for="alternative_date" required="true" class="black_taurinas">Fecha Alternativa</label>
+                        <label for="alternative_date"  class="black_taurinas">Fecha Alternativa</label>
                         <input id="alternative_date" type="text" class="datepicker" name="alternative_date"/>
                     </div>
                 </div>
@@ -63,7 +63,7 @@ Author     : agustin
                     <!-- Start frist col personal detail-->
                     <div class="col s12 m6 l4">
                         <label for="name_poster"  class="black_taurinas">Nombre Cartel</label>
-                        <input id="name_poster" required="true" type="text" class="validate" name="name_poster"/>
+                        <input id="name_poster" type="text" class="validate" name="name_poster"/>
                         <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
                         <input  id="img" type="text" class="validate" name="img"/>
                     </div>
@@ -132,10 +132,6 @@ Author     : agustin
                     </div>
                 </div>
                 <!-- End row biograpy and image-->
-
-                <div class="col s6">
-                    <input multiple type="file" name="file"/>
-                </div>
 
                 <div class="row center-align">
                     <button   class="waves-effect waves-light btn grey darken-4" type="submit"><i class="material-icons left">save</i>Guardar</button>

@@ -26,6 +26,10 @@
             <%
 
                 Efemeride efemeride = (Efemeride) session.getAttribute("efem");
+                String fechaefemerideEdit = (String) session.getAttribute("fechaefemerideEdit");
+                String fecharealEdit = (String) session.getAttribute("fecharealEdit");
+                
+                
 
                 DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");%>
             <div class="row">
@@ -64,10 +68,10 @@
                 <!-- End col 2-->
                 <!-- Start col 3-->
                 <div class="col s12 m4 l4">
-                    <label for="date" class="black_taurinas">Fecha</label>
-                    <input disabled="true" id="date" type="text" class="datepicker" name="date" value="<%=dateFormat.format(efemeride.getFechaefemeride())%>">
-                    <label for="real_date" class="black_taurinas">Fecha</label>
-                    <input disabled="true"" id="real_date" type="text" class="datepicker" name="real_date" value="<%=dateFormat.format(efemeride.getFechareal())%>">
+                    <label for="date" class="black_taurinas">Fecha Efemeride</label>
+                    <input disabled="true" id="date" type="text" class="datepicker" name="date" value="<%=fechaefemerideEdit%>">
+                    <label for="real_date" class="black_taurinas">Fecha Real</label>
+                    <input disabled="true"" id="real_date" type="text" class="datepicker" name="real_date" value="<%=fecharealEdit%>">
                     <label for="report" class="black_taurinas">Reportaje</label>
                     <input disabled="true" id="report" type="text" class="validate" name="report" value="<%=efemeride.getReportaje()%>">
                 </div>
@@ -94,16 +98,19 @@
                                 <th>Nombre</th>
                                 <th>Apodo</th>
                                 <th>Fecha de Nacimiento</th>
-                                <th>Fecha de Presentación</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <%for (Personaje p : efemeride.getPersonajeList()) {%>
+                            <%String date = "";
+                                for (Personaje p : efemeride.getPersonajeList()) {
+                                if(p.getFechanacimiento()!=null){
+                                    date = dateFormat.format(p.getFechanacimiento());
+                                }
+                            %>
                             <tr>
                                 <td><%=p.getNombrepersonaje()%> <%=p.getApellido1()%> <%=p.getApellido2()%></td>
                                 <td><%=p.getApodo1()%></td>
-                                <td><%=dateFormat.format(p.getFechanacimiento())%></td>    
-                                <td><%=dateFormat.format(p.getFechapresentacion())%></td>    
+                                <td><%=date%></td>   
                             </tr>
                             <%}%>
                         </tbody>

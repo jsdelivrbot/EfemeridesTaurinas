@@ -4,6 +4,7 @@
     Author     : agustin
 --%>
 
+<%@page import="java.text.DateFormat"%>
 <%@page import="javax.persistence.EntityTransaction"%>
 <%@page import="methods.Inform"%>
 <%@page import="Entities.Profesion"%>
@@ -30,6 +31,7 @@
         <%
 
             EntityManager em = (EntityManager) session.getAttribute("em");
+            DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
 
             if (em == null) {
 
@@ -55,6 +57,8 @@
             if (op.equals("detailefemeride")) {
 
                 try {
+                    String fechaefemerideEdit = "";
+                    String fecharealEdit = "";
 
                     String idefemeride = (String) request.getParameter("idefemeride");
 
@@ -62,8 +66,18 @@
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     Efemeride efem = (Efemeride) q.getSingleResult();
-                    session.setAttribute("efem", efem);
 
+                    if (efem.getFechaefemeride() != null) {
+                        fechaefemerideEdit = dateFormat.format(efem.getFechaefemeride());
+                    }
+                    
+                    if (efem.getFechareal() != null) {
+                        fecharealEdit = dateFormat.format(efem.getFechareal());
+                    }
+
+                    session.setAttribute("efem", efem);
+                    session.setAttribute("fecharealEdit", fecharealEdit);
+                    session.setAttribute("fechaefemerideEdit", fechaefemerideEdit);
                     response.sendRedirect("../detailEfemeride.jsp");
 
                 } catch (Exception e) {
@@ -140,15 +154,22 @@
                     efemeride.setFoto(foto);
                     efemeride.setCartel(cartel);
                     efemeride.setGanaderia(ganaderia);
-                    efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
-                    efemeride.setFechareal(formatter.parse(fechareal));
+
                     efemeride.setReportaje(reportaje);
                     efemeride.setNotas(notas);
                     efemeride.setFuente(fuente);
 
+                    if (!fechaefemeride.contains("")) {
+                        efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
+                    }
+
+                    if (!fechareal.contains("")) {
+                        efemeride.setFechareal(formatter.parse(fechareal));
+                    }
+
                     if (efemeride.getPersonajeList() == null) { //si es nulo creo una nueva lista en la que añado el personaje y le meto la lista de persoanjes a la efemeride
                         efemeride.setPersonajeList(listPersonajesSelect);
-                    } else {//si no es nulo le cojo el arry y le añado el personaje directamente
+                    } else {//si no es nulo le cojo el array y le añado el personaje directamente
                         for (Personaje p : listPersonajesSelect) {
                             efemeride.getPersonajeList().add(p);
                         }
@@ -158,11 +179,10 @@
                     em.persist(efemeride);
                     em.getTransaction().commit();
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    //session.setAttribute("errormessage", "Guardada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
+                    session.setAttribute("errormessage", "Guardada correctamente la efeméride");
                 } catch (Exception e) {
-                    //response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    //session.setAttribute("errormessage", "Error al crear la efemeride" + e);
-                    out.print(e);
+                    response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
+                    session.setAttribute("errormessage", "Error al crear la efemeride" + e);
 
                 }
 
@@ -178,16 +198,12 @@
                 } catch (Exception e) {
                 }
 
-            } else if (op.equals("deleteallrows")) {
-                session.removeAttribute("listacartel");
-                response.sendRedirect("controllerEfemeride.jsp?op=loadllcharactersforefemerides");
             } else if (op.equals("createinformpdf")) {
                 String idefemeride = (String) request.getParameter("idefem");
                 sql = "SELECT E FROM Efemeride E WHERE E.idefemeride = " + idefemeride;
                 q = em.createQuery(sql);
                 q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                 Efemeride efemeride = (Efemeride) q.getSingleResult();
-                //session.setAttribute("personajeEdit", personajeEdit)
 
                 Inform i = new Inform();
                 i.generateInformPDFEfemeride(request, response, efemeride);
@@ -196,6 +212,10 @@
 
             } else if (op.equals("loadllcharactersforeditefemerides")) {
                 try {
+
+                    String fechaefemerideEdit = "";
+                    String fecharealEdit = "";
+
                     sql = "SELECT P FROM Personaje P";
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
@@ -207,7 +227,18 @@
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     Efemeride efemeride = (Efemeride) q.getSingleResult();
+
+                    if (efemeride.getFechaefemeride() != null) {
+                        fechaefemerideEdit = dateFormat.format(efemeride.getFechaefemeride());
+                    }
+
+                    if (efemeride.getFechareal() != null) {
+                        fecharealEdit = dateFormat.format(efemeride.getFechareal());
+                    }
+
                     session.setAttribute("efemeride", efemeride);
+                    session.setAttribute("fecharealEdit", fecharealEdit);
+                    session.setAttribute("fechaefemerideEdit", fechaefemerideEdit);
                     response.sendRedirect("../editEfemeride.jsp");
                 } catch (Exception e) {
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
@@ -249,11 +280,17 @@
                     efemeride.setFoto(foto);
                     efemeride.setCartel(cartel);
                     efemeride.setGanaderia(ganaderia);
-                    efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
-                    efemeride.setFechareal(formatter.parse(fechareal));
                     efemeride.setReportaje(reportaje);
                     efemeride.setNotas(notas);
                     efemeride.setFuente(fuente);
+
+                    if (!fechaefemeride.contains("")) {
+                        efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
+                    }
+
+                    if (!fechareal.contains("")) {
+                        efemeride.setFechareal(formatter.parse(fechareal));
+                    }
 
                     if (efemeride.getPersonajeList() == null) { //si es nulo creo una nueva lista en la que añado el personaje y le meto la lista de persoanjes a la efemeride
                         efemeride.setPersonajeList(listPersonajesSelect);
@@ -269,10 +306,10 @@
                     tx.commit();
 
                     response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    //session.setAttribute("errormessage", "Editada correctamente la efeméride de " + personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2());
+                    session.setAttribute("errormessage", "Editada correctamente la efeméride");
                 } catch (Exception e) {
-                    //response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
-                    //session.setAttribute("errormessage", "Error al editar la efeméride");
+                    response.sendRedirect("controllerEfemeride.jsp?op=loadallefems");
+                    session.setAttribute("errormessage", "Error al editar la efeméride");
 
                     out.print(e);
                 }

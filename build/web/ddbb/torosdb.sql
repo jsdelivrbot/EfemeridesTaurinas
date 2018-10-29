@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2018 a las 00:22:38
+-- Tiempo de generación: 29-10-2018 a las 19:12:53
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.2
 
@@ -30,17 +30,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `efemeride` (
   `idefemeride` int(11) NOT NULL,
-  `provincia` varchar(255) DEFAULT NULL,
-  `pueblo` varchar(255) DEFAULT NULL,
-  `tipoevento` varchar(255) DEFAULT NULL,
+  `provincia` varchar(255) DEFAULT '',
+  `pueblo` varchar(255) DEFAULT '',
+  `tipoevento` varchar(255) DEFAULT '',
   `fechaefemeride` date DEFAULT NULL,
-  `ganaderia` varchar(255) DEFAULT NULL,
+  `ganaderia` varchar(255) DEFAULT '',
   `notas` text,
-  `foto` varchar(255) DEFAULT NULL,
-  `cartel` varchar(255) DEFAULT NULL,
+  `foto` varchar(255) DEFAULT '',
+  `cartel` varchar(255) DEFAULT '',
   `fechareal` date DEFAULT NULL,
-  `fuente` varchar(255) DEFAULT NULL,
-  `reportaje` varchar(255) DEFAULT NULL
+  `fuente` varchar(255) DEFAULT '',
+  `reportaje` varchar(255) DEFAULT ''
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -75,12 +75,12 @@ CREATE TABLE `persoefe` (
 
 CREATE TABLE `personaje` (
   `idpersonaje` int(11) NOT NULL,
-  `nombrepersonaje` varchar(255) DEFAULT NULL,
-  `apellido1` varchar(255) DEFAULT NULL,
-  `apellido2` varchar(255) DEFAULT NULL,
-  `apodo1` varchar(255) DEFAULT NULL,
-  `apodo2` varchar(255) DEFAULT NULL,
-  `nombrecartel` varchar(255) DEFAULT NULL,
+  `nombrepersonaje` varchar(255) DEFAULT '',
+  `apellido1` varchar(255) DEFAULT '',
+  `apellido2` varchar(255) DEFAULT '',
+  `apodo1` varchar(255) DEFAULT '',
+  `apodo2` varchar(255) DEFAULT '',
+  `nombrecartel` varchar(255) DEFAULT '',
   `fechanacimiento` date DEFAULT NULL,
   `cossio` tinyint(1) DEFAULT NULL,
   `clm` tinyint(1) DEFAULT NULL,
@@ -89,17 +89,21 @@ CREATE TABLE `personaje` (
   `fechapicadores` date DEFAULT NULL,
   `fechaalternativa` date DEFAULT NULL,
   `notas` text,
-  `fotografia` varchar(255) DEFAULT NULL,
-  `personadecontacto` varchar(255) DEFAULT NULL,
-  `direccion` varchar(255) DEFAULT NULL,
-  `telefono` varchar(255) DEFAULT NULL,
-  `correo` varchar(255) DEFAULT NULL,
-  `biografia` varchar(255) DEFAULT NULL,
-  `provincianacimiento` varchar(255) DEFAULT NULL,
-  `pueblonacimiento` varchar(255) DEFAULT NULL,
-  `provinciaactual` varchar(255) DEFAULT NULL,
+  `fotografia` varchar(255) DEFAULT '',
+  `personadecontacto` varchar(255) DEFAULT '',
+  `direccion` varchar(255) DEFAULT '',
+  `telefono` varchar(255) DEFAULT '',
+  `correo` varchar(255) DEFAULT '',
+  `biografia` varchar(255) DEFAULT '',
+  `provincianacimiento` varchar(255) DEFAULT '',
+  `pueblonacimiento` varchar(255) DEFAULT '',
+  `provinciaactual` varchar(255) DEFAULT '',
   `puebloactual` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `profesion`
@@ -224,25 +228,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `efemeride`
 --
 ALTER TABLE `efemeride`
-  MODIFY `idefemeride` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `idefemeride` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `fotos`
 --
 ALTER TABLE `fotos`
-  MODIFY `idimagen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `idimagen` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `personaje`
 --
 ALTER TABLE `personaje`
-  MODIFY `idpersonaje` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+  MODIFY `idpersonaje` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

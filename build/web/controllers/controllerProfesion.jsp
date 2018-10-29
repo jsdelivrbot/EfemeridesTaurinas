@@ -159,7 +159,7 @@
                     session.setAttribute("errormessage", "Debe seleccionar ambos campos");
                     response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
                 } catch (Exception ex) {
-                    session.setAttribute("errormessage", "Debe seleccionar ambos campos" + ex);
+                    session.setAttribute("errormessage", "El personaje ya tiene asociada esa profesión");
                     response.sendRedirect("controllerProfesion.jsp?op=loadallprofession");
 
                 }

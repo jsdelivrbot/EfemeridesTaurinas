@@ -25,9 +25,14 @@
                 <div class="row">
 
                     <%
+                        Personaje personajeEdit = new Personaje();
+                        String fechaalternativaEdit = (String) session.getAttribute("fechaalternativaEdit");
+                        String fechanacimientoEdit = (String) session.getAttribute("fechanacimientoEdit");
+                        String fechapicadoresEdit = (String) session.getAttribute("fechapicadoresEdit");
+                        String fechapresentacionEdit = (String) session.getAttribute("fechapresentacionEdit");
+
                         try {
-                            Personaje personajeEdit = (Personaje) session.getAttribute("personajeEdit");
-                            DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
+                            personajeEdit = (Personaje) session.getAttribute("personajeEdit");
 
                     %>
                     <!-- Start col 1-->
@@ -51,7 +56,7 @@
                         <label for="second_nickname" class="black_taurinas">Segundo Apodo</label>
                         <input id="second_nickname" type="text" value="<%=personajeEdit.getApodo2()%>" class="validate" name="second_nickname">
                         <label for="birth_date" required="true" class="black_taurinas">Fecha Nacimiento</label>
-                        <input id="birth_date" type="text" value="<%=dateFormat.format(personajeEdit.getFechanacimiento())%>" class="datepicker" name="birth_date">
+                        <input id="birth_date" type="text" value="<%=fechanacimientoEdit%>" class="datepicker" name="birth_date">
                         <label for="birth_town" class="black_taurinas">Pueblo de nacimiento</label>
                         <input id="birth_town" type="text" value="<%=personajeEdit.getPueblonacimiento()%>" class="validate" name="birth_town">
                     </div>
@@ -69,7 +74,7 @@
                         <label for="img" class="black_taurinas">Imagen <i id="informationimage " data-position="bottom" data-delay="10" data-tooltip="Debe colocar la URL de la imagen" class=" tooltipped material-icons information_orange_buttons">info</i></label>
                         <input  id="img" type="text" value="<%=personajeEdit.getFotografia()%>" class="validate" name="img">
                         <label for="picadores_date" required="true" class="black_taurinas">Fecha Picadores</label>
-                        <input id="picadores_date" type="text" value="<%=dateFormat.format(personajeEdit.getFechapicadores())%>" class="datepicker" name="picadores_date">
+                        <input id="picadores_date" type="text" value="<%=fechapicadoresEdit%>" class="datepicker" name="picadores_date">
                     </div>
                     <!-- End frist col personal detail-->
                     <!-- Start second col personal detail-->
@@ -79,7 +84,7 @@
                         <label for="contact" class="black_taurinas">Contacto</label>
                         <input id="contact" value="<%=personajeEdit.getPersonadecontacto()%>" type="text" class="validate" name="contact">
                         <label for="presentation_date" required="true" class="black_taurinas">Fecha Presentacion</label>
-                        <input id="presentation_date" type="text" value="<%=dateFormat.format(personajeEdit.getFechapresentacion())%>" class="datepicker" name="presentation_date">
+                        <input id="presentation_date" type="text" value="<%=fechapresentacionEdit%>" class="datepicker" name="presentation_date">
                     </div>
                     <!-- End second col personal detail-->
                     <!-- Start third col personal detail-->
@@ -89,7 +94,7 @@
                         <label for="email" class="black_taurinas">Email</label>
                         <input id="email" value="<%=personajeEdit.getCorreo()%>" type="email" class="validate" name="email">
                         <label for="alternative_date" required="true" class="black_taurinas">Fecha Alternativa</label>
-                        <input id="alternative_date" type="text" value="<%=dateFormat.format(personajeEdit.getFechaalternativa())%>" class="datepicker" name="alternative_date">
+                        <input id="alternative_date" type="text" value="<%=fechaalternativaEdit%>" class="datepicker" name="alternative_date">
                     </div>
                     <!-- End third col personal detail-->
                 </div>
@@ -150,47 +155,12 @@
                     </div>
                 </div>
                 <!-- End row biograpy and image-->
-
-
-                <table cellpadding="1" cellspacing="1" class="striped table table-hover" id="myTable">
-                    <thead>
-                        <tr>
-                            <th>Personaje</th>
-                            <th>Imagen</th>
-                            <th>Nombre imagen</th>
-                            <th>Borrar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for (Fotos f:personajeEdit.getFotosList()) {%>
-                        <tr>
-                            <td><%=personajeEdit.getNombrepersonaje()%></td>
-                            <td><img class="materialboxed" width="60" src="<%=f.getImagen()%>"></td>
-                            <!--<td>
-                                <form class="delete-profesion" action="controllers/controllerProfesion.jsp?op=deleteprofesionpersonaje" method="POST" name="deleteprofesion">
-                                    <input class="hidden_display" name="idprofesiondelete" value="">
-                                    <input class="hidden_display" name="idperonajedelete" value="">
-                                    <button class="waves-effect waves-light btn small_button red" type="submit" name="action"><i class="material-icons center">delete</i></button>
-                                </form>
-                            </td>-->
-                            <td><%=f.getNombreimagen()%></td>
-                            <td><button class="waves-effect waves-light btn small_button red" type="submit" name="action"><i class="material-icons center">delete</i></button></td>
-                        </tr>
-                        <%}%>
-                    </tbody>
-                </table>
-                <div class="col-md-12 center text-center">
-                    <span class="left" id="total_reg"></span>
-                    <ul class="pagination pager" id="myPager"></ul>
-                </div>
-
-                <div class="row center-align margin_top">
-                    <button class="waves-effect waves-light btn grey darken-4" type="submit"><i class="material-icons left">save</i>Guardar</button>
-                    <a class="waves-effect waves-light btn grey darken-4" href="personajes.jsp"><i class="material-icons left">cancel</i>Cancelar</a>
-                </div>
             </div>
 
-
+            <div class="row center-align margin_top">
+                <button class="waves-effect waves-light btn grey darken-4" type="submit"><i class="material-icons left">save</i>Guardar</button>
+                <a class="waves-effect waves-light btn grey darken-4" href="personajes.jsp"><i class="material-icons left">cancel</i>Cancelar</a>
+            </div>
 
             <% } catch (Exception e) {
                     session.setAttribute("errormessage", "Error visualizar la edición del personaje");

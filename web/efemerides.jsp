@@ -61,15 +61,20 @@
 
                         List<Efemeride> listaefemerides = (List<Efemeride>) session.getAttribute("listaefemerides");
                         DateFormat dateFormat = new SimpleDateFormat("dd MMM, yyyy");
-                        for (int i = 0; i < listaefemerides.size(); i++) {
 
+                        String date = "";
+
+                        for (int i = 0; i < listaefemerides.size(); i++) {
+                            if (listaefemerides.get(i).getFechaefemeride()!= null) {
+                                date = dateFormat.format(listaefemerides.get(i).getFechaefemeride());
+                            }
 
                 %>
                 <div class="col s12 m6 l4" style="margin-bottom: 10px;">
                     <div class="card">
                         <div class="card-content min_height_card_efemeride">
                             <h5>Evento: <%=listaefemerides.get(i).getTipoevento()%></h5>
-                            <p>Fecha: <%= dateFormat.format(listaefemerides.get(i).getFechaefemeride())%></p>
+                            <p>Fecha: <%=date%></p>
                             <p>Pueblo: <%=listaefemerides.get(i).getPueblo()%></p>
                             <p>Provincia: <%=listaefemerides.get(i).getProvincia()%></p>
                         </div>
@@ -103,8 +108,9 @@
                 <%}
 
                     } catch (Exception e) {
-                        session.setAttribute("errormessage", "Error visualizar las efemerides");
-                        response.sendRedirect("mainview.jsp");
+                        //session.setAttribute("errormessage", "Error visualizar las efemerides");
+                        //response.sendRedirect("mainview.jsp");
+
                     }%>
             </div>
         </div>

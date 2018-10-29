@@ -24,32 +24,32 @@
                     <!-- Start col 1-->
                     <div class="col s12 m4 l4">
                         <label for="province" class="black_taurinas">Provincia</label>
-                        <input required="required" id="province" type="text" class="validate" name="province" value="">
+                        <input  id="province" type="text" class="validate" name="province" value="">
                         <label for="town" class="black_taurinas">Pueblo</label>
-                        <input required="required" id="town" type="text" class="validate" name="town" value="">
+                        <input  id="town" type="text" class="validate" name="town" value="">
                         <label for="event" class="black_taurinas">Tipo de Evento</label>
-                        <input required="required" id="event" type="text" class="validate" name="event" value="">
+                        <input  id="event" type="text" class="validate" name="event" value="">
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
                     <div class="col s12 m4 l4">
                         <label for="foto" class="black_taurinas">Fotografía</label>
-                        <input required="required" id="foto" type="text" class="validate" name="foto" value="">
+                        <input  id="foto" type="text" class="validate" name="foto" value="">
                         <label for="cartel" class="black_taurinas">Cartel</label>
-                        <input required="required" id="cartel" type="text" class="validate" name="cartel" value="">
+                        <input  id="cartel" type="text" class="validate" name="cartel" value="">
                         <label for="ganadery" class="black_taurinas">Ganadería</label>
-                        <input required="required" id="ganadery" type="text" class="validate" name="ganadery" value="">
+                        <input  id="ganadery" type="text" class="validate" name="ganadery" value="">
 
                     </div>
                     <!-- End col 2-->
                     <!-- Start col 3-->
                     <div class="col s12 m4 l4">
                         <label for="date" class="black_taurinas">Fecha</label>
-                        <input required="required" id="date" type="text" class="datepicker" name="date" value="">
+                        <input  id="date" type="text" class="datepicker" name="date" value="">
                         <label for="real_date" class="black_taurinas">Fecha</label>
-                        <input required="required" id="real_date" type="text" class="datepicker" name="real_date" value="">
+                        <input  id="real_date" type="text" class="datepicker" name="real_date" value="">
                         <label for="report" class="black_taurinas">Reportaje</label>
-                        <input required="required" id="report" type="text" class="validate" name="report" value="">
+                        <input id="report" type="text" class="validate" name="report" value="">
                     </div>
                     <!-- End col 3-->
                 </div>

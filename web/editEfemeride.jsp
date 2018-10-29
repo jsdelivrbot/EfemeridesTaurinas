@@ -24,7 +24,9 @@
             <% try {
 
                     Efemeride efemeride = (Efemeride) session.getAttribute("efemeride");
-                    DateFormat dateFormat = new SimpleDateFormat("dd MMMM, yyyy");
+                    String fechaefemerideEdit = (String) session.getAttribute("fechaefemerideEdit");
+                    String fecharealEdit = (String) session.getAttribute("fecharealEdit");
+                   
 
                     //cojo los dos arrays resto el completo con el array que efemreides y me salen los personajes no seleccionados
                     List<Personaje> listaPersonajesCompleta = (List<Personaje>) session.getAttribute("listapersonajes");
@@ -64,9 +66,9 @@
                     <!-- Start col 3-->
                     <div class="col s12 m4 l4">
                         <label for="date" class="black_taurinas">Fecha</label>
-                        <input  id="date" type="text" class="datepicker" name="date" value="<%=dateFormat.format(efemeride.getFechaefemeride())%>">
+                        <input  id="date" type="text" class="datepicker" name="date" value="<%=fechaefemerideEdit%>">
                         <label for="real_date" class="black_taurinas">Fecha</label>
-                        <input  id="real_date" type="text" class="datepicker" name="real_date" value="<%=dateFormat.format(efemeride.getFechareal())%>">
+                        <input  id="real_date" type="text" class="datepicker" name="real_date" value="<%=fecharealEdit%>">
                         <label for="report" class="black_taurinas">Reportaje</label>
                         <input  id="report" type="text" class="validate" name="report" value="<%=efemeride.getReportaje()%>">
                     </div>

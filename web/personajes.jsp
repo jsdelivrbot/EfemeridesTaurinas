@@ -96,7 +96,7 @@
                                     </form> 
                                 </div>
                                 <div class="col s2">
-                                    <form class="filter-form" action="controllers/controller.jsp?op=prepararIdGuardarImagen" method="POST" name="formfilter">
+                                    <form class="filter-form" action="controllers/controller.jsp?op=editImageCharacter&id=<%=p.getIdpersonaje()%>" method="POST" name="formfilter">
                                         <input class="hidden_display " name="idcharacter" value="<%=p.getIdpersonaje()%>"/>
                                         <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">image</i></button>
                                     </form>
@@ -111,7 +111,6 @@
                 <% }%>
             </div>
         </div>
-
         <!-- End row of character-->
 
         <jsp:include page="assets/shared/body.jsp" />
