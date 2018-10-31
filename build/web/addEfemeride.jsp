@@ -66,7 +66,7 @@
 
                 <!-- Start select characters -->
                 <div class="row margin_top_login">
-                    <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
+                    <div class="col s12 m8 l8 offset-m2 offset-l2">
                         <div class="input-field col s12">
                             <!-- Start select-->
                             <select multiple required="required" id="selectcharactersefemerides"  name="idpersonajes">

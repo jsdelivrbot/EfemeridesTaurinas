@@ -90,15 +90,20 @@ Author     : agustin
                 <!-- Start row of complete and cossio -->
                 <div class="row center-align">
                     <!-- Start col 1-->
-                    <div class="col s12 m6 l6">
+                    <div class="col s12 m4 l4">
                         <input type="checkbox" class="" id="complete" name="checkcomplete"/>
                         <label for="complete" class="black_taurinas">Completo</label>
                     </div>
                     <!-- End col 1-->
                     <!-- Start col 2-->
-                    <div class="col s12 m6 l6">
+                    <div class="col s12 m4 l4">
                         <input type="checkbox" class="" id="cossio" name="checkcossio"/>
                         <label for="cossio" class="black_taurinas">Cossio</label>
+                    </div>
+                    
+                    <div class="col s12 m4 l4">
+                        <input type="checkbox" class="" id="clm" name="checkclm"/>
+                        <label for="clm" class="black_taurinas">CLM</label>
                     </div>
                     <!-- End col 2-->
                 </div>

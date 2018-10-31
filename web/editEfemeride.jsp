@@ -40,7 +40,7 @@
             <!-- End Row title-->
             <!-- Start Row image and credentials-->
             <form class="character-form" action="controllers/controllerEfemeride.jsp?op=saveeditefe" method="POST" name="formcharacter">
-                <input  id="idefemeride" type="text" class="validate" name="idefemeride" value="<%=efemeride.getIdefemeride()%>">
+                <input  id="idefemeride" type="text" class="validate hidden_display" name="idefemeride" value="<%=efemeride.getIdefemeride()%>">
                 <div class="row">
                     <!-- Start col 1-->
                     <div class="col s12 m4 l4">
@@ -65,9 +65,9 @@
                     <!-- End col 2-->
                     <!-- Start col 3-->
                     <div class="col s12 m4 l4">
-                        <label for="date" class="black_taurinas">Fecha</label>
+                        <label for="date" class="black_taurinas">Fecha de la efeméride</label>
                         <input  id="date" type="text" class="datepicker" name="date" value="<%=fechaefemerideEdit%>">
-                        <label for="real_date" class="black_taurinas">Fecha</label>
+                        <label for="real_date" class="black_taurinas">Fecha real</label>
                         <input  id="real_date" type="text" class="datepicker" name="real_date" value="<%=fecharealEdit%>">
                         <label for="report" class="black_taurinas">Reportaje</label>
                         <input  id="report" type="text" class="validate" name="report" value="<%=efemeride.getReportaje()%>">
@@ -87,7 +87,7 @@
 
 
                 <div class="row margin_top_login">
-                    <div class="col s10 m8 l8 offset-s1 offset-m2 offset-l2">
+                    <div class="col s12 m8 l8 offset-m2 offset-l2">
                         <div class="input-field col s12">
                             <select multiple required="required" id="selectcharactersefemerides"  name="idpersonajes">
                                 <%for (int i = 0; i < efemeride.getPersonajeList().size(); i++) {%>

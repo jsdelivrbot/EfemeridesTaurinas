@@ -8,7 +8,7 @@
 <footer class="page-footer sticky_footer" >
     <div class="footer-copyright grey darken-3">
         <div class="container left-align">
-            <span>Madrija Consultoría S.L <span class="separador">|</span> <span class="red_taurinas">Efemérides Taurinas</span></span>
+            <span>Madrija Consultoría S.L <span class="separador">|</span> <span class="red_taurinas">Efemérides Taurinas Toledanas</span></span>
         </div>
     </div>
 </footer>

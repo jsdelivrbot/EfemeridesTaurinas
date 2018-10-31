@@ -159,11 +159,11 @@
                     efemeride.setNotas(notas);
                     efemeride.setFuente(fuente);
 
-                    if (!fechaefemeride.contains("")) {
+                    if (fechaefemeride.length() !=0) {
                         efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
                     }
 
-                    if (!fechareal.contains("")) {
+                    if (fechareal.length() !=0) {
                         efemeride.setFechareal(formatter.parse(fechareal));
                     }
 
@@ -284,11 +284,11 @@
                     efemeride.setNotas(notas);
                     efemeride.setFuente(fuente);
 
-                    if (!fechaefemeride.contains("")) {
+                    if (fechaefemeride.length() !=0) {
                         efemeride.setFechaefemeride(formatter.parse(fechaefemeride));
                     }
 
-                    if (!fechareal.contains("")) {
+                    if (fechareal.length() !=0) {
                         efemeride.setFechareal(formatter.parse(fechareal));
                     }
 

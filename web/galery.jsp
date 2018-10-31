@@ -35,7 +35,7 @@
 
             <form action="controllers/controller.jsp?op=saveimage&id=<%=idCharacter%>" enctype="multipart/form-data" accept="image/*" method="POST" class="addimage-form" name="addimage">
                 <div class="row">
-                    <div class="col m8 l8 s12 offset-s2 offset-l2">
+                    <div class="col m8 l8 s12 offset-m2 offset-l2">
                         <div class="card">
                             <div class="card-content">
 

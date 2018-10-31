@@ -33,7 +33,6 @@
 
                         try {
                             personajeEdit = (Personaje) session.getAttribute("personajeEdit");
-
                     %>
                     <!-- Start col 1-->
                     <div class="col s12 m6 l6">
@@ -113,15 +112,40 @@
                 <!-- Start row of complete and cossio -->
                 <div class="row center-align margin_top_login">
                     <!-- Start col 1-->
-                    <div class="col s12 m6 l6">
+                    <div class="col s12 m4 l4">
                         <input type="checkbox" class="" id="complete" name="checkcomplete"/>
                         <label for="complete" class="black_taurinas">Completo</label>
+                        <script>
+                            if (<%=personajeEdit.getCompleto()%> == true) {
+                                $('#complete').prop('checked', true);
+                            } else {
+                                $('#complete').prop('checked', false);
+                            }
+                        </script>
                     </div>
                     <!-- End col 1-->
+                    <div class="col s12 m4 l4">
+                        <input type="checkbox" class="" id="clm" name="checkclm"/>
+                        <label for="clm" class="black_taurinas">CLM</label>
+                        <script>
+                            if (<%=personajeEdit.getClm()%> == true) {
+                                $('#clm').prop('checked', true);
+                            } else {
+                                $('#clm').prop('checked', false);
+                            }
+                        </script>
+                    </div>
                     <!-- Start col 2-->
-                    <div class="col s12 m6 l6">
+                    <div class="col s12 m4 l4">
                         <input type="checkbox" class="" id="cossio" name="checkcossio"/>
                         <label for="cossio" class="black_taurinas">Cossio</label>
+                        <script>
+                            if (<%=personajeEdit.getCossio()%> == true) {
+                                $('#cossio').prop('checked', true);
+                            } else {
+                                $('#cossio').prop('checked', false);
+                            }
+                        </script>
                     </div>
                     <!-- End col 2-->
                 </div>

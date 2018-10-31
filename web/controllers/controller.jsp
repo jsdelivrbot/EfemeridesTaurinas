@@ -73,7 +73,6 @@
             String message = null;
             EntityTransaction transaction;
 
-            //detail personaje
             String nombrepersonaje = null, apellido1 = null, apellido2 = null, apodo1 = null, apodo2 = null;
             String nombrecartel = null;
             String direccion = null;
@@ -89,6 +88,7 @@
 
             String completo = null;
             String cossio = null;
+            String clm = null;
             String notas = null;
             String provinciaactual = null;
             String provincianacimiento = null;
@@ -137,8 +137,6 @@
             } else if (op.equals("loadallcharacters")) {
 
                 try {
-
-                    //sql = "SELECT p FROM Personaje p order by p.fechanacimiento DESC";
                     sql = "SELECT p FROM Personaje p order by p.fechanacimiento DESC";
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
@@ -178,7 +176,7 @@
                     fechapicadores = new String(request.getParameter("picadores_date").getBytes("ISO-8859-1"), "UTF-8");
                     fechapresentacion = new String(request.getParameter("presentation_date").getBytes("ISO-8859-1"), "UTF-8");
                     fechaalternativa = new String(request.getParameter("alternative_date").getBytes("ISO-8859-1"), "UTF-8");
-
+                    clm = (String) request.getParameter("checkclm");
                     SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
 
                     Personaje personaje = new Personaje();
@@ -190,19 +188,19 @@
                     personaje.setCorreo(email);
                     personaje.setDireccion(direccion);
 
-                    if (!fechaalternativa.contains("")) {
+                    if (fechaalternativa.length() !=0) {
                         personaje.setFechaalternativa(formatter.parse(fechaalternativa));
                     }
 
-                    if (!fechanacimiento.contains("")) {
+                    if (fechanacimiento.length() !=0) {
                         personaje.setFechanacimiento(formatter.parse(fechanacimiento));
                     }
 
-                    if (!fechapicadores.contains("")) {
+                    if (fechapicadores.length() !=0) {
                         personaje.setFechapicadores(formatter.parse(fechapicadores));
                     }
 
-                    if (!fechapresentacion.contains("")) {
+                    if (fechapresentacion.length() !=0) {
                         personaje.setFechapresentacion(formatter.parse(fechapresentacion));
                     }
 
@@ -222,6 +220,12 @@
                         personaje.setCompleto(true);
                     }
 
+                    if (clm == null) {
+                        personaje.setClm(false);
+                    } else if (clm != null) {
+                        personaje.setClm(true);
+                    }
+
                     if (cossio == null) {
                         personaje.setCossio(false);
                     } else if (completo != null) {
@@ -236,13 +240,12 @@
                     session.setAttribute("correctmessage", "Añadido el personaje correctamente");
 
                 } catch (Exception e) {
-                    //session.setAttribute("errormessage", "Error añadiendo el personaje" + e);
-                    //response.sendRedirect("../personajes.jsp");
+                    session.setAttribute("errormessage", "Error añadiendo el personaje");
+                    response.sendRedirect("../personajes.jsp");
                 }
             } else if (op.equals("loadallefemerides")) {
                 try {
 
-                    //sql = "SELECT p FROM Personaje p order by p.fechanacimiento DESC";
                     sql = "SELECT e FROM Efemeride e";
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
@@ -412,7 +415,7 @@
                     response.sendRedirect("../editPersonaje.jsp");
                 } catch (Exception e) {
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
-                    session.setAttribute("errormessage", "Al intentar cargar la edicción del personaje" + e);
+                    session.setAttribute("errormessage", "Al intentar cargar la edicción del personaje");
 
                 }
             } else if (op.equals("saveeditcharacter")) {
@@ -441,7 +444,7 @@
                     fechapicadores = new String(request.getParameter("picadores_date"));
                     fechapresentacion = new String(request.getParameter("presentation_date").getBytes("ISO-8859-1"), "UTF-8");
                     fechaalternativa = new String(request.getParameter("alternative_date").getBytes("ISO-8859-1"), "UTF-8");
-
+                    clm = (String) request.getParameter("checkclm");
                     SimpleDateFormat formatter = new SimpleDateFormat("dd MMM, yyyy");
 
                     Personaje personaje = new Personaje();
@@ -453,18 +456,18 @@
                     personaje.setBiografia(biografia);
                     personaje.setCorreo(email);
                     personaje.setDireccion(direccion);
-                    if (!fechaalternativa.contains("")) {
+                    if (fechaalternativa.length() !=0) {
                         personaje.setFechaalternativa(formatter.parse(fechaalternativa));
                     }
-                    if (!fechanacimiento.contains("")) {
+                    if (fechanacimiento.length() !=0) {
                         personaje.setFechanacimiento(formatter.parse(fechanacimiento));
                     }
 
-                    if (!fechapicadores.contains("")) {
+                    if (fechapicadores.length() !=0) {
                         personaje.setFechapicadores(formatter.parse(fechapicadores));
                     }
 
-                    if (!fechapresentacion.contains("")) {
+                    if (fechapresentacion.length() !=0) {
                         personaje.setFechapresentacion(formatter.parse(fechapresentacion));
                     }
                     personaje.setNombrecartel(nombrecartel);
@@ -483,6 +486,12 @@
                         personaje.setCompleto(true);
                     }
 
+                    if (clm == null) {
+                        personaje.setClm(false);
+                    } else if (clm != null) {
+                        personaje.setClm(true);
+                    }
+
                     if (cossio == null) {
                         personaje.setCossio(false);
                     } else if (completo != null) {
@@ -494,15 +503,15 @@
                     em.getTransaction().commit();
                     response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("correctmessage", personaje.getNombrepersonaje() + " " + personaje.getApellido1() + " " + personaje.getApellido2() + " ha sido editado correctamente");
+
                 } catch (Exception e) {
-                    session.setAttribute("errormessage", "Error editando el personaje");
+                    session.setAttribute("errormessage", "Error editando el personaje" + e);
                     response.sendRedirect("../personajes.jsp");
                 }
             } else if (op.equals("detailcharacter")) {
 
                 try {
 
-                    //TODO:FECHA
                     String fechaalternativaEdit = "";
                     String fechanacimientoEdit = "";
                     String fechapicadoresEdit = "";
@@ -675,8 +684,7 @@
                     em.getTransaction().begin();
                     em.remove(f);
                     em.getTransaction().commit();
-
-                    response.sendRedirect("../personajes.jsp");
+                    response.sendRedirect("controller.jsp?op=loadallcharacters");
                     session.setAttribute("errormessage", "Imagen eliminada correctamente");
 
                 } catch (Exception e) {
@@ -684,17 +692,14 @@
                     session.setAttribute("errormessage", "Error al eliminar la imagen");
                 }
 
-            } else if (op.equals(
-                    "createinformpdf")) {
+            } else if (op.equals("createinformpdf")) {
                 try {
-
                     String idpersonaje = (String) request.getParameter("idcharacter");
 
                     sql = "SELECT P FROM Personaje p where p.idpersonaje =" + idpersonaje;
                     q = em.createQuery(sql);
                     q.setHint("javax.persistence.cache.storeMode", "REFRESH");
                     Personaje personajeEdit = (Personaje) q.getSingleResult();
-                    //session.setAttribute("personajeEdit", personajeEdit);
 
                     Inform i = new Inform();
                     i.generateInformPDF(request, response, personajeEdit);

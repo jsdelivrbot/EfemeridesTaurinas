@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="input-field col s12 center">
                             <img  width="150" src="assets/img/bull_icon_black.svg" alt="" class=" center s12 m10">
-                            <h5 class="grey-text text-lighten-5 header_title_mainview"><span class="black_taurinas">EFEMÉRIDES </span><span class="color_red">TAURINAS</span></h5>
+                            <h5 class="grey-text text-lighten-5 header_title_mainview"><span class="black_taurinas">EFEMÉRIDES TAURINAS </span><span class="color_red">TOLEDANAS</span></h5>
                         </div>
                     </div>
                     <div class="row">

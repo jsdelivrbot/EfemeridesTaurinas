@@ -37,17 +37,22 @@
             %>
             <!-- Start Row title-->
             <div class="row">
-                <div class="col s12 m7 l8">
+                <div class="col s12 m4 l4">
                     <h5 class="titles_red_h5">Personaje</h5>
                 </div>
-                <div class="col s12 m5 l4">
+                <div class="col s12 m4 l4">
+                    <form class="filter-form" action="controllers/controller.jsp?op=deletecharacter&idperonajedelete=<%=personajedatail.getIdpersonaje()%>" method="POST">
+                        <button data-position="bottom" data-tooltip="Si elimina el personaje se eliminarán todo lo asociado a él" class="tooltipped btn waves-effect waves-light blue-grey darken-3" type="submit" name="action">Eliminar
+                            <i class="material-icons right">delete</i>
+                        </button>
+                    </form> 
+                </div>
 
+                <div class="col s12 m4 l4">
                     <form target="_blank" class="filter-form" action="controllers/controller.jsp?op=createinformpdf" method="POST" name="formfilter">
                         <input class="hidden_display " name="idcharacter" value="<%=personajedatail.getIdpersonaje()%>">
                         <button class="btn waves-effect waves-light green" type="submit" name="action">Informe Personaje<i class="material-icons right">picture_as_pdf</i></button>
                     </form>
-
-
                 </div>
             </div>
 
@@ -145,6 +150,17 @@
                         </script>
                     </div>
                     <div class="row">
+                        <input disabled="disabled" type="checkbox" class="" id="clm" name="checkclm"/>
+                        <label for="clm" class="black_taurinas">CLM</label>
+                        <script>
+                            if (<%=personajedatail.getClm()%> == true) {
+                                $('#clm').prop('checked', true);
+                            } else {
+                                $('#clm').prop('checked', false);
+                            }
+                        </script>
+                    </div>
+                    <div class="row">
                         <input disabled="disabled" type="checkbox" class="" id="cossio" name="checkcossio"/>
                         <label for="cossio" class="black_taurinas">Cossio</label>
                         <script>
@@ -154,17 +170,6 @@
                                 $('#cossio').prop('checked', false);
                             }
                         </script>
-                    </div>
-                    <div class="row">
-                        <input disabled="disabled" type="checkbox" class="" id="clm" name="checkclm"/>
-                        <label for="clm" class="black_taurinas">CLM</label>
-                        <!--<script>
-                            if ( == true) {
-                                $('#complete').prop('checked', true);
-                            } else {
-                                $('#complete').prop('checked', false);
-                            }
-                        </script>-->
                     </div>
                 </div>
             </div>
@@ -193,11 +198,11 @@
                 </thead>
                 <tbody>
                     <% for (int i = 0; i < listaEfemeridesPersonaje.size(); i++) {
-                        String date = "";
-                        if (listaEfemeridesPersonaje.get(i).getFechaefemeride()!=null){
-                           date =  dateFormat.format(listaEfemeridesPersonaje.get(i).getFechaefemeride());
-                        }
-                    
+                            String date = "";
+                            if (listaEfemeridesPersonaje.get(i).getFechaefemeride() != null) {
+                                date = dateFormat.format(listaEfemeridesPersonaje.get(i).getFechaefemeride());
+                            }
+
                     %>
                     <tr>
                         <td><%=personajedatail.getNombrepersonaje()%> <%=personajedatail.getApellido1()%> <%=personajedatail.getApellido2()%></td>

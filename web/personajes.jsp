@@ -77,7 +77,7 @@
                         <div class="card-action margin_top_card_action">
 
                             <div class="row">
-                                <div class="col s2 offset-s2">
+                                <div class="col s2 offset-s3">
                                     <form class="filter-form" action="controllers/controller.jsp?op=detailcharacter" method="POST" name="formfilter">
                                         <input class="hidden_display " name="idcharacter" value="<%=p.getIdpersonaje()%>"/>
                                         <button type="submit" class="waves-effect waves-light btn-floating  blue-grey lighten-3"><i class="material-icons">remove_red_eye</i></button>
@@ -89,16 +89,11 @@
                                         <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">edit</i></button>
                                     </form>
                                 </div>
-                                <div class="col s2">
-                                    <form class="filter-form" action="controllers/controller.jsp?op=deletecharacter" method="POST">
-                                        <input class="hidden_display" name="idperonajedelete" value="<%=p.getIdpersonaje()%>"/>
-                                        <button type="button" onclick="return confirmdelete(<%=p.getIdpersonaje()%>);" id="deletebutton" class="deletebutton waves-effect waves-light btn-floating blue-grey darken-3"><i id="delete" class= " material-icons">delete</i></button>
-                                    </form> 
-                                </div>
+                                
                                 <div class="col s2">
                                     <form class="filter-form" action="controllers/controller.jsp?op=editImageCharacter&id=<%=p.getIdpersonaje()%>" method="POST" name="formfilter">
                                         <input class="hidden_display " name="idcharacter" value="<%=p.getIdpersonaje()%>"/>
-                                        <button type="submit" class="waves-effect waves-light btn-floating background_color_red"><i class="material-icons">image</i></button>
+                                        <button type="submit" class="waves-effect waves-light btn-floating blue-grey darken-3"><i class="material-icons">image</i></button>
                                     </form>
                                 </div> 
                             </div>
