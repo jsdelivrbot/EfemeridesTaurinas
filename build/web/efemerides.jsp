@@ -48,9 +48,14 @@
                         poncombo(document.formfilterefe.sendfilterefe, '<%=session.getAttribute("sendfilterefe")%>');
                     </script>
                 </div>
-                <div class="col s12 m6 l6 offset-m2 offset-l2">
-                    <!--<a class=" red_taurinas modal-trigger" data-target="modal2">Añadir Efeméride</a>-->
-                    <a class="waves-effect waves-light btn grey darken-4 right" href="controllers/controllerEfemeride.jsp?op=loadllcharactersforefemerides">añadir efeméride</a>
+                <div class="col s12 m4 l4 center-align">
+                    <form class="search-form" action="controllers/controller.jsp?op=searchcharacter" method="POST" name="formsearch">
+                        <input type="text" class="datepicker">
+                        <button type="submit"  class="waves-effect waves-light btn background_color_red button_search tooltipped" data-position="bottom" data-delay="50" data-tooltip="Busca por nombre o apodo" ><i class="material-icons left">search</i></button>
+                    </form>
+                </div>
+                <div class="col s12 m4 l4 margin_top right">
+                    <a class="waves-effect waves-light btn grey darken-4" href="controllers/controllerEfemeride.jsp?op=loadllcharactersforefemerides">añadir efeméride</a>
                 </div>
             </div>
 
@@ -65,7 +70,7 @@
                         String date = "";
 
                         for (int i = 0; i < listaefemerides.size(); i++) {
-                            if (listaefemerides.get(i).getFechaefemeride()!= null) {
+                            if (listaefemerides.get(i).getFechaefemeride() != null) {
                                 date = dateFormat.format(listaefemerides.get(i).getFechaefemeride());
                             }
 
